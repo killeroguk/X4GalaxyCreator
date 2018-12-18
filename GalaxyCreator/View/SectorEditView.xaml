@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="GalaxyCreator.View.SectorEditView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GalaxyCreator.View"
+      xmlns:model="clr-namespace:GalaxyCreator.Model"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Padding="5">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="590">
+            <Label Content="Sector Options" FontSize="14" HorizontalContentAlignment="Center" Width="auto"/>
+            <Label Content="{Binding Path=SelectedSector.Id}"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Enable" Width="100"/>
+                    <CheckBox IsChecked="{Binding Path=SelectedSector.IsEnabled}" Command="{Binding IsEnabledClickedCommand}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Name" Width="100"/>
+                <TextBox Text="{Binding Path=SelectedSector.Name}" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Description" Width="100"/>
+                <TextBox  Text="{Binding Path=SelectedSector.Description}" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Music" Width="100"/>
+                <TextBox  Text="{Binding Path=SelectedSector.Music}" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Sunlight" Width="100"/>
+                <TextBox  Text="{Binding Path=SelectedSector.Sunlight}" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Economy" Width="100"/>
+                <TextBox  Text="{Binding Path=SelectedSector.Economy}" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Security" Width="100"/>
+                <TextBox  Text="{Binding Path=SelectedSector.Security}" Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="BAckdrop" Width="100"/>
+                <TextBox  Text="{Binding Path=SelectedSector.Backdrop}" Width="100"/>
+            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Gamestart" Width="100"/>
+                    <CheckBox IsChecked="{Binding Path=SelectedSector.Gamestart}"/>
+                </StackPanel>
+                <Button Content="Add Station" Command="{Binding AddStationClickCommand}" Margin=" 0 10 0 10" Width="300"/>
+                <ListView ItemsSource="{Binding Path=SelectedSector.Stations}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Type"/>
+                                <ComboBox Height="30" SelectedValue="{Binding Type}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type model:StationType}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
+                                </ComboBox>
+                                <Label Content="Race"/>
+                                <ComboBox Height="30" SelectedValue="{Binding Race}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type model:Race}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
+                                </ComboBox>
+                                <Label Content="Owner"/>
+                                <ComboBox Height="30" SelectedValue="{Binding Owner}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type model:Race}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
+                                </ComboBox>
+                                <Label Content="Faction"/>
+                                <ComboBox Height="30" SelectedValue="{Binding Faction}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type model:Faction}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
+                                </ComboBox>
+                                <Button Margin=" 10 0 10 0 " Content="X"></Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="Add Belt" Command="{Binding AddBeltClickCommand}" Margin="0 10 0 10" Width="300"/>
+                <ListView ItemsSource="{Binding Path=SelectedSector.Belts}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Type"/>
+                                <ComboBox Height="30" SelectedValue="{Binding Type}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type model:BeltType}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
+                                </ComboBox>
+                                <Button Margin=" 10 0 10 0 " Content="X"></Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>
