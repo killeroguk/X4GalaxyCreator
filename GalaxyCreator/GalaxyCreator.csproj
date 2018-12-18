@@ -62,11 +62,14 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="ShowMeTheXAML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShowMeTheXAML.1.0.11\lib\net45\ShowMeTheXAML.dll</HintPath>
+      <HintPath>..\packages\ShowMeTheXAML.1.0.12\lib\net45\ShowMeTheXAML.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -96,6 +99,34 @@
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\EnumerationExtension.cs" />
+    <Compile Include="Model\Json\Belt.cs" />
+    <Compile Include="Model\Json\BeltType.cs" />
+    <Compile Include="Model\Json\Cargo.cs" />
+    <Compile Include="Model\Json\Cluster.cs" />
+    <Compile Include="Model\Json\Connection.cs" />
+    <Compile Include="Model\Json\ConnectionType.cs" />
+    <Compile Include="Model\Json\CustomConnectionParameters.cs" />
+    <Compile Include="Model\Json\Faction.cs" />
+    <Compile Include="Model\Json\FactionStart.cs" />
+    <Compile Include="Model\Json\Galaxy.cs" />
+    <Compile Include="Model\Json\GalaxyOptions.cs" />
+    <Compile Include="Model\Json\Job.cs" />
+    <Compile Include="Model\Json\JobCategory.cs" />
+    <Compile Include="Model\Json\JobLocation.cs" />
+    <Compile Include="Model\Json\JobQuota.cs" />
+    <Compile Include="Model\Json\JobOrder.cs" />
+    <Compile Include="Model\Json\OrderParameter.cs" />
+    <Compile Include="Model\Json\Product.cs" />
+    <Compile Include="Model\Json\ProductLocation.cs" />
+    <Compile Include="Model\Json\Race.cs" />
+    <Compile Include="Model\Json\Ship.cs" />
+    <Compile Include="Model\Json\ShipSize.cs" />
+    <Compile Include="Model\Json\SpaceObject.cs" />
+    <Compile Include="Model\Json\SpaceObjectType.cs" />
+    <Compile Include="Model\Json\Station.cs" />
+    <Compile Include="Model\Json\StationType.cs" />
+    <Compile Include="Model\Json\Tag.cs" />
+    <Compile Include="Model\Json\Unit.cs" />
     <Compile Include="ViewModel\GalaxyEditViewModel.cs" />
     <Compile Include="Model\Hex.cs" />
     <Compile Include="Model\HexGrid.cs" />
@@ -169,12 +200,12 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\ShowMeTheXAML.MSBuild.1.0.11\build\net45\ShowMeTheXAML.MSBuild.targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild.1.0.11\build\net45\ShowMeTheXAML.MSBuild.targets')" />
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\ShowMeTheXAML.MSBuild.1.0.11\build\net45\ShowMeTheXAML.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ShowMeTheXAML.MSBuild.1.0.11\build\net45\ShowMeTheXAML.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
