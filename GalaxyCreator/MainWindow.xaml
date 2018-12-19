@@ -22,6 +22,14 @@
                 <ResourceDictionary Source="Skins/MainSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <DataTemplate DataType="{x:Type viewmodels:MapEditorViewModel}">
+                <views:MapEditorView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:JobEditorViewModel}">
+                <views:JobEditorView/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewmodels:SectorEditViewModel}">
                 <views:SectorEditView/>
             </DataTemplate>
@@ -29,32 +37,20 @@
             <DataTemplate DataType="{x:Type viewmodels:GalaxyEditViewModel}">
                 <views:GalaxyEditView/>
             </DataTemplate>
-
-
-
         </ResourceDictionary>
-
-
-
     </Window.Resources>
 
-
-
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="600"/>
-        </Grid.ColumnDefinitions>
-
-        <ScrollViewer Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
-            <Canvas x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black">
-
-            </Canvas>
-        </ScrollViewer>
-
-        <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding RightHandViewModel}"></ContentControl>
-    </Grid>
+    <DockPanel LastChildFill="true">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="LoadFile" Header="Load" HorizontalAlignment="Left" Width="140" Click="LoadFile_Click"/>
+                <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="140" Click="SaveFile_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Editors">
+                <MenuItem x:Name="MapEditor" Header="Map Editor" HorizontalAlignment="Left" Width="140" Click="MapEditor_Click"/>
+                <MenuItem x:Name="JobEditor" Header="Job Editor" HorizontalAlignment="Left" Width="140" Click="JobEditor_Click"/>
+            </MenuItem>            
+        </Menu>
+        <ContentControl Content="{Binding MainContainer}" />
+    </DockPanel>
 </Window>
