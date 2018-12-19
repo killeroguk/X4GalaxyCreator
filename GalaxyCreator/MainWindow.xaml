@@ -12,7 +12,7 @@
         mc:Ignorable="d ignore"
         Height="1000"
         Width="1500"
-        Title="Galaxy Creater"
+        Title="Galaxy Creator"
         
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
