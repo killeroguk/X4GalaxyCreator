@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class SpaceObject
+    public class SpaceObject
     {
         public SpaceObjectType Type { get; set; }
         public String ClusterId { get; set; }

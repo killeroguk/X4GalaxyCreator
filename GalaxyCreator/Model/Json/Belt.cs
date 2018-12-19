@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class Belt
+    public class Belt
     {
         public BeltType Type { get; set; }
         public Int64 X { get; set; }

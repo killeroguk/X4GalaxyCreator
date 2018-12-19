@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    enum ShipSize
+    public enum ShipSize
     {
         SMALL,MEDIUM,LARGE,XLARGE
     }

@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    class Station
+    public class Station
     {
         public StationType Type { get; set; }
         public Race Race { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    enum Tag
+    public enum Tag
     {
         FACTIONLOGIC, FREIGHTER, TRADER,
         CONTAINER, MINER, LIQUID, SOLID,

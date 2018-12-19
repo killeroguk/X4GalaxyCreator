@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    enum Faction
+    public enum Faction
     {
         PLAYER, ARGON, ANTIGONE,
         HATIKVAH, PARANID, HOLYORDER,

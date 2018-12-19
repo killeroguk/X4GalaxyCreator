@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
-    class Galaxy
+    public class Galaxy
     {
         public long Seed { get; set; }
         public String GalaxyName { get; set; }
