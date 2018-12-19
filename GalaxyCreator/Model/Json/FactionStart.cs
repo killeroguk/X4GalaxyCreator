@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class FactionStart
+    public class FactionStart
     {
         public String ClusterId { get; set; }
         public Faction Faction { get; set; }

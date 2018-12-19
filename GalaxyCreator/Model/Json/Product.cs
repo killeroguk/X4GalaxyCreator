@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class Product
+    public class Product
     {
         public String Id { get; set; }
         public String Ware { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    enum SpaceObjectType
+    public enum SpaceObjectType
     {
         CLAIM, LANDMARK, ANOMALY
     }

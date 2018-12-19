@@ -18,17 +18,11 @@ namespace GalaxyCreator
         {
             InitializeComponent();
             Closing += (s, e) => ViewModelLocator.Cleanup();
-
-            MainData.CreateSecotorGrid(sectorCanvas, 20, 20, 75);
-
-
         }
 
         private void sectorCanvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
             ((MainViewModel)DataContext).CanvasClicked(e);
-
         }
 
         private void LoadFile_Click(object sender, RoutedEventArgs e)
@@ -47,7 +41,7 @@ namespace GalaxyCreator
         private void SaveFile_Click(object sender, RoutedEventArgs e)
         {
             // Only if a galaxy object actually exist
-            if (((MainViewModel)DataContext).galaxyExist())
+            if (((MainViewModel)DataContext).GalaxyExist())
             {  
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "JSON files (*.json)|*.json";
@@ -66,6 +60,16 @@ namespace GalaxyCreator
                 MessageBox.Show("There is no galaxy loaded", "Save Galaxy Error",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void MapEditor_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainViewModel)DataContext).SwitchToMapEditor(e);
+        }
+
+        private void JobEditor_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainViewModel)DataContext).SwitchToJobEditor(e);
         }
     }
 

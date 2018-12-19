@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    enum BeltType
+    public enum BeltType
     {
         ORE, ICE, HYDROGEN, HELIUM, METHANE, NVIDIUM
     }

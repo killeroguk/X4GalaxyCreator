@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class Connection
+    public class Connection
     {
         public String TargetClusterId { get; set; }
         public ConnectionType ConnectionType { get; set; }
