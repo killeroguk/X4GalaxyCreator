@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class Unit
+    public class Unit
     {
         public String Category { get; set; }
         public int Min { get; set; }

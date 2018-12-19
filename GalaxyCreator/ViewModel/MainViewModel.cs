@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
@@ -39,8 +40,18 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand<MouseButtonEventArgs> _canvasClickedCommand;
 
         private Object _rightHandViewModel;
+        private Object _mainContainer;
 
-        private Model.Json.Galaxy galaxy;
+        private Model.Json.Galaxy Galaxy;
+
+        public Object MainContainer
+        {
+            get { return _mainContainer; }
+            set
+            {
+                Set(ref _mainContainer, value);
+            }
+        }
 
         public Object RightHandViewModel
         {
@@ -53,8 +64,8 @@ namespace GalaxyCreator.ViewModel
 
         internal void ReadJson(string fileName)
         {
-            galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
-            Console.WriteLine(galaxy.GalaxyName);
+            Galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
+            Console.WriteLine(Galaxy.GalaxyName);
         }
 
         internal void SaveJson(string fileName)
@@ -62,13 +73,13 @@ namespace GalaxyCreator.ViewModel
             // serialize JSON directly to a file
             using (StreamWriter file = File.CreateText(@fileName))
             {
-                LowercaseJsonSerializer.Serialize(file, galaxy);
+                LowercaseJsonSerializer.Serialize(file, Galaxy);
             }
         }
 
-        internal bool galaxyExist()
+        internal bool GalaxyExist()
         {
-            return galaxy != null;
+            return Galaxy != null;
         }
 
         /// <summary>
@@ -85,6 +96,16 @@ namespace GalaxyCreator.ViewModel
             {
                 Set(ref _welcomeTitle, value);
             }
+        }
+
+        public void SwitchToJobEditor(RoutedEventArgs e)
+        {
+            MainContainer = new JobEditorViewModel(Galaxy);
+        }
+
+        public void SwitchToMapEditor(RoutedEventArgs e)
+        {
+            MainContainer = new MapEditorViewModel(Galaxy);
         }
 
         public List<Sector> Sectors
@@ -156,7 +177,8 @@ namespace GalaxyCreator.ViewModel
                     WelcomeTitle = item.Title;
                 });
 
-            RightHandViewModel = new GalaxyEditViewModel();
+            //RightHandViewModel = new GalaxyEditViewModel();
+            MainContainer = new MapEditorViewModel(Galaxy);
         }
 
 

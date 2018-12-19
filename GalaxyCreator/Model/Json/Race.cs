@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    enum Race
+    public enum Race
     {
         ARGON, TELADI, PARANID, XENON
     }

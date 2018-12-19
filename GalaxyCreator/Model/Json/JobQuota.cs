@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class JobQuota
+    public class JobQuota
     {
         public Int16 Galaxy { get; set; }
         public Int16 MaxGalaxy { get; set; }

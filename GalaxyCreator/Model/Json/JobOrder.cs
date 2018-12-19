@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
-    class JobOrder
+    public class JobOrder
     {
         public String Order { get; set; }
         public bool DefaultOrder { get; set; } = true;

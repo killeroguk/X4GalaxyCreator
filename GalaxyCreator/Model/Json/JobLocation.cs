@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
-    class JobLocation
+    public class JobLocation
     {
         private String LocationClass { get; set; } = "galaxy";
         private String Comparison { get; set; }

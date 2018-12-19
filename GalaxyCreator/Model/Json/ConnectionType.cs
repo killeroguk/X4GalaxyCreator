@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    enum ConnectionType
+    public enum ConnectionType
     {
         N, NE, SE, S, SW, NW, CUSTOM
     }

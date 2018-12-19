@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
-    class ProductLocation
+    public class ProductLocation
     {
         public IList<Faction> SpawnLocations { get; set; }
         public IList<String> Wares { get; set; }

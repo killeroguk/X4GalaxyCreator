@@ -1,6 +1,6 @@
 ﻿namespace GalaxyCreator.Model.Json
 {
-    class CustomConnectionParameters
+    public class CustomConnectionParameters
     {
         public int StartRotation { get; set; }
         public int StartPositionX { get; set; }

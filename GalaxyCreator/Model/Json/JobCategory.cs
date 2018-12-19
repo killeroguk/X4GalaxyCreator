@@ -2,7 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    class JobCategory
+    public class JobCategory
     {
         public Faction Faction { get; set; }
         public IList<Tag> Tags { get; set; }

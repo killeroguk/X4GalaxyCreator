@@ -73,6 +73,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -136,12 +138,20 @@
     <Compile Include="Model\MainDataService.cs" />
     <Compile Include="Model\Sector.cs" />
     <Compile Include="Model\Station.cs" />
+    <Compile Include="ViewModel\JobEditorViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MapEditorViewModel.cs" />
     <Compile Include="ViewModel\SectorEditViewModel.cs" />
     <Compile Include="ViewModel\Util\LowercaseJsonSerializer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\GalaxyEditView.xaml.cs">
       <DependentUpon>GalaxyEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JobEditorView.xaml.cs">
+      <DependentUpon>JobEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MapEditorView.xaml.cs">
+      <DependentUpon>MapEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectorEditView.xaml.cs">
       <DependentUpon>SectorEditView.xaml</DependentUpon>
@@ -163,6 +173,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\GalaxyEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\JobEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MapEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
