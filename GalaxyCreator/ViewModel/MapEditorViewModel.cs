@@ -3,14 +3,20 @@ using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Model;
 using GalaxyCreator.Model.Json;
 using System;
+using System.Collections.Generic;
+using System.Timers;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GalaxyCreator.ViewModel
 {
     public class MapEditorViewModel : ViewModelBase
     {
+        private CanvasElementType oldSelectedCanvasElementType;
+        private Shape oldSelectedCanvasElement;
         private int _rowCount;
         private int _columnCount;
 
@@ -19,10 +25,24 @@ namespace GalaxyCreator.ViewModel
         private Object _rightHandViewModel;
         private Galaxy galaxy;
 
+
+
         public MapEditorViewModel(Galaxy galaxy)
         {
             this.galaxy = galaxy;
         }
+
+
+        public void DrawGalaxyMap()
+        {
+            foreach (Cluster mapCluster in MainData.GetGalaxyMap().Clusters)
+            {
+
+                MainData.AddChildToCanvas(CanvasElementType.CLUSTER, mapCluster.Polygon, mapCluster.UId.ToString());
+              
+            }
+        }
+
 
         public Object RightHandViewModel
         {
@@ -56,14 +76,43 @@ namespace GalaxyCreator.ViewModel
             {
                 CanvasElementType selectedCanvasType = MainData.GetShapeType((Shape)e.Source);
 
+                if (oldSelectedCanvasElement != null)
+                {
+
+                    switch (oldSelectedCanvasElementType)
+                    {
+                        case CanvasElementType.CLUSTER:
+                            {
+                                oldSelectedCanvasElement.Stroke = Brushes.Black;
+                                Canvas.SetZIndex(oldSelectedCanvasElement, 0);
+                                break;
+                            }
+                    }
+                }
+
                 switch (selectedCanvasType)
                 {
-                    case CanvasElementType.sector:
+                    case CanvasElementType.CLUSTER:
                         {
-                            SectorGrid grid = MainData.GetSectorGrid();
-                            Sector selectedSector = grid.Sectors.Find(s => s.Id == (Guid)((Polygon)e.Source).Tag);
 
-                            RightHandViewModel = new SectorEditViewModel(selectedSector);
+
+                            Galaxy galaxy = MainData.GetGalaxyMap();
+
+
+                            Cluster selectedCluster = ((List<Cluster>)galaxy.Clusters).Find(s => s.UId == (Guid)((Polygon)e.Source).Tag);
+
+                            oldSelectedCanvasElement = selectedCluster.Polygon;
+                            oldSelectedCanvasElementType = CanvasElementType.CLUSTER;
+
+                            /* SHOW A HIGHLIGHT AROUND THE SELECTED CLUSTER */
+                            selectedCluster.Polygon.Stroke = Brushes.Yellow;
+                            Canvas.SetZIndex(selectedCluster.Polygon, 1);
+
+                            
+
+                            //MainData.UpdateCanvas();
+
+                            RightHandViewModel = new SectorEditViewModel(selectedCluster);
                             break;
                         }
                 }

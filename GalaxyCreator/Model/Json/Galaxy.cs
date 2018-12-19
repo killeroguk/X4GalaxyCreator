@@ -21,5 +21,23 @@ namespace GalaxyCreator.Model.Json
         public IList<Product> Products { get; set; }
         public IList<Job> Jobs { get; set; }
 
+        public Galaxy(int rowCount, int colCount, double hexSize)
+        {
+
+            Clusters = new List<Cluster>();
+            Products = new List<Product>();
+            Jobs = new List<Job>();
+
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int col = 0; col < colCount; col++)
+                {
+                    Cluster cluster = new Cluster(row, col, hexSize, true);
+                    Clusters.Add(cluster);
+
+                }
+            }
+        }
+
     }
 }

@@ -96,7 +96,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Design\DesignDataService.cs" />
-    <Compile Include="Model\Belt.cs" />
     <Compile Include="Model\CanvasElemet.cs" />
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
@@ -131,13 +130,10 @@
     <Compile Include="Model\Json\Unit.cs" />
     <Compile Include="ViewModel\GalaxyEditViewModel.cs" />
     <Compile Include="Model\Hex.cs" />
-    <Compile Include="Model\HexGrid.cs" />
     <Compile Include="Model\IDataService.cs" />
     <Compile Include="Model\IMainDataService.cs" />
     <Compile Include="Model\MainData.cs" />
     <Compile Include="Model\MainDataService.cs" />
-    <Compile Include="Model\Sector.cs" />
-    <Compile Include="Model\Station.cs" />
     <Compile Include="ViewModel\JobEditorViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MapEditorViewModel.cs" />

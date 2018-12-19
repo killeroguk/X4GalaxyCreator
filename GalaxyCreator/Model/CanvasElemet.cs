@@ -11,7 +11,7 @@ namespace GalaxyCreator.Model
 
     public enum CanvasElementType
     {
-        sector,
+        CLUSTER,
         unknown
     }
 

@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <ScrollViewer Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
-            <Canvas x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black">
+            <Canvas  x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black" >
 
             </Canvas>
         </ScrollViewer>

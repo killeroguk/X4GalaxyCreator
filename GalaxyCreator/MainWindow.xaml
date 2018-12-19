@@ -43,6 +43,7 @@
     <DockPanel LastChildFill="true">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <MenuItem x:Name="NexGalaxy" Header="New" HorizontalAlignment="Left" Width="140" Command="{Binding NewGalaxyClickedCommand }" />
                 <MenuItem x:Name="LoadFile" Header="Load" HorizontalAlignment="Left" Width="140" Command="{Binding LoadFileClickedCommand }" />
                 <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="140" Command="{Binding SaveFileClickedCommand}" />
             </MenuItem>

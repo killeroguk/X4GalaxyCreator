@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Model;
+using GalaxyCreator.Model.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace GalaxyCreator.ViewModel
 {
     public class SectorEditViewModel: ViewModelBase
     {
-        private Sector _selectedSector;
+        private Cluster _selectedMapCluster;
 
         private RelayCommand _isEnabledClickedCommand;
 
@@ -22,15 +23,15 @@ namespace GalaxyCreator.ViewModel
 
         private RelayCommand _addBeltClickCommand;
 
-        public Sector SelectedSector
+        public Cluster SelectedMapCluster
         {
             get
             { 
-                return _selectedSector;
+                return _selectedMapCluster;
             }
             set
             {
-                Set(ref _selectedSector, value);
+                Set(ref _selectedMapCluster, value);
             }
         }
 
@@ -73,35 +74,34 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
-        public SectorEditViewModel(Sector sector)
+        public SectorEditViewModel(Cluster cluser)
         {
-            SelectedSector = sector;
+            SelectedMapCluster = cluser;
         }
 
 
         public void IsEnabledClicked()
         {
-            if(_selectedSector.IsEnabled == true)
+            if(_selectedMapCluster.IsEnabled == true)
             {
-                _selectedSector.Hex.canvasElement.FillBrush = Brushes.Pink;
+                _selectedMapCluster.Polygon.Fill = Brushes.Pink;
             }
             else
             {
-                _selectedSector.Hex.canvasElement.FillBrush = Brushes.LightGray;
+                _selectedMapCluster.Polygon.Fill = Brushes.LightGray;
                
             }
 
-            MainData.UpdateCanvas();
         }
 
         public void AddStationClick()
         {
-            _selectedSector.Stations.Add(new Station());
+            _selectedMapCluster.Stations.Add(new Station());
         }
 
         public void AddBeltClick()
         {
-            _selectedSector.Belts.Add(new Belt());
+            _selectedMapCluster.Belts.Add(new Belt());
         }
     }
 }
