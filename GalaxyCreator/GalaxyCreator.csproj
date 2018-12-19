@@ -138,6 +138,7 @@
     <Compile Include="Model\Station.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SectorEditViewModel.cs" />
+    <Compile Include="ViewModel\Util\LowercaseJsonSerializer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\GalaxyEditView.xaml.cs">
       <DependentUpon>GalaxyEditView.xaml</DependentUpon>

@@ -39,22 +39,29 @@
     </Window.Resources>
 
 
+    <DockPanel LastChildFill="true">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="LoadFile" Header="Load" HorizontalAlignment="Left" Width="140" Click="LoadFile_Click"/>
+                <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="140" Click="SaveFile_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="600"/>
+            </Grid.ColumnDefinitions>
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="600"/>
-        </Grid.ColumnDefinitions>
+            <ScrollViewer Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
+                <Canvas x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black">
 
-        <ScrollViewer Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
-            <Canvas x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black">
+                </Canvas>
+            </ScrollViewer>
 
-            </Canvas>
-        </ScrollViewer>
-
-        <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding RightHandViewModel}"></ContentControl>
-    </Grid>
+            <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding RightHandViewModel}"></ContentControl>
+        </Grid>
+    </DockPanel>
 </Window>

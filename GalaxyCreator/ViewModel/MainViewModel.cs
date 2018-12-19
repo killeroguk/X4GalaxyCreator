@@ -1,9 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Model;
+using GalaxyCreator.ViewModel.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
@@ -37,6 +40,8 @@ namespace GalaxyCreator.ViewModel
 
         private Object _rightHandViewModel;
 
+        private Model.Json.Galaxy galaxy;
+
         public Object RightHandViewModel
         {
             get { return _rightHandViewModel; }
@@ -44,6 +49,26 @@ namespace GalaxyCreator.ViewModel
             {
                 Set(ref _rightHandViewModel, value);
             }
+        }
+
+        internal void ReadJson(string fileName)
+        {
+            galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
+            Console.WriteLine(galaxy.GalaxyName);
+        }
+
+        internal void SaveJson(string fileName)
+        {
+            // serialize JSON directly to a file
+            using (StreamWriter file = File.CreateText(@fileName))
+            {
+                LowercaseJsonSerializer.Serialize(file, galaxy);
+            }
+        }
+
+        internal bool galaxyExist()
+        {
+            return galaxy != null;
         }
 
         /// <summary>
