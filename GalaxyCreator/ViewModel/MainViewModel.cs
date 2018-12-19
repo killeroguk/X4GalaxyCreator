@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace GalaxyCreator.ViewModel
 {
@@ -38,6 +39,10 @@ namespace GalaxyCreator.ViewModel
         private int _columnCount;
 
         private RelayCommand<MouseButtonEventArgs> _canvasClickedCommand;
+        private RelayCommand _loadFileClickedCommand;
+        private RelayCommand _saveFileClickedCommand;
+        private RelayCommand _mapEditorClickedCommand;
+        private RelayCommand _jobEditorClickedCommand;
 
         private Object _rightHandViewModel;
         private Object _mainContainer;
@@ -98,15 +103,6 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
-        public void SwitchToJobEditor(RoutedEventArgs e)
-        {
-            MainContainer = new JobEditorViewModel(Galaxy);
-        }
-
-        public void SwitchToMapEditor(RoutedEventArgs e)
-        {
-            MainContainer = new MapEditorViewModel(Galaxy);
-        }
 
         public List<Sector> Sectors
         {
@@ -157,6 +153,60 @@ namespace GalaxyCreator.ViewModel
                 return _canvasClickedCommand;
             }
         }
+
+        public RelayCommand LoadFileClickedCommand
+        {
+            get
+            {
+                if (_loadFileClickedCommand == null)
+                {
+                    _loadFileClickedCommand = new RelayCommand(() => LoadFileClicked());
+                }
+
+                return _loadFileClickedCommand;
+            }
+        }
+
+        public RelayCommand SaveFileClickedCommand
+        {
+            get
+            {
+                if (_saveFileClickedCommand == null)
+                {
+                    _saveFileClickedCommand = new RelayCommand(() => SaveFileClicked());
+                }
+
+                return _saveFileClickedCommand;
+            }
+        }
+
+        public RelayCommand MapEditorClickedCommand
+        {
+            get
+            {
+                if (_mapEditorClickedCommand == null)
+                {
+                    _mapEditorClickedCommand = new RelayCommand(() => MapEditorClicked());
+                }
+
+                return _mapEditorClickedCommand;
+            }
+        }
+
+        public RelayCommand JobEditorClickedCommand
+        {
+            get
+            {
+                if (_jobEditorClickedCommand == null)
+                {
+                    _jobEditorClickedCommand = new RelayCommand(() => JobEditorClicked());
+                }
+
+                return _jobEditorClickedCommand;
+            }
+        }
+
+
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -211,6 +261,55 @@ namespace GalaxyCreator.ViewModel
           
 
             
+        }
+
+        private void LoadFileClicked()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "JSON files (*.json)|*.json";
+            openFileDialog.Title = "Load Json";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ReadJson(openFileDialog.FileName);
+                MessageBox.Show("Galaxy has been loaded", "Load Galaxy Success",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void SaveFileClicked()
+        {
+            // Only if a galaxy object actually exist
+            if (GalaxyExist())
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "JSON files (*.json)|*.json";
+                saveFileDialog.Title = "Save Json";
+                saveFileDialog.ShowDialog();
+
+                // If the file name is not an empty string open it for saving.  
+                if (saveFileDialog.FileName != "")
+                {
+                    SaveJson(saveFileDialog.FileName);
+                    MessageBox.Show("Galaxy has been saved", "Save Galaxy Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("There is no galaxy loaded", "Save Galaxy Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void MapEditorClicked()
+        {
+            MainContainer = new MapEditorViewModel(Galaxy);
+        }
+
+        private void JobEditorClicked()
+        {
+            MainContainer = new JobEditorViewModel(Galaxy);
         }
 
     }
