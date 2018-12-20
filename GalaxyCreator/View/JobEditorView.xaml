@@ -8,8 +8,19 @@
              d:DesignHeight="1000" d:DesignWidth="1500">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" Padding="5">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="590">
-                <Label Content="Job Editor" FontSize="14" HorizontalContentAlignment="Center" Width="auto"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="Auto">
+                <Label Content="Job Editor" FontSize="14" HorizontalContentAlignment="Center" Width="Auto"/>
+                <DataGrid x:Name="JobDataGrid" ItemsSource="{Binding Path=Galaxy.Jobs}" AutoGenerateColumns="False"
+                    ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="500" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="JobId" Binding="{Binding Id}" Header="Id" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="JobName" Binding="{Binding Name}" Header="Name" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="Button" Width="76" d:LayoutOverrides="Height" 
+                        Command="{Binding JobEditorClickedCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
             </StackPanel>
         </Border>
 
