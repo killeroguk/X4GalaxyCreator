@@ -4,7 +4,7 @@
         xmlns:yesNoDialog="clr-namespace:GalaxyCreator.Dialogs.DialogYesNo"    
         xmlns:jobEditor="clr-namespace:GalaxyCreator.Dialogs.JobEditor"    
         Title="DialogWindow" Height="300" Width="300"
-        WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight">
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
