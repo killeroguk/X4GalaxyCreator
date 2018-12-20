@@ -15,21 +15,20 @@ namespace GalaxyCreator.Model
 
         public CanvasDrawingElement canvasElement;
 
-        //public Polygon polygon { get; set; }
+        public Polygon polygon { get; set; }
 
         public int X;
         public int Y;
         double OuterRadius;
         double InnerRadius;
 
-        public Hex( int x, int y, double size)
+        public Hex(int x, int y, double size, Guid id)
         {
             X = x;
             Y = y;
 
             OuterRadius = size;
             InnerRadius = OuterRadius * 0.866025404f;
-
 
             corners = new PointCollection()
             {
@@ -41,21 +40,25 @@ namespace GalaxyCreator.Model
                 new Point(OuterRadius, 0F),
             };
 
-           
+            polygon = new Polygon();
+            polygon.Tag = id;
+            polygon.Stroke = Brushes.Black;
+            polygon.Fill = Brushes.LightGray;
+            polygon.StrokeThickness = 1;
+            polygon.HorizontalAlignment = HorizontalAlignment.Center;
+            polygon.VerticalAlignment = VerticalAlignment.Center;
+            polygon.Points = corners;
+            polygon.MouseLeftButtonDown += Polygon_MouseLeftButtonDown;
+            polygon.RenderTransform = new TranslateTransform((Y * (OuterRadius * 1.5f) + OuterRadius), ((X + Y * 0.5f - Y / 2) * (InnerRadius * 2f)) + OuterRadius);
+
         }
 
-        public void CreateShape( Guid id)
+
+        private void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
-            canvasElement = new CanvasPolygonElement(CanvasElementType.sector,
-                corners,
-                Brushes.Black,
-                Brushes.LightGray,
-                1,
-                id,
-                new TranslateTransform(( Y * (OuterRadius * 1.5f) + OuterRadius), ((X + Y * 0.5f - Y / 2) * (InnerRadius * 2f)) + OuterRadius)
-                );
+            Polygon polygon = (Polygon)sender;
+            
+            //throw new NotImplementedException();
         }
-
     }
 }

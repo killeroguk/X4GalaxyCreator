@@ -34,11 +34,10 @@ namespace GalaxyCreator.ViewModel
 
         private string _welcomeTitle = string.Empty;
 
-        private List<Sector> _sectors;
         private int _rowCount;
         private int _columnCount;
 
-        private RelayCommand<MouseButtonEventArgs> _canvasClickedCommand;
+        private RelayCommand _newGalaxyClickedCommand;
         private RelayCommand _loadFileClickedCommand;
         private RelayCommand _saveFileClickedCommand;
         private RelayCommand _mapEditorClickedCommand;
@@ -70,6 +69,9 @@ namespace GalaxyCreator.ViewModel
         internal void ReadJson(string fileName)
         {
             Galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
+
+            MainData.SetGalaxyMap(Galaxy);
+
             Console.WriteLine(Galaxy.GalaxyName);
         }
 
@@ -104,18 +106,6 @@ namespace GalaxyCreator.ViewModel
         }
 
 
-        public List<Sector> Sectors
-        {
-            get
-            {
-                return _sectors;
-            }
-            set
-            {
-                Set(ref _sectors, value);
-            }
-        }
-
         public int RowCount
         {
             get
@@ -140,17 +130,16 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
-
-        public RelayCommand<MouseButtonEventArgs> CanvasClickedCommand
+        public RelayCommand NewGalaxyClickedCommand
         {
             get
             {
-                if (_canvasClickedCommand == null)
+                if (_newGalaxyClickedCommand == null)
                 {
-                    _canvasClickedCommand = new RelayCommand<MouseButtonEventArgs>((e) => CanvasClicked(e));
+                    _newGalaxyClickedCommand = new RelayCommand(() => NewGalaxyClicked());
                 }
 
-                return _canvasClickedCommand;
+                return _newGalaxyClickedCommand;
             }
         }
 
@@ -228,39 +217,13 @@ namespace GalaxyCreator.ViewModel
                 });
 
             //RightHandViewModel = new GalaxyEditViewModel();
-            MainContainer = new MapEditorViewModel(Galaxy);
+            //MainContainer = new MapEditorViewModel(Galaxy);
         }
 
-
-        public void CanvasClicked(MouseButtonEventArgs e)
+        private void NewGalaxyClicked()
         {
-
-            /* TODO: SOME HOW CHECK WHAT WAS CLICKED ON */
-
-            /* CHECK TO SEE IF A SHAPE HAS BEEN CLICKED ON OR THE CANVAS ITS SELF */
-            if (e.Source.GetType() != typeof(Canvas))
-            {
-                CanvasElementType selectedCanvasType = MainData.GetShapeType((Shape)e.Source);
-
-                switch (selectedCanvasType)
-                {
-                    case CanvasElementType.sector:
-                        {
-                            SectorGrid grid = MainData.GetSectorGrid();
-                            Sector selectedSector = grid.Sectors.Find(s => s.Id == (Guid)((Polygon)e.Source).Tag);
-
-                            RightHandViewModel = new SectorEditViewModel(selectedSector);
-                            break;
-                        }
-                }
-            }
-            else
-            {
-                RightHandViewModel = new GalaxyEditViewModel();
-            }
-          
-
-            
+            MainData.CreateMapGalaxy(20, 20, 75);
+            MainContainer = new MapEditorViewModel(Galaxy);
         }
 
         private void LoadFileClicked()
@@ -272,6 +235,9 @@ namespace GalaxyCreator.ViewModel
             if (openFileDialog.ShowDialog() == true)
             {
                 ReadJson(openFileDialog.FileName);
+
+                /* TODO: THIS JSON THEN NEEDS TO BE USED BY THE GALAXY EDTIOR SOME HOW */
+
                 MessageBox.Show("Galaxy has been loaded", "Load Galaxy Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
             }

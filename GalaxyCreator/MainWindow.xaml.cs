@@ -20,11 +20,8 @@ namespace GalaxyCreator
             Closing += (s, e) => ViewModelLocator.Cleanup();
         }
 
-        /* UNABLE TO MVVM THIS FOR REASONS */
-        private void sectorCanvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            ((MainViewModel)DataContext).CanvasClicked(e);
-        }
+       
+
 
     }
 

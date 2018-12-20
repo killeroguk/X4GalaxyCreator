@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaxyCreator.Model.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,83 +18,72 @@ namespace GalaxyCreator.Model
     public class CanvasElement
     {
 
-        public CanvasElementType type { get; set; }
-        public Shape shape { get; set; }
+        public CanvasElementType Type { get; set; }
+        public Shape Shape { get; set; }
+        public bool isDirty { get; set; }
+
+        public string UId { get; set; }
+
+        public CanvasElement(CanvasElementType type, Shape shape, string uId)
+        {
+            Type = type;
+            Shape = shape;
+            UId = uId;
+
+        }
 
     }
 
 
     public static class MainData
     {
-
+        private static List<CanvasElement> canvasElements = new List<CanvasElement>();
         private static List<CanvasDrawingElement> canvasDrawingElements = new List<CanvasDrawingElement>();
 
-        private static SectorGrid sectorGrid;
+        private static Galaxy mapGalaxy;
 
-        public static Canvas canvas;
+        public static Canvas Canvas;
 
-        public static void CreateSecotorGrid(Canvas sectorCanvas, int rowCount, int columnCount, int size)
+        public  static void CreateMapGalaxy(int rowCount, int columnCount, double hexSize)
         {
-            canvas = sectorCanvas;
-            sectorGrid = new SectorGrid(sectorCanvas, rowCount, columnCount, size);
-        }
-
-        public static SectorGrid GetSectorGrid()
-        {
-            return sectorGrid;
+            mapGalaxy = new Galaxy(rowCount, columnCount, hexSize);
         }
 
 
-
-        public static Shape CreateShape(CanvasDrawingElement canvasDrawingElement)
+        public static void SetGalaxyMap( Galaxy galaxy)
         {
-
-            switch (canvasDrawingElement.ElementDrawingType)
-            {
-                case CanvasDrawingElementType.polygon:
-                    {
-
-                        var element = (CanvasPolygonElement)canvasDrawingElement;
-
-                        Polygon polygon = new Polygon();
-                        polygon.Tag = element.Tag;
-                        polygon.Stroke = element.StrokeBrush;
-                        polygon.Fill = element.FillBrush;
-                        polygon.StrokeThickness = element.StrokeThickness;
-                        polygon.HorizontalAlignment = HorizontalAlignment.Center;
-                        polygon.VerticalAlignment = VerticalAlignment.Center;
-
-                        polygon.Points = element.Points;
-
-                        polygon.RenderTransform = element.TranslateTransform;
-
-                        canvas.Children.Add(polygon);
-
-                        canvasDrawingElement.Shape = polygon;
-
-                        return polygon;
-                    }
-            }
-
-            return null;
-
-
+            mapGalaxy = galaxy;
         }
 
-        public static void AddShapeToList(CanvasDrawingElement canvasDrawingElement)
+        public static Galaxy GetGalaxyMap()
         {
-
-            CreateShape(canvasDrawingElement);
-            canvasDrawingElements.Add(canvasDrawingElement);
-
+            return mapGalaxy;
         }
+
+
+        public static void AddChildToCanvas(CanvasElementType type, Shape child, string UId)
+        {
+            CanvasElement canvasElement = new CanvasElement(type, child, UId);
+            canvasElements.Add(canvasElement);
+
+
+            child.Uid = UId;
+            Canvas.Children.Add(child);
+            Canvas.SetZIndex(child, 0);
+        }
+
+        public static void SetCanvas(Canvas canvas)
+        {
+            Canvas = canvas;
+        }
+
 
         public static CanvasElementType GetShapeType(Shape shape)
         {
-            var foundShape = canvasDrawingElements.FirstOrDefault(s => s.Shape == shape);
+            var foundShape = canvasElements.FirstOrDefault(s => s.Shape == shape);
 
             if (foundShape != null)
-                return foundShape.ElementType;
+                return foundShape.Type;
 
             return CanvasElementType.unknown;
 
@@ -101,12 +91,40 @@ namespace GalaxyCreator.Model
 
         public static void UpdateCanvas()
         {
-            canvas.Children.Clear();
+            if (Canvas == null)
+                return;
 
-            foreach (CanvasDrawingElement element in canvasDrawingElements)
-            {
-                CreateShape(element);
-            }
+            //Application.Current.Dispatcher.Invoke((Action)delegate {
+            //    canvas.Children.Clear();
+            //});
+
+            //Application.Current.Dispatcher.Invoke((Action)delegate
+            //{
+            //foreach (CanvasElement element in canvasElements)
+            //{
+            //    if (element.isDirty)
+            //        canvas.Children[canvas.Children.IndexOf(element.Shape)].InvalidateMeasure();
+            //}
+
+
+                //foreach (Shape shape in canvas.Children)
+                //{
+                //    shape.Fill = Brushes.Red;
+                //    shape.InvalidateMeasure();
+                //}
+            //});
+
+
+            //foreach (CanvasDrawingElement element in canvasDrawingElements)
+            //{
+            //    Application.Current.Dispatcher.Invoke((Action)delegate {
+
+
+            //        CreateShape(element);
+            //    });
+               
+            //}
+            
         }
 
 
