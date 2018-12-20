@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿using GalaSoft.MvvmLight;
+using System.Windows;
 
 namespace GalaxyCreator.Dialogs.DialogService
 {
-    public abstract class DialogViewModelBase
+    public abstract class DialogViewModelBase : ViewModelBase
     {
         public DialogResult UserDialogResult
         {

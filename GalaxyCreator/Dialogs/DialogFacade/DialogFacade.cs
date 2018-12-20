@@ -1,6 +1,9 @@
 ﻿using GalaxyCreator.Dialogs.DialogService;
 using System.Windows;
 
+/**
+ * Information found on: https://www.c-sharpcorner.com/article/dialogs-in-wpf-mvvm/
+**/
 namespace GalaxyCreator.Dialogs.DialogFacade
 {
     public class DialogFacade : IDialogFacade
