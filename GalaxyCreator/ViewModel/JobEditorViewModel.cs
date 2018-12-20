@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Dialogs.DialogFacade;
@@ -13,6 +12,7 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand<object> _jobEditorDetailClickedCommand;
 
         public Galaxy Galaxy { get; set; }
+        public Job SelectedJob { get; set; }
 
         public JobEditorViewModel(Galaxy Galaxy)
         {
@@ -26,16 +26,16 @@ namespace GalaxyCreator.ViewModel
             {
                 if (_jobEditorDetailClickedCommand == null)
                 {
-                    _jobEditorDetailClickedCommand = new RelayCommand<object>((parent) => JobEditorClicked(parent));
+                    _jobEditorDetailClickedCommand = new RelayCommand<object>((param) => JobEditorClicked(param));
                 }
 
                 return _jobEditorDetailClickedCommand;
             }
         }
 
-        private void JobEditorClicked(object parent)
+        private void JobEditorClicked(object param)
         {
-            Dialogs.DialogService.DialogResult result = this.dialogFacade.ShowDialogYesNo("Question", parent as Window);           
+            Dialogs.DialogService.DialogResult result = this.dialogFacade.ShowJobEditorDetail("Job Editor Detail", param as Window, this.SelectedJob);           
         }
     }
 }
