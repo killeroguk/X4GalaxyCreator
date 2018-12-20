@@ -5,20 +5,382 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GalaxyCreator.Dialogs.JobEditor"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300">
+      d:DesignHeight="900" d:DesignWidth="600">
 
     <Grid Margin="4">
         <StackPanel x:Name="JobDetailMainPanel" >
             <StackPanel.BindingGroup>
                 <BindingGroup Name="bindingGroup"/>
             </StackPanel.BindingGroup>
-            <TextBox Text="{Binding Path=Job.Id}"/>
+
+            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Job Setup" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Id" />
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=Job.Id, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="0" x:Name="id" />
+                            <Label Content="Name" Grid.Column="1" />
+                            <TextBox Text="{Binding Path=Job.Name, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="2" x:Name="name" />
+                        </Grid>
+                        <Label Content="Commandeerable" Grid.Row="1" />
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox IsChecked="{Binding Path=Job.Commandeerable, Mode=TwoWay}" Grid.Column="0" x:Name="commandeerable" />
+                            <Label Content="Start Active" Grid.Column="1" />
+                            <CheckBox IsChecked="{Binding Path=Job.StartActive, Mode=TwoWay}" Grid.Column="2" x:Name="startActive" />
+                            <Label Content="Disabled" Grid.Column="3" />
+                            <CheckBox IsChecked="{Binding Path=Job.Disabled, Mode=TwoWay}" Grid.Column="4" x:Name="disabled" />
+                        </Grid>
+                        <Label Content="Rebuild" Grid.Row="2" />
+                        <Grid Grid.Column="1" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox IsChecked="{Binding Path=Job.Rebuild, Mode=TwoWay}" Grid.Column="0" x:Name="rebuild" />
+                            <Label Content="Buildatshipyard" Grid.Column="1" />
+                            <CheckBox IsChecked="{Binding Path=Job.Buildatshipyard, Mode=TwoWay}" Grid.Column="2" x:Name="buildatshipyard" />
+                            <Label Content="Subordinate" Grid.Column="3" />
+                            <CheckBox IsChecked="{Binding Path=Job.Subordinate, Mode=TwoWay}" Grid.Column="4" x:Name="subordinate" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Job Category" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Faction" />
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox SelectedItem="{Binding Path=Job.JobCategory.Faction, Mode=TwoWay}" Grid.Column="0" x:Name="faction" />
+                            <Label Content="Ship Size" Grid.Column="1" />
+                            <ComboBox SelectedItem="{Binding Path=Job.JobCategory.ShipSize, Mode=TwoWay}" Grid.Column="2" x:Name="shipSize" />
+                            <Label Content="Tags" Grid.Column="3" />
+                            <ComboBox SelectedItem="{Binding Path=Job.JobCategory.Tags, Mode=TwoWay}" Grid.Column="4" x:Name="tags" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Job Location" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Location Class" />
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Path=Job.JobLocation.LocationClass, Mode=OneWay}" Grid.Column="0" x:Name="locationClass" />
+                            <Label Content="Macro" Grid.Column="1" />
+                            <TextBlock Text="{Binding Path=Job.JobLocation.Macro, Mode=OneWay}" Grid.Column="2" x:Name="macro" />
+                            <Label Content="Factions" Grid.Column="3" />
+                            <ComboBox SelectedItem="{Binding Path=Job.JobLocation.Factions}" Grid.Column="4" x:Name="factions" />
+                        </Grid>
+                        <Label Content="Comparison" Grid.Row="1" />
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox SelectedItem="{Binding Path=Job.JobLocation.Comparison}" Grid.Column="0" x:Name="comparison" />
+                            <Label Content="Relation" Grid.Column="1" />
+                            <ComboBox SelectedItem="{Binding Path=Job.JobLocation.Relation}" Grid.Column="2" x:Name="relation" />
+                            <Label Content="Region Basket" Grid.Column="3" />
+                            <TextBlock Text="{Binding Path=Job.JobLocation.RegionBasket, Mode=OneWay}" Grid.Column="4" x:Name="regionBasket" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Job Quotas" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Galaxy" />
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=Job.JobQuota.Galaxy, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="0" x:Name="galaxy" />
+                            <Label Content="Max Galaxy" Grid.Column="1" />
+                            <TextBox Text="{Binding Path=Job.JobQuota.MaxGalaxy, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="2" x:Name="maxGalaxy" />
+                            <Label Content="Cluster" Grid.Column="3" />
+                            <TextBox Text="{Binding Path=Job.JobQuota.Cluster, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="4" x:Name="cluster" />
+                        </Grid>
+                        <Label Content="Sector" Grid.Row="1" />
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=Job.JobQuota.Sector, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="0" x:Name="sector" />
+                            <Label Content="Station" Grid.Column="1" />
+                            <TextBox Text="{Binding Path=Job.JobQuota.Station, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="2" x:Name="station" />
+                            <Label Content="Variation" Grid.Column="3" />
+                            <TextBox Text="{Binding Path=Job.JobQuota.Variation, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="4" x:Name="variation" />
+                        </Grid>
+                        <Label Content="Wing" Grid.Row="2" />
+                        <TextBox Text="{Binding Path=Job.JobQuota.Wing, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="2" x:Name="wing" />
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Orders" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Orders" />
+                        <TextBox Text="{Binding Path=Job.Orders, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="0" x:Name="orders" />
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Ship Data" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Faction" />
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=Job.Ship.Faction, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="0" x:Name="shipfaction" />
+                            <Label Content="Size" Grid.Column="1" />
+                            <TextBox Text="{Binding Path=Job.Ship.Size, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="2" x:Name="size" />
+                            <Label Content="Overridenpc" Grid.Column="3" />
+                            <CheckBox IsChecked="{Binding Path=Job.Ship.Overridenpc, Mode=TwoWay}" Grid.Column="4" x:Name="overridenpc" />
+                        </Grid>
+                        <Label Content="Level Min" Grid.Row="1" />
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=Job.Ship.LevelMin, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="0" x:Name="levelMin" />
+                            <Label Content="Level Max" Grid.Column="1" />
+                            <TextBox Text="{Binding Path=Job.Ship.LevelMax, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="2" x:Name="levelMax" />
+                        </Grid>
+                        <Label Content="Min" Grid.Row="2" />
+                        <Grid Grid.Column="1" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=Job.Ship.Cargo.Min, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="0" x:Name="min" />
+                            <Label Content="Max" Grid.Column="1" />
+                            <TextBox Text="{Binding Path=Job.Ship.Cargo.Max, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="2" x:Name="max" />
+                            <Label Content="Multiple" Grid.Column="3" />
+                            <CheckBox IsChecked="{Binding Path=Job.Ship.Cargo.Multiple, Mode=TwoWay}" Grid.Column="4" x:Name="multiple" />
+                            <Label Content="Profile" Grid.Column="5" />
+                            <TextBox Text="{Binding Path=Job.Ship.Cargo.Profile, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="6" x:Name="profile" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Varia" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Basket" />
+                        <TextBox Text="{Binding Path=Job.Basket, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="0" x:Name="basket" />
+                        <Label Content="Encounters" Grid.Row="1" />
+                        <TextBox Text="{Binding Path=Job.Encounters, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="1" x:Name="encounters" />
+                        <Label Content="Subordinates" Grid.Row="2" />
+                        <TextBox Text="{Binding Path=Job.Subordinates, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="2" x:Name="subordinates" />
+                        <Label Content="Time" Grid.Row="3" />
+                        <TextBox Text="{Binding Path=Job.Time, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" Grid.Row="3" x:Name="time" />
+                    </Grid>
+                </Grid>
+            </Border>
+
             <Button Name="btnSubmit" Content="Save" 
-                    Command="{Binding SaveCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+                Command="{Binding SaveCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
             <Button Name="btnCancel" Content="Cancel" 
-                    Command="{Binding CancelCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+                Command="{Binding CancelCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
         </StackPanel>
     </Grid>
 </UserControl>
