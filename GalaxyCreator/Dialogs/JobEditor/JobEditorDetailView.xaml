@@ -265,17 +265,19 @@
                     <TextBlock Text="Orders" />
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="450"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Content="Orders" />
-                        <DataGrid ItemsSource="{Binding Path=Job.Orders}"                           
+                        <DataGrid ItemsSource="{Binding Path=Job.Orders}" SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay}"                         
                           AutoGenerateColumns="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="570"/>
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left"/>
+                        <DataGrid ItemsSource="{Binding Path=SelectedOrder.Parameters, Mode=TwoWay}"                           
+                          AutoGenerateColumns="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Column="1" HorizontalAlignment="Left" />
                     </Grid>
                 </Grid>
             </Border>

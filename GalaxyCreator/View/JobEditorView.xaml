@@ -24,7 +24,7 @@
                     </DataGrid.Columns>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
-                            <cmd:EventToCommand CommandParameter="{Binding SelectedItem}" Command="{Binding Path=JobEditorClickedCommand, Mode=OneWay}"/>
+                            <cmd:EventToCommand Command="{Binding Path=JobEditorClickedCommand, Mode=OneWay}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </DataGrid>

@@ -23,6 +23,19 @@ namespace GalaxyCreator.Dialogs.JobEditor
             set { _cancelCommand = value; }
         }
 
+        private JobOrder _selectedOrder;
+        public JobOrder SelectedOrder
+        {
+            get { return _selectedOrder; }
+            set
+            {
+                if (_selectedOrder == value)
+                    return;
+                _selectedOrder = value;
+                RaisePropertyChanged("SelectedOrder");
+            }
+        }
+
         public JobEditorDetailViewModel(string message, Job job) : base(message)
         {
             this.Job = job;
