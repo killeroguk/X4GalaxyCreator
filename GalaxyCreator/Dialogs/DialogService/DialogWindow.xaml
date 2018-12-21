@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:yesNoDialog="clr-namespace:GalaxyCreator.Dialogs.DialogYesNo"    
         xmlns:jobEditor="clr-namespace:GalaxyCreator.Dialogs.JobEditor"    
-        Title="DialogWindow" Height="300" Width="600"
+        Title="DialogWindow" Height="Auto" Width="Auto"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
@@ -16,9 +16,11 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type jobEditor:JobEditorDetailViewModel }">
                 <jobEditor:JobEditorDetailView />
-            </DataTemplate>            
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
-    
-    <ContentPresenter x:Name="ContentPresenter" Content="{Binding}"></ContentPresenter>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <ContentPresenter x:Name="ContentPresenter" Content="{Binding}"></ContentPresenter>
+    </ScrollViewer>
 </Window>

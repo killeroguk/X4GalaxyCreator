@@ -108,6 +108,7 @@
       <DependentUpon>DialogYesNoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\DialogYesNo\DialogYesNoViewModel.cs" />
+    <Compile Include="Model\Json\ComparisonType.cs" />
     <Compile Include="Model\JobEditor\JobEditorDetailParameter.cs" />
     <Compile Include="Dialogs\JobEditor\JobEditorDetailView.xaml.cs">
       <DependentUpon>JobEditorDetailView.xaml</DependentUpon>
@@ -117,6 +118,7 @@
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\EnumerationExtension.cs" />
+    <Compile Include="Model\Json\RelationType.cs" />
     <Compile Include="Model\Json\Belt.cs" />
     <Compile Include="Model\Json\BeltType.cs" />
     <Compile Include="Model\Json\Cargo.cs" />
@@ -145,6 +147,8 @@
     <Compile Include="Model\Json\StationType.cs" />
     <Compile Include="Model\Json\Tag.cs" />
     <Compile Include="Model\Json\Unit.cs" />
+    <Compile Include="Util\EnumBindingSourceExtension.cs" />
+    <Compile Include="Util\ListBoxSelectionBehavior.cs" />
     <Compile Include="ViewModel\GalaxyEditViewModel.cs" />
     <Compile Include="Model\Hex.cs" />
     <Compile Include="Model\IDataService.cs" />

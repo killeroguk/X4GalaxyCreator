@@ -5,11 +5,11 @@ namespace GalaxyCreator.Model.Json
 {
     public class JobLocation
     {
-        private String LocationClass { get; set; } = "galaxy";
-        private String Comparison { get; set; }
-        private String Relation { get; set; }
-        private String Macro { get; set; }
-        private String RegionBasket { get; set; }
-        private IList<Faction> Factions { get; set; }
+        public String LocationClass { get; set; } = "galaxy";
+        public ComparisonType Comparison { get; set; }
+        public RelationType Relation { get; set; }
+        public String Macro { get; set; }
+        public String RegionBasket { get; set; }
+        public IList<Faction> Factions { get; set; }
     }
 }
