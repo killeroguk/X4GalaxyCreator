@@ -272,9 +272,8 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Path=Job.Orders}" SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay}"                         
-                          AutoGenerateColumns="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left"/>
+                        <DataGrid ItemsSource="{Binding Path=Job.Orders}" SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left" SelectionMode="Single"/>
                         <DataGrid ItemsSource="{Binding Path=SelectedOrder.Parameters, Mode=TwoWay}"                           
                           AutoGenerateColumns="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                           ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Column="1" HorizontalAlignment="Left" />
