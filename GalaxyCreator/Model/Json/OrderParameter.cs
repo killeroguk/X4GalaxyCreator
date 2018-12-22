@@ -2,6 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
+    [Serializable]
     public class OrderParameter
     {
         public String Name { get; set; }

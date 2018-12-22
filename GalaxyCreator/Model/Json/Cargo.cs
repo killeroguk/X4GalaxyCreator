@@ -2,6 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
+    [Serializable]
     public class Cargo
     {
         public bool Multiple { get; set; } = true;

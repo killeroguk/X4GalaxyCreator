@@ -8,6 +8,7 @@ using System.Windows.Shapes;
 
 namespace GalaxyCreator.Model.Json
 {
+    [Serializable]
     public class Cluster
     {
         public String Id { get; set; }

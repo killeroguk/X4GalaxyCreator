@@ -2,6 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
+    [Serializable]
     public class JobQuota
     {
         public Int16 Galaxy { get; set; }

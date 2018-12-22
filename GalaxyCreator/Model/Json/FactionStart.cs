@@ -2,6 +2,7 @@
 
 namespace GalaxyCreator.Model.Json
 {
+    [Serializable]
     public class FactionStart
     {
         public String ClusterId { get; set; }

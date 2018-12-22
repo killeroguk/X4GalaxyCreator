@@ -14,7 +14,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="Auto">
                 <Label Content="Job Editor" FontSize="14" HorizontalContentAlignment="Center" Width="Auto"/>
                 <DataGrid x:Name="JobDataGrid" 
-                          ItemsSource="{Binding Path=Galaxy.Jobs}" 
+                          ItemsSource="{Binding Path=Galaxy.Jobs, UpdateSourceTrigger=PropertyChanged}" 
                           SelectedItem="{Binding Path=SelectedJob, Mode=TwoWay}" 
                     AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                     ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="500">

@@ -8,7 +8,7 @@ namespace GalaxyCreator.Dialogs.JobEditor
     class JobEditorDetailViewModel : DialogViewModelBase
     {
         public Job Job { get; set; }
-
+        
         private RelayCommand<object> _saveCommand = null;
         public RelayCommand<object> SaveCommand
         {

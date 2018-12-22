@@ -15,10 +15,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="JobDetailMainPanel" >
-            <StackPanel.BindingGroup>
-                <BindingGroup Name="bindingGroup"/>
-            </StackPanel.BindingGroup>
-
             <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
                 <Grid>
                     <Grid.ColumnDefinitions>

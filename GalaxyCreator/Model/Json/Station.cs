@@ -1,5 +1,8 @@
-﻿namespace GalaxyCreator.Model.Json
+﻿using System;
+
+namespace GalaxyCreator.Model.Json
 {
+    [Serializable]
     public class Station
     {
         public StationType Type { get; set; }
