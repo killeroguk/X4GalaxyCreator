@@ -69,8 +69,10 @@ namespace GalaxyCreator.Model.Json
                 new Point(OuterRadius, 0F),
             };
 
-            int shiftedY = Y + 10;
+            int shiftedY = (Y) + 10;
             int shiftedX = X + 10;
+
+            Console.WriteLine($"Creating Hex X:{x}/{shiftedX} Y:{y}/{shiftedY}");
 
             Polygon = new Polygon();
             Polygon.Tag = UId;
@@ -85,8 +87,8 @@ namespace GalaxyCreator.Model.Json
             Polygon.HorizontalAlignment = HorizontalAlignment.Center;
             Polygon.VerticalAlignment = VerticalAlignment.Center;
             Polygon.Points = corners;
-            Polygon.RenderTransform = new TranslateTransform((shiftedY * (OuterRadius * 1.5f) + OuterRadius), ((shiftedX + shiftedY * 0.5f - shiftedY / 2) * (InnerRadius * 2f)) + OuterRadius);
 
+            Polygon.RenderTransform = new TranslateTransform((shiftedX * (OuterRadius * 1.5f) + OuterRadius), ((shiftedY + shiftedX * 0.5f - shiftedX / 2) * (InnerRadius * 2f)) + OuterRadius);
         }
 
 

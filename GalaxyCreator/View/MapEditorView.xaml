@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GalaxyCreator.View"
+      xmlns:controls="clr-namespace:Han.Wpf.ViewportControl;assembly=Han.Wpf.ViewportControl"
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1500">
 
@@ -16,11 +17,15 @@
             <ColumnDefinition Width="600"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
-            <Canvas  x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black" >
-
+        <controls:Viewport MinZoom="0.1" MaxZoom="50" ZoomSpeed="0.9" IsEnabled="True">
+            <Canvas  x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black"  RenderTransformOrigin="0.5,0.5" >
             </Canvas>
-        </ScrollViewer>
+        </controls:Viewport>
+        
+        <!--<ScrollViewer Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
+            <Canvas  x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black"  RenderTransformOrigin="0.5,0.5" >
+            </Canvas>
+        </ScrollViewer>-->
 
         <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding RightHandViewModel}"></ContentControl>
     </Grid>
