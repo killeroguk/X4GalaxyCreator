@@ -16,19 +16,17 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="JobDetailMainPanel" >
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10"  Margin="0,5,0,5" Header="Job Setup">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Setup" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="45"/>
                             <ColumnDefinition Width="*"/>
@@ -44,7 +42,7 @@
                         <Label Content="Name" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <TextBox Text="{Binding Path=Job.Name, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="3" x:Name="name" />
                     </Grid>
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="25"/>
@@ -72,21 +70,18 @@
                         <CheckBox IsChecked="{Binding Path=Job.Subordinate, Mode=TwoWay}" x:Name="subordinate" Grid.Row="1" Grid.Column="5" />
                     </Grid>                
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Job Category">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Category" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -131,20 +126,18 @@
                         </Grid>
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Job Location">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Location" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -204,20 +197,18 @@
                         </Grid>
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Job Quotas">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Quotas" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="85"/>
                             <ColumnDefinition Width="*"/>
@@ -254,20 +245,18 @@
                         <TextBox Text="{Binding Path=Job.JobQuota.Wing, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="13" x:Name="wing" />
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Orders">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Orders" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="450"/>
                             <ColumnDefinition Width="*"/>
@@ -283,20 +272,18 @@
                           ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Column="1" HorizontalAlignment="Left" />
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,10">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,10" Header="Ship Data">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Ship Data" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -394,7 +381,7 @@
                         </Grid>
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
             <Button Name="btnSubmit" Content="Save" 
                 Command="{Binding SaveCommand}"
