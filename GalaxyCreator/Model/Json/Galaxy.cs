@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GalaxyCreator.Model.Json
@@ -20,14 +21,14 @@ namespace GalaxyCreator.Model.Json
         public int MaxRandomBelts { get; set; }
         public IList<Cluster> Clusters { get; set; }
         public IList<Product> Products { get; set; }
-        public IList<Job> Jobs { get; set; }
+        public ObservableCollection<Job> Jobs { get; set; }
 
         public Galaxy(int rowCount, int colCount, double hexSize)
         {
 
             Clusters = new List<Cluster>();
             Products = new List<Product>();
-            Jobs = new List<Job>();
+            Jobs = new ObservableCollection<Job>();
 
             for (int row = 0; row < rowCount; row++)
             {
