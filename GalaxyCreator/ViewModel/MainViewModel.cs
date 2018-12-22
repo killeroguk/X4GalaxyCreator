@@ -69,8 +69,10 @@ namespace GalaxyCreator.ViewModel
         internal void ReadJson(string fileName)
         {
             Galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
-
             MainData.SetGalaxyMap(Galaxy);
+
+            Galaxy.GenerateEmptySectors(Galaxy, 20, 20, 75);
+
 
             Console.WriteLine(Galaxy.GalaxyName);
         }

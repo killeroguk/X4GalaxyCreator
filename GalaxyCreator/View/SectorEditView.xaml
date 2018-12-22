@@ -13,7 +13,9 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="590">
             <Label Content="Sector Options" FontSize="14" HorizontalContentAlignment="Center" Width="auto"/>
                 <Label Content="{Binding Path=SelectedMapCluster.UId}"/>
-            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding Path=SelectedMapCluster.X}"/>
+                <Label Content="{Binding Path=SelectedMapCluster.Y}"/>
+                <StackPanel Orientation="Horizontal">
                 <Label Content="Enable" Width="100"/>
                     <CheckBox IsChecked="{Binding Path=SelectedMapCluster.IsEnabled}" Command="{Binding IsEnabledClickedCommand}"/>
             </StackPanel>

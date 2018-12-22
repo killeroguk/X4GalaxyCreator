@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GalaxyCreator.Model.Json
 {
@@ -36,6 +37,33 @@ namespace GalaxyCreator.Model.Json
                     Clusters.Add(cluster);
 
                 }
+            }
+        }
+
+        /* MAYEB MOVE THIS SOMEWHERE ELSE */
+        public void GenerateEmptySectors(Galaxy galaxy, int rowCount, int colCount, double hexSize)
+        {
+            int x = -(rowCount / 2);
+            int y = -(colCount / 2);
+
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int col = 0; col < colCount; col++)
+                {
+                    if (((List<Cluster>)galaxy.Clusters).FirstOrDefault(c => c.X == x && c.Y == y) == null)
+                    {
+                        Console.WriteLine("Creating hex at pos X: " + x + ", Y: " + y);
+                        Cluster cluster = new Cluster(x, y, hexSize, true);
+                        Clusters.Add(cluster);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not creating hex at pos X: " + x + ", Y: " + y);
+                    }
+                    y++;
+                }
+                y = -(colCount / 2);
+                x++;
             }
         }
 
