@@ -2,8 +2,8 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    public enum Race
+    public enum ComparisonType
     {
-        ARGON, TELADI, PARANID, XENON
+        not, lt, exact, ge
     }
 }

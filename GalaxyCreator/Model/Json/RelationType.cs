@@ -2,8 +2,8 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    public enum Race
+    public enum RelationType
     {
-        ARGON, TELADI, PARANID, XENON
+        member, self, neutral, friend
     }
 }

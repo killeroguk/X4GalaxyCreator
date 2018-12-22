@@ -1,4 +1,5 @@
 ﻿using GalaxyCreator.Dialogs.DialogService;
+using GalaxyCreator.Model.Json;
 using System.Windows;
 
 /**
@@ -16,6 +17,12 @@ namespace GalaxyCreator.Dialogs.DialogFacade
         public DialogResult ShowDialogYesNo(string message, Window owner)
         {
             DialogViewModelBase vm = new DialogYesNo.DialogYesNoViewModel(message);
+            return this.ShowDialog(vm, owner);
+        }
+
+        public DialogResult ShowJobEditorDetail(string message, Window owner, Job job)
+        {
+            DialogViewModelBase vm = new JobEditor.JobEditorDetailViewModel(message, job);
             return this.ShowDialog(vm, owner);
         }
 
