@@ -119,8 +119,7 @@
                             <Label Content="Tags" Grid.Column="0" />
                             <ListBox Name="jobCategoryTags" Grid.Column="1" Height="33"
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" 
-                                     SelectionMode="Single" Margin="0,0,10,0"
-                                     >
+                                     SelectionMode="Single" Margin="0,0,10,0">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonUp">
                                         <cmd:EventToCommand Command="{Binding JobCategoryTagUpdateCommand}" 
@@ -191,11 +190,17 @@
                             <ComboBox SelectedItem="{Binding Path=Job.JobLocation.Comparison}" Grid.Column="3" x:Name="comparison" 
                                       ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:ComparisonType}}}" Margin="0,0,10,0" />
                             <Label Content="Factions" Grid.Column="4" />
-                            <ListBox x:Name="factions" 
+                            <ListBox x:Name="jobFactionLocations" 
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" Height="33"
-                                     SelectionMode="Multiple" Grid.Column="5">
+                                     SelectionMode="Single" Grid.Column="5" Margin="0,0,10,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <cmd:EventToCommand Command="{Binding JobLocationFactionsUpdateCommand}" 
+                                                            CommandParameter="{Binding ElementName=jobFactionLocations, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
-                            <TextBlock MinWidth="150" Grid.Column="6"/>
+                            <TextBox IsEnabled="False" Text="{Binding Path=JobLocationFactions, Mode=OneWay}" Grid.Column="6" />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -272,8 +277,8 @@
                         </Grid.RowDefinitions>
 
                         <DataGrid ItemsSource="{Binding Path=Job.Orders}" SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left" SelectionMode="Single"/>
-                        <DataGrid ItemsSource="{Binding Path=SelectedOrder.Parameters, Mode=TwoWay}"                           
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left" SelectionMode="Single" />
+                        <DataGrid ItemsSource="{Binding Path=SelectedOrder.Parameters, Mode=TwoWay}"                   
                           AutoGenerateColumns="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                           ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Column="1" HorizontalAlignment="Left" />
                     </Grid>
@@ -333,11 +338,17 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="Factions" />
-                            <ListBox x:Name="shipfactions" 
+                            <ListBox x:Name="shipFactions" 
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" Height="33"
-                                     SelectionMode="Multiple" Grid.Column="1">
+                                     SelectionMode="Single" Grid.Column="1" Margin="0,0,10,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <cmd:EventToCommand Command="{Binding ShipFactionsUpdateCommand}" 
+                                                            CommandParameter="{Binding ElementName=shipFactions, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
-                            <TextBlock Grid.Column="2"/>
+                            <TextBox IsEnabled="False" Text="{Binding Path=ShipFactions, Mode=OneWay}" Grid.Column="2" />
                         </Grid>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
@@ -347,9 +358,16 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="Tags" Grid.Column="0" />
                             <ListBox Grid.Column="1" x:Name="shiptags" Height="33"
-                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" SelectionMode="Multiple">
+                                     ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" 
+                                     SelectionMode="Single" Margin="0,0,10,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <cmd:EventToCommand Command="{Binding ShipTagsUpdateCommand}" 
+                                                            CommandParameter="{Binding ElementName=shiptags, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>                                
                             </ListBox>
-                            <TextBlock Grid.Column="2"/>
+                            <TextBox IsEnabled="False" Text="{Binding Path=ShipTags, Mode=OneWay}" Grid.Column="2" />
                         </Grid>
                         <Grid Grid.Column="1" Grid.Row="3">
                             <Grid.ColumnDefinitions>
