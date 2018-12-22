@@ -8,9 +8,9 @@ namespace GalaxyCreator.Model.JobEditor
     {
         public Job Job { get; set; }
 
-        public JobMemento(Job job)
+        public JobMemento(Job Job)
         {
-            this.Job = CloneUtil.DeepClone<Job>(job);
+            this.Job = CloneUtil.CloneJson<Job>(Job);
         }
     }
 }

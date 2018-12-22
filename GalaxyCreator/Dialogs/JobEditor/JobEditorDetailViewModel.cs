@@ -29,10 +29,7 @@ namespace GalaxyCreator.Dialogs.JobEditor
             get { return _selectedOrder; }
             set
             {
-                if (_selectedOrder == value)
-                    return;
-                _selectedOrder = value;
-                RaisePropertyChanged("SelectedOrder");
+                Set(ref _selectedOrder, value);
             }
         }
 

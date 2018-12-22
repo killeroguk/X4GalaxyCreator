@@ -1,12 +1,21 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
     [Serializable]
-    public class Job
+    public class Job : ObservableObject
     {
-        public String Id { get; set; }
+        private String _id;
+        public String Id
+        {
+            get { return _id; }
+            set
+            {
+                Set(ref _id, value);
+            }
+        }
         public String Name { get; set; }
         public Boolean StartActive { get; set; }
         public Boolean Disabled { get; set; }
