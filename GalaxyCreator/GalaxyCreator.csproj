@@ -150,7 +150,6 @@
     <Compile Include="Model\Json\Unit.cs" />
     <Compile Include="Util\CloneUtil.cs" />
     <Compile Include="Util\EnumBindingSourceExtension.cs" />
-    <Compile Include="Util\ListBoxSelectionBehavior.cs" />
     <Compile Include="ViewModel\GalaxyEditViewModel.cs" />
     <Compile Include="Model\Hex.cs" />
     <Compile Include="Model\IDataService.cs" />

@@ -2,7 +2,6 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public enum Faction
     {
         PLAYER, ARGON, ANTIGONE,

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class JobLocation
     {
         public String LocationClass { get; set; } = "galaxy";

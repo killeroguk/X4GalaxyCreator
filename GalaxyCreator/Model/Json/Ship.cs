@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class Ship
     {
         public List<Tag> Tags { get; set; }

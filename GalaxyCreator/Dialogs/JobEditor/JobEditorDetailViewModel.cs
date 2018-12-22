@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Dialogs.DialogService;
 using GalaxyCreator.Model.Json;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace GalaxyCreator.Dialogs.JobEditor
@@ -8,7 +10,7 @@ namespace GalaxyCreator.Dialogs.JobEditor
     class JobEditorDetailViewModel : DialogViewModelBase
     {
         public Job Job { get; set; }
-        
+
         private RelayCommand<object> _saveCommand = null;
         public RelayCommand<object> SaveCommand
         {
@@ -23,6 +25,20 @@ namespace GalaxyCreator.Dialogs.JobEditor
             set { _cancelCommand = value; }
         }
 
+        private RelayCommand<object> _jobCategoryTagUpdateCommand = null;
+        public RelayCommand<object> JobCategoryTagUpdateCommand
+        {
+            get
+            {
+                if (_jobCategoryTagUpdateCommand == null)
+                {
+                    _jobCategoryTagUpdateCommand = new RelayCommand<object>((param) => UpdateTagOnJobCategory(param));
+                }
+
+                return _jobCategoryTagUpdateCommand;
+            }
+        }
+
         private JobOrder _selectedOrder;
         public JobOrder SelectedOrder
         {
@@ -30,6 +46,20 @@ namespace GalaxyCreator.Dialogs.JobEditor
             set
             {
                 Set(ref _selectedOrder, value);
+            }
+        }
+
+        public String JobCategoryTags
+        {
+            get
+            {
+                string Result = "{";
+                foreach(Tag Tag in this.Job.JobCategory.Tags)
+                {
+                    Result = Result + " " + Tag.ToString() + " ";
+                }
+                Result = Result + "}";
+                return Result;
             }
         }
 
@@ -48,6 +78,24 @@ namespace GalaxyCreator.Dialogs.JobEditor
         private void OnCancelClicked(object parameter)
         {
             this.CloseDialogWithResult(parameter as Window, DialogResult.No);
+        }
+
+        private void UpdateTagOnJobCategory(object param)
+        {
+            if(param != null)
+            {
+                Tag tagParam = (Tag)param;
+                Console.WriteLine("tag clicked");
+                if (Job.JobCategory.Tags.Contains(tagParam))
+                {
+                    Job.JobCategory.Tags.Remove(tagParam);
+                }
+                else
+                {
+                    Job.JobCategory.Tags.Add(tagParam);
+                }
+                RaisePropertyChanged("JobCategoryTags");
+            }
         }
     }
 }

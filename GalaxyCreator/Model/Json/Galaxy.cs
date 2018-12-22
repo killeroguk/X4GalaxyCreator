@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class Galaxy
     {
         public long Seed { get; set; }

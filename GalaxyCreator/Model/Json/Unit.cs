@@ -2,7 +2,6 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class Unit
     {
         public String Category { get; set; }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class Job : ObservableObject
     {
         private String _id;
@@ -16,21 +15,164 @@ namespace GalaxyCreator.Model.Json
                 Set(ref _id, value);
             }
         }
-        public String Name { get; set; }
-        public Boolean StartActive { get; set; }
-        public Boolean Disabled { get; set; }
-        public Boolean Rebuild { get; set; }
-        public Boolean Commandeerable { get; set; }
-        public Boolean Subordinate { get; set; }
-        public bool Buildatshipyard { get; set; } = true;
-        public JobLocation JobLocation { get; set; }
-        public JobCategory JobCategory { get; set; }
-        public JobQuota JobQuota { get; set; }
-        public IList<JobOrder> Orders { get; set; }
-        public String Basket { get; set; }
-        public String Encounters { get; set; }
-        public String Time { get; set; }
-        public Ship Ship { get; set; }
-        public IList<String> Subordinates { get; set; }
+
+        private String _name;
+        public String Name
+        {
+            get { return _name; }
+            set
+            {
+                Set(ref _name, value);
+            }
+        }
+
+        private Boolean _startActive;
+        public Boolean StartActive
+        {
+            get { return _startActive; }
+            set
+            {
+                Set(ref _startActive, value);
+            }
+        }
+
+        private Boolean _disabled;
+        public Boolean Disabled
+        {
+            get { return _disabled; }
+            set
+            {
+                Set(ref _disabled, value);
+            }
+        }
+
+        private Boolean _rebuild;
+        public Boolean Rebuild
+        {
+            get { return _rebuild; }
+            set
+            {
+                Set(ref _rebuild, value);
+            }
+        }
+
+        private Boolean _comandeerable;
+        public Boolean Commandeerable
+        {
+            get { return _comandeerable; }
+            set
+            {
+                Set(ref _comandeerable, value);
+            }
+        }
+
+        private Boolean _subordinate;
+        public Boolean Subordinate
+        {
+            get { return _subordinate; }
+            set
+            {
+                Set(ref _subordinate, value);
+            }
+        }
+
+        private bool _buildatshipyard = true;
+        public bool Buildatshipyard
+        {
+            get { return _buildatshipyard; }
+            set
+            {
+                Set(ref _buildatshipyard, value);
+            }
+        }
+
+        private JobLocation _jobLocation;
+        public JobLocation JobLocation
+        {
+            get { return _jobLocation; }
+            set
+            {
+                Set(ref _jobLocation, value);
+            }
+        }
+
+        private JobCategory _jobCategory;
+        public JobCategory JobCategory
+        {
+            get { return _jobCategory; }
+            set
+            {
+                Set(ref _jobCategory, value);
+            }
+        }
+
+        private JobQuota _jobQuota;
+        public JobQuota JobQuota
+        {
+            get { return _jobQuota; }
+            set
+            {
+                Set(ref _jobQuota, value);
+            }
+        }
+
+        private IList<JobOrder> _orders;
+        public IList<JobOrder> Orders
+        {
+            get { return _orders; }
+            set
+            {
+                Set(ref _orders, value);
+            }
+        }
+
+        private String _basket;
+        public String Basket
+        {
+            get { return _basket; }
+            set
+            {
+                Set(ref _basket, value);
+            }
+        }
+
+        private String _encounters;
+        public String Encounters
+        {
+            get { return _encounters; }
+            set
+            {
+                Set(ref _encounters, value);
+            }
+        }
+
+        private String _time;
+        public String Time
+        {
+            get { return _time; }
+            set
+            {
+                Set(ref _time, value);
+            }
+        }
+        private Ship _ship;
+        public Ship Ship
+        {
+            get { return _ship; }
+            set
+            {
+                Set(ref _ship, value);
+            }
+        }
+
+        private IList<String> _subordinataes;
+        public IList<String> Subordinates
+        {
+            get { return _subordinataes; }
+            set
+            {
+                Set(ref _subordinataes, value);
+            }
+        }
     }
 }

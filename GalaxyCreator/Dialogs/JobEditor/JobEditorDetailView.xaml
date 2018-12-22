@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:GalaxyCreator.Dialogs.JobEditor"
       xmlns:model="clr-namespace:GalaxyCreator.Model.Json"
       xmlns:util="clr-namespace:GalaxyCreator.Util"    
-      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"             
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+      xmlns:cmd ="http://www.galasoft.ch/mvvmlight"
       mc:Ignorable="d" d:DesignWidth="600">
 
     <Grid Margin="4">
@@ -116,13 +117,18 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>                            
                             <Label Content="Tags" Grid.Column="0" />
-                            <ListBox  Grid.Column="1" x:Name="tags" Height="33"
-                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" SelectionMode="Multiple">
-                                <i:Interaction.Behaviors>
-                                    <util:ListBoxSelectionBehavior SelectedItems="{Binding Job.JobCategory.Tags}" />
-                                </i:Interaction.Behaviors>
+                            <ListBox Name="jobCategoryTags" Grid.Column="1" Height="33"
+                                     ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" 
+                                     SelectionMode="Single" Margin="0,0,10,0"
+                                     >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <cmd:EventToCommand Command="{Binding JobCategoryTagUpdateCommand}" 
+                                                            CommandParameter="{Binding ElementName=jobCategoryTags, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
-                            <TextBlock />
+                            <TextBox IsEnabled="False" Text="{Binding Path=JobCategoryTags, Mode=OneWay}" Grid.Column="2" />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -188,9 +194,6 @@
                             <ListBox x:Name="factions" 
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" Height="33"
                                      SelectionMode="Multiple" Grid.Column="5">
-                                <i:Interaction.Behaviors>
-                                    <util:ListBoxSelectionBehavior SelectedItems="{Binding Path=Job.JobLocation.Factions}" />
-                                </i:Interaction.Behaviors>
                             </ListBox>
                             <TextBlock MinWidth="150" Grid.Column="6"/>
                         </Grid>
@@ -333,9 +336,6 @@
                             <ListBox x:Name="shipfactions" 
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" Height="33"
                                      SelectionMode="Multiple" Grid.Column="1">
-                                <i:Interaction.Behaviors>
-                                    <util:ListBoxSelectionBehavior SelectedItems="{Binding Path=Job.Ship.Factions}" />
-                                </i:Interaction.Behaviors>
                             </ListBox>
                             <TextBlock Grid.Column="2"/>
                         </Grid>
@@ -348,9 +348,6 @@
                             <Label Content="Tags" Grid.Column="0" />
                             <ListBox Grid.Column="1" x:Name="shiptags" Height="33"
                                       ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" SelectionMode="Multiple">
-                                <i:Interaction.Behaviors>
-                                    <util:ListBoxSelectionBehavior SelectedItems="{Binding Path=Job.Ship.Tags}" />
-                                </i:Interaction.Behaviors>
                             </ListBox>
                             <TextBlock Grid.Column="2"/>
                         </Grid>

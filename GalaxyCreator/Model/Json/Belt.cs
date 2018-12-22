@@ -2,7 +2,6 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class Belt
     {
         public BeltType Type { get; set; }

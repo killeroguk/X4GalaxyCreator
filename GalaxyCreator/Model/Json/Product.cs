@@ -2,7 +2,6 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class Product
     {
         public String Id { get; set; }

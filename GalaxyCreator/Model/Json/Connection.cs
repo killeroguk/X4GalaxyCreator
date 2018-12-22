@@ -2,7 +2,6 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public class Connection
     {
         public String TargetClusterId { get; set; }

@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Dialogs.DialogFacade;
 using GalaxyCreator.Model.JobEditor;
 using GalaxyCreator.Model.Json;
+using GalaxyCreator.Util;
 
 namespace GalaxyCreator.ViewModel
 {
@@ -41,8 +42,7 @@ namespace GalaxyCreator.ViewModel
             Dialogs.DialogService.DialogResult result = this.dialogFacade.ShowJobEditorDetail("Job Editor Detail", param as Window, this.SelectedJob);           
             if(result == Dialogs.DialogService.DialogResult.No)
             {
-                this.SelectedJob.Id = jobMemento.Job.Id;
-                RaisePropertyChanged("Galaxy.Jobs");
+                CloneUtil.CopyProperties(jobMemento.Job, this.SelectedJob);
             }
         }
     }

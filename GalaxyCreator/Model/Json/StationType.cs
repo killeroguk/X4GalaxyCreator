@@ -2,7 +2,6 @@
 
 namespace GalaxyCreator.Model.Json
 {
-    [Serializable]
     public enum StationType
     {
         SHIPYARD, WHARF, EQUIP, DEFENCE,
