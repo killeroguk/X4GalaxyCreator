@@ -21,6 +21,12 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="JobId" Binding="{Binding Id}" Header="Id" IsReadOnly="True" />
                         <DataGridTextColumn x:Name="JobName" Binding="{Binding Name}" Header="Name" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="StartActive" Binding="{Binding StartActive}" Header="StartActive" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Disabled" Binding="{Binding Disabled}" Header="Disabled" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Rebuild" Binding="{Binding Rebuild}" Header="Rebuild" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Buildatshipyard" Binding="{Binding Buildatshipyard}" Header="Buildatshipyard" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Commandeerable" Binding="{Binding Commandeerable}" Header="Commandeerable" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Subordinate" Binding="{Binding Subordinate}" Header="Subordinate" IsReadOnly="True" />
                     </DataGrid.Columns>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
