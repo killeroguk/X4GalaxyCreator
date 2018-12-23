@@ -16,7 +16,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="JobDetailMainPanel" >
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10"  Margin="0,5,0,5" Header="Job Setup">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -24,11 +24,11 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Setup" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="45"/>
                             <ColumnDefinition Width="*"/>
@@ -44,7 +44,7 @@
                         <Label Content="Name" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <TextBox Text="{Binding Path=Job.Name, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="3" x:Name="name" />
                     </Grid>
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="25"/>
@@ -70,23 +70,63 @@
                         <CheckBox IsChecked="{Binding Path=Job.Buildatshipyard, Mode=TwoWay}" x:Name="buildatshipyard" Grid.Row="1" Grid.Column="3" />
                         <Label Content="Subordinate" Grid.Row="1" Grid.Column="4" />
                         <CheckBox IsChecked="{Binding Path=Job.Subordinate, Mode=TwoWay}" x:Name="subordinate" Grid.Row="1" Grid.Column="5" />
-                    </Grid>                
-                </Grid>
-            </Border>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+                        <Label Content="Encounters" />
+                        <TextBox Text="{Binding Path=Job.Encounters, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="1" x:Name="encounters" />
+                        <Label Content="Time" Grid.Column="2" />
+                        <TextBox Text="{Binding Path=Job.Time, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="3" x:Name="time" />
+                        <Label Content="Basket" Grid.Column="4" />
+                        <TextBox Text="{Binding Path=Job.Basket, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="5" x:Name="basket" />
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Subordinates" />
+                        <DataGrid ItemsSource="{Binding Path=Job.Subordinates, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="572" >
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Subordinate Id">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"></TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Job Category">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Category" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -115,12 +155,11 @@
                                 <ColumnDefinition Width="70"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>                            
+                            </Grid.ColumnDefinitions>
                             <Label Content="Tags" Grid.Column="0" />
                             <ListBox Name="jobCategoryTags" Grid.Column="1" Height="33"
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" 
-                                     SelectionMode="Single" Margin="0,0,10,0"
-                                     >
+                                     SelectionMode="Single" Margin="0,0,10,0">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonUp">
                                         <cmd:EventToCommand Command="{Binding JobCategoryTagUpdateCommand}" 
@@ -132,20 +171,18 @@
                         </Grid>
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Job Location">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Location" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -153,7 +190,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        
+
                         <Grid Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="90"/>
@@ -191,28 +228,32 @@
                             <ComboBox SelectedItem="{Binding Path=Job.JobLocation.Comparison}" Grid.Column="3" x:Name="comparison" 
                                       ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:ComparisonType}}}" Margin="0,0,10,0" />
                             <Label Content="Factions" Grid.Column="4" />
-                            <ListBox x:Name="factions" 
+                            <ListBox x:Name="jobFactionLocations" 
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" Height="33"
-                                     SelectionMode="Multiple" Grid.Column="5">
+                                     SelectionMode="Single" Grid.Column="5" Margin="0,0,10,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <cmd:EventToCommand Command="{Binding JobLocationFactionsUpdateCommand}" 
+                                                            CommandParameter="{Binding ElementName=jobFactionLocations, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
-                            <TextBlock MinWidth="150" Grid.Column="6"/>
+                            <TextBox IsEnabled="False" Text="{Binding Path=JobLocationFactions, Mode=OneWay}" Grid.Column="6" />
                         </Grid>
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Job Quotas">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Job Quotas" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="85"/>
                             <ColumnDefinition Width="*"/>
@@ -249,20 +290,18 @@
                         <TextBox Text="{Binding Path=Job.JobQuota.Wing, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="13" x:Name="wing" />
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,5" Header="Orders">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Orders" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="450"/>
                             <ColumnDefinition Width="*"/>
@@ -272,26 +311,24 @@
                         </Grid.RowDefinitions>
 
                         <DataGrid ItemsSource="{Binding Path=Job.Orders}" SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left" SelectionMode="Single"/>
-                        <DataGrid ItemsSource="{Binding Path=SelectedOrder.Parameters, Mode=TwoWay}"                           
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left" SelectionMode="Single" />
+                        <DataGrid ItemsSource="{Binding Path=SelectedOrder.Parameters, Mode=TwoWay}"                   
                           AutoGenerateColumns="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                           ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Column="1" HorizontalAlignment="Left" />
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
 
-            <Border BorderThickness="1" BorderBrush="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,10">
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="0,5,0,10" Header="Ship Data">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Ship Data" />
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -300,8 +337,9 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                     
+
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="70"/>
@@ -333,11 +371,17 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="Factions" />
-                            <ListBox x:Name="shipfactions" 
+                            <ListBox x:Name="shipFactions" 
                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" Height="33"
-                                     SelectionMode="Multiple" Grid.Column="1">
+                                     SelectionMode="Single" Grid.Column="1" Margin="0,0,10,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <cmd:EventToCommand Command="{Binding ShipFactionsUpdateCommand}" 
+                                                            CommandParameter="{Binding ElementName=shipFactions, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
-                            <TextBlock Grid.Column="2"/>
+                            <TextBox IsEnabled="False" Text="{Binding Path=ShipFactions, Mode=OneWay}" Grid.Column="2" />
                         </Grid>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
@@ -347,9 +391,16 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="Tags" Grid.Column="0" />
                             <ListBox Grid.Column="1" x:Name="shiptags" Height="33"
-                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" SelectionMode="Multiple">
+                                     ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Tag}}}" 
+                                     SelectionMode="Single" Margin="0,0,10,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <cmd:EventToCommand Command="{Binding ShipTagsUpdateCommand}" 
+                                                            CommandParameter="{Binding ElementName=shiptags, Path=SelectedItem}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ListBox>
-                            <TextBlock Grid.Column="2"/>
+                            <TextBox IsEnabled="False" Text="{Binding Path=ShipTags, Mode=OneWay}" Grid.Column="2" />
                         </Grid>
                         <Grid Grid.Column="1" Grid.Row="3">
                             <Grid.ColumnDefinitions>
@@ -374,9 +425,24 @@
                             <Label Content="Multiple" Grid.Column="6" />
                             <CheckBox IsChecked="{Binding Path=Job.Ship.Cargo.Multiple, Mode=TwoWay}" Grid.Column="7" x:Name="multiple" />
                         </Grid>
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Units" />
+                            <DataGrid ItemsSource="{Binding Path=Job.Ship.Units, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" HorizontalAlignment="Left" SelectionMode="Single"
+                                   Grid.Column="1" />
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Border>
+            </GroupBox>
+
 
             <Button Name="btnSubmit" Content="Save" 
                 Command="{Binding SaveCommand}"

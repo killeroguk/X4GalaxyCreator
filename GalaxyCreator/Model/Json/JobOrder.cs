@@ -7,6 +7,6 @@ namespace GalaxyCreator.Model.Json
     {
         public String Order { get; set; }
         public bool DefaultOrder { get; set; } = true;
-        public IList<OrderParameter> Parameters { get; set; }
+        public IList<OrderParameter> Parameters { get; set; } = new List<OrderParameter>();
     }
 }

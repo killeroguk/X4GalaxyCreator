@@ -39,6 +39,48 @@ namespace GalaxyCreator.Dialogs.JobEditor
             }
         }
 
+        private RelayCommand<object> _jobLocationsFactionUpdateCommand = null;
+        public RelayCommand<object> JobLocationFactionsUpdateCommand
+        {
+            get
+            {
+                if (_jobLocationsFactionUpdateCommand == null)
+                {
+                    _jobLocationsFactionUpdateCommand = new RelayCommand<object>((param) => UpdateLocationsOnJobLocation(param));
+                }
+
+                return _jobLocationsFactionUpdateCommand;
+            }
+        }
+
+        private RelayCommand<object> _shipFactionsTagUpdateCommand = null;
+        public RelayCommand<object> ShipFactionsUpdateCommand
+        {
+            get
+            {
+                if (_shipFactionsTagUpdateCommand == null)
+                {
+                    _shipFactionsTagUpdateCommand = new RelayCommand<object>((param) => UpdateFactionsOnShip(param));
+                }
+
+                return _shipFactionsTagUpdateCommand;
+            }
+        }
+
+        private RelayCommand<object> _shipTagsUpdateCommand = null;
+        public RelayCommand<object> ShipTagsUpdateCommand
+        {
+            get
+            {
+                if (_shipTagsUpdateCommand == null)
+                {
+                    _shipTagsUpdateCommand = new RelayCommand<object>((param) => UpdateTagsOnShip(param));
+                }
+
+                return _shipTagsUpdateCommand;
+            }
+        }
+
         private JobOrder _selectedOrder;
         public JobOrder SelectedOrder
         {
@@ -53,13 +95,71 @@ namespace GalaxyCreator.Dialogs.JobEditor
         {
             get
             {
-                string Result = "{";
-                foreach(Tag Tag in this.Job.JobCategory.Tags)
+                if(this.Job.JobCategory.Tags != null)
                 {
-                    Result = Result + " " + Tag.ToString() + " ";
+                    string Result = "{";
+                    foreach (Tag Tag in this.Job.JobCategory.Tags)
+                    {
+                        Result = Result + " " + Tag.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
                 }
-                Result = Result + "}";
-                return Result;
+                return "";
+            }
+        }
+
+        public String ShipTags
+        {
+            get
+            {
+                if(this.Job.Ship.Tags != null)
+                {
+                    string Result = "{";
+                    foreach (Tag Tag in this.Job.Ship.Tags)
+                    {
+                        Result = Result + " " + Tag.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
+                }
+                return "";
+            }
+        }
+
+        public String JobLocationFactions
+        {
+            get
+            {
+                if(this.Job.JobLocation.Factions != null)
+                {
+                    string Result = "{";
+                    foreach (Faction Faction in this.Job.JobLocation.Factions)
+                    {
+                        Result = Result + " " + Faction.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
+                }
+                return "";
+            }
+        }
+
+        public String ShipFactions
+        {
+            get
+            {
+                if(this.Job.Ship.Factions != null)
+                {
+                    string Result = "{";
+                    foreach (Faction Faction in this.Job.Ship.Factions)
+                    {
+                        Result = Result + " " + Faction.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
+                }
+                return "";
             }
         }
 
@@ -85,7 +185,6 @@ namespace GalaxyCreator.Dialogs.JobEditor
             if(param != null)
             {
                 Tag tagParam = (Tag)param;
-                Console.WriteLine("tag clicked");
                 if (Job.JobCategory.Tags.Contains(tagParam))
                 {
                     Job.JobCategory.Tags.Remove(tagParam);
@@ -97,5 +196,57 @@ namespace GalaxyCreator.Dialogs.JobEditor
                 RaisePropertyChanged("JobCategoryTags");
             }
         }
+
+        private void UpdateLocationsOnJobLocation(object param)
+        {
+            if (param != null)
+            {
+                Faction factionParam = (Faction)param;
+                if (Job.JobLocation.Factions.Contains(factionParam))
+                {
+                    Job.JobLocation.Factions.Remove(factionParam);
+                }
+                else
+                {
+                    Job.JobLocation.Factions.Add(factionParam);
+                }
+                RaisePropertyChanged("JobLocationFactions");
+            }
+        }
+
+        private void UpdateFactionsOnShip(object param)
+        {
+            if (param != null)
+            {
+                Faction factionParam = (Faction)param;
+                if (Job.Ship.Factions.Contains(factionParam))
+                {
+                    Job.Ship.Factions.Remove(factionParam);
+                }
+                else
+                {
+                    Job.Ship.Factions.Add(factionParam);
+                }
+                RaisePropertyChanged("ShipFactions");
+            }
+        }
+
+        private void UpdateTagsOnShip(object param)
+        {
+            if (param != null)
+            {
+                Tag tagParam = (Tag)param;
+                if (Job.Ship.Tags.Contains(tagParam))
+                {
+                    Job.Ship.Tags.Remove(tagParam);
+                }
+                else
+                {
+                    Job.Ship.Tags.Add(tagParam);
+                }
+                RaisePropertyChanged("ShipTags");
+            }
+        }
+
     }
 }

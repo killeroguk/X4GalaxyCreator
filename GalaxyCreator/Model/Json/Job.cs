@@ -116,7 +116,7 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private IList<JobOrder> _orders;
+        private IList<JobOrder> _orders = new List<JobOrder>();
         public IList<JobOrder> Orders
         {
             get { return _orders; }
@@ -165,13 +165,13 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private IList<String> _subordinataes;
+        private IList<String> _subordinates = new List<String>();
         public IList<String> Subordinates
         {
-            get { return _subordinataes; }
+            get { return _subordinates; }
             set
             {
-                Set(ref _subordinataes, value);
+                Set(ref _subordinates, value);
             }
         }
     }
