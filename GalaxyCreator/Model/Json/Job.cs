@@ -86,7 +86,7 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private JobLocation _jobLocation;
+        private JobLocation _jobLocation = new JobLocation();
         public JobLocation JobLocation
         {
             get { return _jobLocation; }
@@ -96,7 +96,7 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private JobCategory _jobCategory;
+        private JobCategory _jobCategory = new JobCategory();
         public JobCategory JobCategory
         {
             get { return _jobCategory; }
@@ -106,7 +106,7 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private JobQuota _jobQuota;
+        private JobQuota _jobQuota = new JobQuota();
         public JobQuota JobQuota
         {
             get { return _jobQuota; }
@@ -155,7 +155,7 @@ namespace GalaxyCreator.Model.Json
                 Set(ref _time, value);
             }
         }
-        private Ship _ship;
+        private Ship _ship = new Ship();
         public Ship Ship
         {
             get { return _ship; }

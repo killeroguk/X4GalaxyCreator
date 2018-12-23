@@ -59,17 +59,17 @@
                         </Grid.RowDefinitions>
 
                         <Label Content="Commandeerable" Grid.Row="0" Grid.Column="0" />
-                        <CheckBox IsChecked="{Binding Path=Job.Commandeerable, Mode=TwoWay}" x:Name="commandeerable" Grid.Row="0" Grid.Column="1" />
+                        <CheckBox IsChecked="{Binding Path=Job.Commandeerable, Mode=TwoWay}" x:Name="commandeerable" Grid.Row="0" Grid.Column="1" IsThreeState="True"/>
                         <Label Content="Start Active" Grid.Row="0" Grid.Column="2" />
-                        <CheckBox IsChecked="{Binding Path=Job.StartActive, Mode=TwoWay}" x:Name="startActive" Grid.Row="0" Grid.Column="3" />
+                        <CheckBox IsChecked="{Binding Path=Job.StartActive, Mode=TwoWay}" x:Name="startActive" Grid.Row="0" Grid.Column="3" IsThreeState="True" />
                         <Label Content="Disabled" Grid.Row="0" Grid.Column="4" />
-                        <CheckBox IsChecked="{Binding Path=Job.Disabled, Mode=TwoWay}" x:Name="disabled" Grid.Row="0" Grid.Column="5" />
+                        <CheckBox IsChecked="{Binding Path=Job.Disabled, Mode=TwoWay}" x:Name="disabled" Grid.Row="0" Grid.Column="5" IsThreeState="True" />
                         <Label Content="Rebuild" Grid.Row="1" Grid.Column="0" />
-                        <CheckBox IsChecked="{Binding Path=Job.Rebuild, Mode=TwoWay}" x:Name="rebuild" Grid.Row="1" Grid.Column="1" />
+                        <CheckBox IsChecked="{Binding Path=Job.Rebuild, Mode=TwoWay}" x:Name="rebuild" Grid.Row="1" Grid.Column="1" IsThreeState="True" />
                         <Label Content="Buildatshipyard" Grid.Row="1" Grid.Column="2" />
-                        <CheckBox IsChecked="{Binding Path=Job.Buildatshipyard, Mode=TwoWay}" x:Name="buildatshipyard" Grid.Row="1" Grid.Column="3" />
+                        <CheckBox IsChecked="{Binding Path=Job.Buildatshipyard, Mode=TwoWay}" x:Name="buildatshipyard" Grid.Row="1" Grid.Column="3" IsThreeState="True" />
                         <Label Content="Subordinate" Grid.Row="1" Grid.Column="4" />
-                        <CheckBox IsChecked="{Binding Path=Job.Subordinate, Mode=TwoWay}" x:Name="subordinate" Grid.Row="1" Grid.Column="5" />
+                        <CheckBox IsChecked="{Binding Path=Job.Subordinate, Mode=TwoWay}" x:Name="subordinate" Grid.Row="1" Grid.Column="5" IsThreeState="True" />
                     </Grid>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
