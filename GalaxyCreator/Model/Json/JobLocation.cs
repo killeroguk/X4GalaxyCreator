@@ -10,6 +10,6 @@ namespace GalaxyCreator.Model.Json
         public RelationType Relation { get; set; }
         public String Macro { get; set; }
         public String RegionBasket { get; set; }
-        public IList<Faction> Factions { get; set; }
+        public IList<Faction> Factions { get; set; } = new List<Faction>();
     }
 }

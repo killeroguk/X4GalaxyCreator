@@ -24,5 +24,13 @@ namespace GalaxyCreator.View
         {
             InitializeComponent();
         }
+
+        private void JobDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(e.AddedItems != null && e.AddedItems.Count > 0)
+            {
+                JobDataGrid.ScrollIntoView(e.AddedItems[0]);
+            }
+        }
     }
 }

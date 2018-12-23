@@ -11,16 +11,25 @@
              d:DesignHeight="1000" d:DesignWidth="1500">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" Padding="5">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="Auto">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Margin="50,50,50,50">
                 <Label Content="Job Editor" FontSize="14" HorizontalContentAlignment="Center" Width="Auto"/>
                 <DataGrid x:Name="JobDataGrid" 
                           ItemsSource="{Binding Path=Galaxy.Jobs, UpdateSourceTrigger=PropertyChanged}" 
                           SelectedItem="{Binding Path=SelectedJob, Mode=TwoWay}" 
-                    AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="500">
+                          AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="700" Width="1070" 
+                          CanUserAddRows="false" CanUserDeleteRows="False" CanUserReorderColumns="false"
+                          SelectionChanged="JobDataGrid_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="JobId" Binding="{Binding Id}" Header="Id" IsReadOnly="True" />
                         <DataGridTextColumn x:Name="JobName" Binding="{Binding Name}" Header="Name" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="StartActive" Binding="{Binding StartActive}" Header="StartActive" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Disabled" Binding="{Binding Disabled}" Header="Disabled" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Rebuild" Binding="{Binding Rebuild}" Header="Rebuild" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Buildatshipyard" Binding="{Binding Buildatshipyard}" Header="Buildatshipyard" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Commandeerable" Binding="{Binding Commandeerable}" Header="Commandeerable" IsReadOnly="True" />
+                        <DataGridCheckBoxColumn x:Name="Subordinate" Binding="{Binding Subordinate}" Header="Subordinate" IsReadOnly="True" />
                     </DataGrid.Columns>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
@@ -28,6 +37,20 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </DataGrid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="RemoveJob" Grid.Column="0" Command="{Binding Path=JobEditorRemoveCommand}">Remove</Button>
+                    <Button Name="CopyJob" Grid.Column="1" Command="{Binding Path=JobEditorCopyCommand}">Copy</Button>
+                    <Button Name="NewJob" Grid.Column="2" Command="{Binding Path=JobEditorAddCommand}">Add</Button>
+                </Grid>
             </StackPanel>
         </Border>
     </Grid>
