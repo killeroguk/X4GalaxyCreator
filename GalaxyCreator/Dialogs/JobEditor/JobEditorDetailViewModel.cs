@@ -95,13 +95,17 @@ namespace GalaxyCreator.Dialogs.JobEditor
         {
             get
             {
-                string Result = "{";
-                foreach(Tag Tag in this.Job.JobCategory.Tags)
+                if(this.Job.JobCategory.Tags != null)
                 {
-                    Result = Result + " " + Tag.ToString() + " ";
+                    string Result = "{";
+                    foreach (Tag Tag in this.Job.JobCategory.Tags)
+                    {
+                        Result = Result + " " + Tag.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
                 }
-                Result = Result + "}";
-                return Result;
+                return "";
             }
         }
 
@@ -109,13 +113,17 @@ namespace GalaxyCreator.Dialogs.JobEditor
         {
             get
             {
-                string Result = "{";
-                foreach (Tag Tag in this.Job.Ship.Tags)
+                if(this.Job.Ship.Tags != null)
                 {
-                    Result = Result + " " + Tag.ToString() + " ";
+                    string Result = "{";
+                    foreach (Tag Tag in this.Job.Ship.Tags)
+                    {
+                        Result = Result + " " + Tag.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
                 }
-                Result = Result + "}";
-                return Result;
+                return "";
             }
         }
 
@@ -123,13 +131,17 @@ namespace GalaxyCreator.Dialogs.JobEditor
         {
             get
             {
-                string Result = "{";
-                foreach (Faction Faction in this.Job.JobLocation.Factions)
+                if(this.Job.JobLocation.Factions != null)
                 {
-                    Result = Result + " " + Faction.ToString() + " ";
+                    string Result = "{";
+                    foreach (Faction Faction in this.Job.JobLocation.Factions)
+                    {
+                        Result = Result + " " + Faction.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
                 }
-                Result = Result + "}";
-                return Result;
+                return "";
             }
         }
 
@@ -137,13 +149,17 @@ namespace GalaxyCreator.Dialogs.JobEditor
         {
             get
             {
-                string Result = "{";
-                foreach (Faction Faction in this.Job.Ship.Factions)
+                if(this.Job.Ship.Factions != null)
                 {
-                    Result = Result + " " + Faction.ToString() + " ";
+                    string Result = "{";
+                    foreach (Faction Faction in this.Job.Ship.Factions)
+                    {
+                        Result = Result + " " + Faction.ToString() + " ";
+                    }
+                    Result = Result + "}";
+                    return Result;
                 }
-                Result = Result + "}";
-                return Result;
+                return "";
             }
         }
 
