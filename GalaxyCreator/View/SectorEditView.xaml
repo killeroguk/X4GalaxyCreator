@@ -80,13 +80,26 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Type"/>
-                                <ComboBox Height="30" SelectedValue="{Binding Type}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type model:BeltType}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
+                                <ComboBox Height="30" SelectedValue="{Binding Type}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type jsonModel:BeltType}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
                                 </ComboBox>
                                 <Button Margin=" 10 0 10 0 " Content="X"></Button>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <!--<Button Content="Add Belt" Command="{Binding AddBeltClickCommand}" Margin="0 10 0 10" Width="300"/> TODO: SPACE OBJECTS 
+                <ListView ItemsSource="{Binding Path=SelectedMapCluster.Belts}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Type"/>
+                                <ComboBox Height="30" SelectedValue="{Binding Type}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type jsonModel:BeltType}}}" DisplayMemberPath="Description" SelectedValuePath="Value">
+                                </ComboBox>
+                                <Button Margin=" 10 0 10 0 " Content="X"></Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
 
             </StackPanel>
         </Border>
