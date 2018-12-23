@@ -1,9 +1,17 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace GalaxyCreator.Model.Json
 {
     public enum ComparisonType
     {
-        not, lt, exact, ge
+        [Description("Not")]
+        not,
+        [Description("Lt")]
+        lt,
+        [Description("Exzact")]
+        exact,
+        [Description("Ge")]
+        ge
     }
 }

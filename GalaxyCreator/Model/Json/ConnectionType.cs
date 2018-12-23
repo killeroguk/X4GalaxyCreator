@@ -1,9 +1,23 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace GalaxyCreator.Model.Json
 {
     public enum ConnectionType
     {
-        N, NE, SE, S, SW, NW, CUSTOM
+        [Description("N")]
+        N,
+        [Description("NE")]
+        NE,
+        [Description("SE")]
+        SE,
+        [Description("S")]
+        S,
+        [Description("SW")]
+        SW,
+        [Description("NW")]
+        NW,
+        [Description("Custom")]
+        CUSTOM
     }
 }
