@@ -16,7 +16,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Han.Wpf.ViewportControl;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="ViewportControl/ViewportControlResourceDictionary.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
 
             <!--Global View Model Locator-->
