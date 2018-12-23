@@ -1,9 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace GalaxyCreator.Model.Json
 {
     public enum SpaceObjectType
     {
-        CLAIM, LANDMARK, ANOMALY
+        [Description("Claim")]
+        CLAIM,
+        [Description("Landmark")]
+        LANDMARK,
+        [Description("Anomaly")]
+        ANOMALY
     }
 }

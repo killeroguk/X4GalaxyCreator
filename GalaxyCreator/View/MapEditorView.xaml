@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GalaxyCreator.View"
-      xmlns:controls="clr-namespace:Han.Wpf.ViewportControl;assembly=Han.Wpf.ViewportControl"
+      xmlns:controls="clr-namespace:GalaxyCreator.ViewportControl"
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1500">
 
@@ -17,8 +17,8 @@
             <ColumnDefinition Width="600"/>
         </Grid.ColumnDefinitions>
 
-        <controls:Viewport MinZoom="0.1" MaxZoom="50" ZoomSpeed="0.9" IsEnabled="True">
-            <Canvas  x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black"  RenderTransformOrigin="0.5,0.5" >
+        <controls:Viewport MinZoom="0.3" MaxZoom="1" ZoomSpeed="0.9" IsEnabled="True" >
+            <Canvas  x:Name="sectorCanvas" Height="50000" Width="50000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black">
             </Canvas>
         </controls:Viewport>
         

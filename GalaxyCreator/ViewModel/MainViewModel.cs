@@ -12,6 +12,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using GalaxyCreator.Model.Json;
+using System.Linq;
+using System.Windows.Media;
 
 namespace GalaxyCreator.ViewModel
 {
@@ -46,7 +49,7 @@ namespace GalaxyCreator.ViewModel
         private Object _rightHandViewModel;
         private Object _mainContainer;
 
-        private Model.Json.Galaxy Galaxy;
+        private Galaxy Galaxy;
 
         public Object MainContainer
         {
@@ -70,6 +73,43 @@ namespace GalaxyCreator.ViewModel
         {
             Galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
             MainData.SetGalaxyMap(Galaxy);
+
+            /*Process the loaded sectors - need to see what race owns what sector */
+            foreach (Cluster cluster in Galaxy.Clusters)
+            {
+                var stationCount = cluster.Stations.GroupBy(s => s.Race).Select(s => new { Race = s.Key, Values = s.Distinct().Count() }); ;
+
+                var race = stationCount.Max();
+                if (race != null)
+                {
+                    switch (race.Race)
+                    {
+                        case Race.ARGON:
+                            {
+                                cluster.Polygon.Fill = Brushes.Blue;
+                                break;
+                            }
+                        case Race.PARANID:
+                            {
+                                cluster.Polygon.Fill = Brushes.Yellow;
+                                break;
+                            }
+                        case Race.TELADI:
+                            {
+                                cluster.Polygon.Fill = Brushes.Green;
+                                break;
+                            }
+                        case Race.XENON:
+                            {
+                                cluster.Polygon.Fill = Brushes.Red;
+                                break;
+                            }
+                    }
+                }
+               
+            }
+
+
 
             Galaxy.GenerateEmptySectors(Galaxy, 20, 20, 75);
 
