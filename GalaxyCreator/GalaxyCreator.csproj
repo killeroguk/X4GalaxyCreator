@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Dialogs\DialogYesNo\DialogYesNoViewModel.cs" />
     <Compile Include="Model\JobEditor\JobMemento.cs" />
+    <Compile Include="Model\JobEditor\SubordinateItem.cs" />
     <Compile Include="Model\Json\ComparisonType.cs" />
     <Compile Include="Model\JobEditor\JobEditorDetailParameter.cs" />
     <Compile Include="Dialogs\JobEditor\JobEditorDetailView.xaml.cs">
