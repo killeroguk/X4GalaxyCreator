@@ -20,6 +20,12 @@ namespace GalaxyCreator.Dialogs.DialogFacade
             return this.ShowDialog(vm, owner);
         }
 
+        public DialogResult ShowEconomyEditorDetail(string message, Window owner, Product product)
+        {
+            DialogViewModelBase vm = new EconomyEditor.EconomyEditorDetailViewModel(message, product);
+            return this.ShowDialog(vm, owner);
+        }
+
         public DialogResult ShowJobEditorDetail(string message, Window owner, Job job)
         {
             DialogViewModelBase vm = new JobEditor.JobEditorDetailViewModel(message, job);

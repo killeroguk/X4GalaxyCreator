@@ -6,9 +6,6 @@
         xmlns:ignore="http://www.galasoft.ch/ignore"
         xmlns:viewmodels="clr-namespace:GalaxyCreator.ViewModel"
         xmlns:views="clr-namespace:GalaxyCreator.View"
-        xmlns:int="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:command="http://www.galasoft.ch/mvvmlight"
-        xmlns:i="clr-namespace:System.Windows.Interop;assembly=PresentationCore"
         mc:Ignorable="d ignore"
         Height="1000"
         Width="1500"
@@ -37,19 +34,24 @@
             <DataTemplate DataType="{x:Type viewmodels:GalaxyEditViewModel}">
                 <views:GalaxyEditView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:EconomyEditorViewModel}">
+                <views:EconomyEditorView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
     <DockPanel LastChildFill="true">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem x:Name="NexGalaxy" Header="New" HorizontalAlignment="Left" Width="140" Command="{Binding NewGalaxyClickedCommand }" />
-                <MenuItem x:Name="LoadFile" Header="Load" HorizontalAlignment="Left" Width="140" Command="{Binding LoadFileClickedCommand }" />
-                <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="140" Command="{Binding SaveFileClickedCommand}" />
+                <MenuItem x:Name="NexGalaxy" Header="New" HorizontalAlignment="Left" Width="Auto" Command="{Binding NewGalaxyClickedCommand }" />
+                <MenuItem x:Name="LoadFile" Header="Load" HorizontalAlignment="Left" Width="Auto" Command="{Binding LoadFileClickedCommand }" />
+                <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="Auto" Command="{Binding SaveFileClickedCommand}" />
             </MenuItem>
             <MenuItem Header="_Editors">
-                <MenuItem x:Name="MapEditor" Header="Map Editor" HorizontalAlignment="Left" Width="140" Command="{Binding MapEditorClickedCommand}" />
-                <MenuItem x:Name="JobEditor" Header="Job Editor" HorizontalAlignment="Left" Width="140" Command="{Binding JobEditorClickedCommand}" />
+                <MenuItem x:Name="MapEditor" Header="Map Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding MapEditorClickedCommand}" />
+                <MenuItem x:Name="JobEditor" Header="Job Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding JobEditorClickedCommand}" />
+                <MenuItem x:Name="EconomyEditor" Header="Economy Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding EconomyEditorClickedCommand}" />
             </MenuItem>            
         </Menu>
         <ContentControl Content="{Binding MainContainer}" />

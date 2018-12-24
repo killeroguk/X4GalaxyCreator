@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="GalaxyCreator.View.EconomyEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GalaxyCreator.View"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+             xmlns:cmd ="http://www.galasoft.ch/mvvmlight"                         
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1500">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Padding="5">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Margin="50,50,50,50">
+                <Label Content="Economy Editor" FontSize="14" HorizontalContentAlignment="Center" Width="Auto"/>
+                <DataGrid x:Name="ProductDataGrid" 
+                          ItemsSource="{Binding Path=Galaxy.Products, UpdateSourceTrigger=PropertyChanged}" 
+                          SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay}" 
+                          AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="700" Width="1070" 
+                          CanUserAddRows="false" CanUserDeleteRows="False" CanUserReorderColumns="false"
+                          SelectionChanged="ProductDataGrid_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="ProductId" Binding="{Binding Id}" Header="Id" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="Ware" Binding="{Binding Ware}" Header="Ware" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="Race" Binding="{Binding Race}" Header="Race" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="Owner" Binding="{Binding Owner}" Header="Owner" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="GalaxyQuota" Binding="{Binding GalaxyQuota}" Header="Galaxy Quota" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="ClusterQuota" Binding="{Binding ClusterQuota}" Header="Cluster Quota" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="SectorQuota" Binding="{Binding SectorQuota}" Header="Sector Quota" IsReadOnly="True" />
+                        <DataGridTextColumn x:Name="ZoneQuota" Binding="{Binding ZoneQuota}" Header="Zone Quota" IsReadOnly="True" />
+                    </DataGrid.Columns>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <cmd:EventToCommand Command="{Binding Path=EconomyEditorClickedCommand, Mode=OneWay}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DataGrid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="RemoveProduct" Grid.Column="0" Command="{Binding Path=EconomyEditorRemoveCommand}">Remove</Button>
+                    <Button Name="CopyProduct" Grid.Column="1" Command="{Binding Path=EconomyEditorCopyCommand}">Copy</Button>
+                    <Button Name="NewProduct" Grid.Column="2" Command="{Binding Path=EconomyEditorAddCommand}">Add</Button>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

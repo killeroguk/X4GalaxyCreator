@@ -9,5 +9,7 @@ namespace GalaxyCreator.Dialogs.DialogFacade
         DialogResult ShowDialogYesNo(string message, Window owner);
 
         DialogResult ShowJobEditorDetail(string message, Window owner, Job job);
+
+        DialogResult ShowEconomyEditorDetail(string message, Window owner, Product product);
     }
 }
