@@ -5,8 +5,8 @@ namespace GalaxyCreator.Model.Json
 {
     public class ProductLocation
     {
-        public IList<Faction> SpawnLocations { get; set; }
-        public IList<String> Wares { get; set; }
+        public IList<Faction> SpawnLocations { get; set; } = new List<Faction>();
+        public IList<String> Wares { get; set; } = new List<String>();
         public String EconomyMax { get; set; }
         public bool MaxBound { get; set; } = false;
         public String SunlightMin { get; set; }
