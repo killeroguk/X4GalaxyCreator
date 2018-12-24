@@ -168,6 +168,7 @@
     <Compile Include="ViewModel\JobEditorViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MapEditorViewModel.cs" />
+    <Compile Include="ViewModel\NewGalaxyViewModel.cs" />
     <Compile Include="ViewModel\SectorEditViewModel.cs" />
     <Compile Include="ViewModel\Util\LowercaseJsonSerializer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -183,6 +184,9 @@
     </Compile>
     <Compile Include="View\MapEditorView.xaml.cs">
       <DependentUpon>MapEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewGalaxyView.xaml.cs">
+      <DependentUpon>NewGalaxyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectorEditView.xaml.cs">
       <DependentUpon>SectorEditView.xaml</DependentUpon>
@@ -236,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MapEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewGalaxyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

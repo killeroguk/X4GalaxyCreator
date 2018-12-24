@@ -105,12 +105,7 @@ namespace GalaxyCreator.ViewModel
                
             }
 
-
-
-            Galaxy.GenerateEmptySectors(Galaxy, 20, 20, 75);
-
-
-            Console.WriteLine(Galaxy.GalaxyName);
+            MainData.GenerateEmptySectors(Galaxy, 20, 20, 75);
         }
 
         internal void SaveJson(string fileName)
@@ -270,8 +265,8 @@ namespace GalaxyCreator.ViewModel
 
         private void NewGalaxyClicked()
         {
-            MainData.CreateMapGalaxy(20, 20, 75);
-            MainContainer = new MapEditorViewModel(Galaxy);
+            //MainData.CreateMapGalaxy(20, 20, 75);
+            MainContainer = new NewGalaxyViewModel();
         }
 
         private void LoadFileClicked()
