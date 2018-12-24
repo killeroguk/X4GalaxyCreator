@@ -2,19 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace GalaxyCreator.Model
 {
-
-
-
-
     public class CanvasElement
     {
 
@@ -34,30 +26,55 @@ namespace GalaxyCreator.Model
 
     }
 
-
     public static class MainData
     {
         private static List<CanvasElement> canvasElements = new List<CanvasElement>();
         private static List<CanvasDrawingElement> canvasDrawingElements = new List<CanvasDrawingElement>();
 
-        private static Galaxy mapGalaxy;
+        private static Galaxy MapGalaxy;
 
         public static Canvas Canvas;
 
-        public  static void CreateMapGalaxy(int rowCount, int columnCount, double hexSize)
+        public static void CreateMapGalaxy(Galaxy galaxy, int rowCount, int columnCount, double hexSize)
         {
-            mapGalaxy = new Galaxy(rowCount, columnCount, hexSize);
+            MapGalaxy = galaxy;
+            GenerateEmptySectors(MapGalaxy, rowCount, columnCount, hexSize);            
         }
 
+        public static void GenerateEmptySectors(Galaxy galaxy, int rowCount, int colCount, double hexSize)
+        {
+            int x = -(rowCount / 2);
+            int y = -(colCount / 2);
+
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int col = 0; col < colCount; col++)
+                {
+                    if (((List<Cluster>)galaxy.Clusters).FirstOrDefault(c => c.X == x && c.Y == y) == null)
+                    {
+                        Console.WriteLine("Creating hex at pos X: " + x + ", Y: " + y);
+                        Cluster cluster = new Cluster(x, y, hexSize, true);
+                        galaxy.Clusters.Add(cluster);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not creating hex at pos X: " + x + ", Y: " + y);
+                    }
+                    y++;
+                }
+                y = -(colCount / 2);
+                x++;
+            }
+        }
 
         public static void SetGalaxyMap( Galaxy galaxy)
         {
-            mapGalaxy = galaxy;
+            MapGalaxy = galaxy;
         }
 
         public static Galaxy GetGalaxyMap()
         {
-            return mapGalaxy;
+            return MapGalaxy;
         }
 
 

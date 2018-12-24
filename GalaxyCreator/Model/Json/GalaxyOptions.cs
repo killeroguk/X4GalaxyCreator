@@ -4,6 +4,6 @@ namespace GalaxyCreator.Model.Json
 {
     public class GalaxyOptions
     {
-        public bool AddDoubleTravelSpeed { get; set; }
+        public bool AddDoubleTravelSpeed { get; set; } = false;
     }
 }
