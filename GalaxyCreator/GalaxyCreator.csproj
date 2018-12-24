@@ -109,7 +109,14 @@
       <DependentUpon>DialogYesNoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\DialogYesNo\DialogYesNoViewModel.cs" />
+    <Compile Include="Dialogs\EconomyEditor\EconomyEditorDetailView.xaml.cs">
+      <DependentUpon>EconomyEditorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EconomyEditor\EconomyEditorDetailViewModel.cs" />
+    <Compile Include="Model\EconomyEditor\ProductMemento.cs" />
+    <Compile Include="Model\EconomyEditor\WareItem.cs" />
     <Compile Include="Model\JobEditor\JobMemento.cs" />
+    <Compile Include="Model\JobEditor\SubordinateItem.cs" />
     <Compile Include="Model\Json\ComparisonType.cs" />
     <Compile Include="Model\JobEditor\JobEditorDetailParameter.cs" />
     <Compile Include="Dialogs\JobEditor\JobEditorDetailView.xaml.cs">
@@ -151,6 +158,7 @@
     <Compile Include="Model\Json\Unit.cs" />
     <Compile Include="Util\CloneUtil.cs" />
     <Compile Include="Util\EnumBindingSourceExtension.cs" />
+    <Compile Include="ViewModel\EconomyEditorViewModel.cs" />
     <Compile Include="ViewModel\GalaxyEditViewModel.cs" />
     <Compile Include="Model\Hex.cs" />
     <Compile Include="Model\IDataService.cs" />
@@ -164,6 +172,9 @@
     <Compile Include="ViewModel\Util\LowercaseJsonSerializer.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewportControl\ViewportControl.cs" />
+    <Compile Include="View\EconomyEditorView.xaml.cs">
+      <DependentUpon>EconomyEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GalaxyEditView.xaml.cs">
       <DependentUpon>GalaxyEditView.xaml</DependentUpon>
     </Compile>
@@ -183,6 +194,10 @@
     <Page Include="Dialogs\DialogYesNo\DialogYesNoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\EconomyEditor\EconomyEditorDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\JobEditor\JobEditorDetailView.xaml">
       <SubType>Designer</SubType>
@@ -205,6 +220,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ViewportControl\ViewportControlResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EconomyEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

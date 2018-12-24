@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="GalaxyCreator.Dialogs.EconomyEditor.EconomyEditorDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:model="clr-namespace:GalaxyCreator.Model.Json"
+             xmlns:util="clr-namespace:GalaxyCreator.Util" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:cmd ="http://www.galasoft.ch/mvvmlight"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="300">
+    <Grid Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1096*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="EconomyDetailMainPanel" >
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10"  Margin="0,5,0,5" Header="Product Info">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Id" />
+                        <TextBox Text="{Binding Path=Product.Id, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="1" x:Name="id" Margin="0,0,10,0" />
+                        <Label Content="Ware" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBox Text="{Binding Path=Product.Ware, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" Grid.Column="3" x:Name="ware" />
+
+                        <Label Content="Race" Grid.Row="1" Grid.Column="0" />
+                        <ComboBox SelectedItem="{Binding Path=Product.Race, Mode=TwoWay}" 
+                                  ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Race}}}"
+                                  x:Name="race" Grid.Row="1" Grid.Column="1" />
+
+                        <Label Content="Faction" Grid.Row="1" Grid.Column="2" />
+                        <ComboBox SelectedItem="{Binding Path=Product.Owner, Mode=TwoWay}" 
+                                  ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}"
+                                  x:Name="owner" Grid.Row="1" Grid.Column="3" />
+
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="45"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Galaxy" />
+                        <TextBox Text="{Binding Path=Product.GalaxyQuota, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="1" x:Name="galaxyQuota" Margin="0,0,10,0" />
+                        <Label Content="Cluster" Grid.Column="2"/>
+                        <TextBox Text="{Binding Path=Product.ClusterQuota, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="3" x:Name="clusterQuota" Margin="0,0,10,0" />
+                        <Label Content="Sector" Grid.Column="4"/>
+                        <TextBox Text="{Binding Path=Product.SectorQuota, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="5" x:Name="sectorQuota" Margin="0,0,10,0" />
+                        <Label Content="Zone" Grid.Column="6"/>
+                        <TextBox Text="{Binding Path=Product.ZoneQuota, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="7" x:Name="zoneQuota" Margin="0,0,10,0" />
+                    </Grid>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10"  Margin="0,5,0,5" Header="Product Location">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Faction locations" />
+                        <ListBox Name="productLocationFactions" Grid.Column="1" Height="33"
+                                     ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" 
+                                     SelectionMode="Single" Margin="0,0,10,0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <cmd:EventToCommand Command="{Binding ProductLocationFactionsUpdateCommand}" 
+                                                        CommandParameter="{Binding ElementName=productLocationFactions, Path=SelectedItem}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                        <TextBox IsEnabled="False" Text="{Binding Path=ProductLocationFactions, Mode=OneWay}" Grid.Column="2" />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Needed Wares" />
+                        <DataGrid ItemsSource="{Binding Wares, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                  Height="Auto" Grid.Column="1"
+                                  AutoGenerateColumns="False" 
+                                  HorizontalAlignment="Left" 
+                                  Width="172" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Width="500" Header="Ware" IsReadOnly="false" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>                            
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Min Security" />
+                        <TextBox Text="{Binding Path=Product.LocationInfo.SecurityMin, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="1" x:Name="SecurityMin" />
+                        <Label Content="Max Economy" Grid.Column="2"/>
+                        <TextBox Text="{Binding Path=Product.LocationInfo.EconomyMax, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="3" x:Name="EconomyMax" />
+                        <Label Content="Max Bound" Grid.Column="4"/>
+                        <CheckBox IsChecked="{Binding Path=Product.LocationInfo.MaxBound, Mode=TwoWay}" x:Name="MaxBound" Grid.Row="0" Grid.Column="5"/>
+
+                        <Label Content="Min Sunlight" Grid.Row="1" />
+                        <TextBox Text="{Binding Path=Product.LocationInfo.SunlightMin, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Row="1" Grid.Column="1" x:Name="SunlightMin" />
+                        <Label Content="Max Sunlight" Grid.Column="2" Grid.Row="1"/>
+                        <TextBox Text="{Binding Path=Product.LocationInfo.SunlightMax, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="3" Grid.Row="1" x:Name="SunlightMax" />
+                        <Label Content="Solitary" Grid.Column="4" Grid.Row="1"/>
+                        <CheckBox IsChecked="{Binding Path=Product.LocationInfo.Solitary, Mode=TwoWay}" x:Name="Solitary"  Grid.Row="1" Grid.Column="5"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+
+            <Button Name="btnSubmit" Content="Save" 
+                Command="{Binding SaveCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"  Margin="0,0,0,5"/>
+
+            <Button Name="btnCancel" Content="Cancel" 
+                Command="{Binding CancelCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -4,13 +4,8 @@ using GalaxyCreator.Model;
 using GalaxyCreator.ViewModel.Util;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using GalaxyCreator.Model.Json;
 using System.Linq;
@@ -45,6 +40,7 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand _saveFileClickedCommand;
         private RelayCommand _mapEditorClickedCommand;
         private RelayCommand _jobEditorClickedCommand;
+        private RelayCommand _economyEditorClickedCommand;
 
         private Object _rightHandViewModel;
         private Object _mainContainer;
@@ -237,6 +233,19 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand EconomyEditorClickedCommand
+        {
+            get
+            {
+                if (_economyEditorClickedCommand == null)
+                {
+                    _economyEditorClickedCommand = new RelayCommand(() => EconomyEditorClicked());
+                }
+
+                return _economyEditorClickedCommand;
+            }
+        }
+
 
 
         /// <summary>
@@ -257,9 +266,6 @@ namespace GalaxyCreator.ViewModel
 
                     WelcomeTitle = item.Title;
                 });
-
-            //RightHandViewModel = new GalaxyEditViewModel();
-            //MainContainer = new MapEditorViewModel(Galaxy);
         }
 
         private void NewGalaxyClicked()
@@ -318,6 +324,11 @@ namespace GalaxyCreator.ViewModel
         private void JobEditorClicked()
         {
             MainContainer = new JobEditorViewModel(Galaxy);
+        }
+
+        private void EconomyEditorClicked()
+        {
+            MainContainer = new EconomyEditorViewModel(Galaxy);
         }
 
     }

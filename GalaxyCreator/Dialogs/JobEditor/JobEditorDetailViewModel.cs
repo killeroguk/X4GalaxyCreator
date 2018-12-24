@@ -1,8 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Dialogs.DialogService;
+using GalaxyCreator.Model.JobEditor;
 using GalaxyCreator.Model.Json;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace GalaxyCreator.Dialogs.JobEditor
@@ -163,15 +164,34 @@ namespace GalaxyCreator.Dialogs.JobEditor
             }
         }
 
+        private IList<SubordinateItem> _subordinateItems = new List<SubordinateItem>();
+        public IList<SubordinateItem> SubordinateItems
+        {
+            get { return _subordinateItems; }
+            set
+            {
+                Set(ref _subordinateItems, value);
+            }
+        }
+
         public JobEditorDetailViewModel(string message, Job job) : base(message)
         {
             this.Job = job;
             this._saveCommand = new RelayCommand<object>((parent) => OnSaveClicked(parent));
             this._cancelCommand = new RelayCommand<object>((parent) => OnCancelClicked(parent));
+            foreach (String subordinate in Job.Subordinates)
+            {
+                _subordinateItems.Add(new SubordinateItem(subordinate));
+            }
         }
 
         private void OnSaveClicked(object parameter)
         {
+            this.Job.Subordinates.Clear();
+            foreach (SubordinateItem item in _subordinateItems)
+            {
+                this.Job.Subordinates.Add(item.Value);
+            }
             this.CloseDialogWithResult(parameter as Window, DialogResult.Yes);
         }
 
