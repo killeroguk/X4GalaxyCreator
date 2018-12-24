@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="GalaxyCreator.View.NewGalaxyView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GalaxyCreator.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="1000">
+    <Grid Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1096*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="NewGalaxyMainPanel" >
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10"  Margin="0,5,0,5" Header="Galaxy Setup">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Seed" />
+                        <TextBox Text="{Binding Path=Galaxy.Seed, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="1" x:Name="id" Margin="0,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>                            
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Name" Grid.Column="0" />
+                        <TextBox Text="{Binding Path=Galaxy.GalaxyName, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="1" x:Name="GalaxyName" Margin="0,0,10,0" />
+                        <Label Content="Prefix" Grid.Column="2" />
+                        <TextBox Text="{Binding Path=Galaxy.GalaxyPrefix, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="3" x:Name="GalaxyPrefix" Margin="0,0,10,0" />
+
+                        <Label Content="Author" Grid.Row="1" Grid.Column="0" />
+                        <TextBox Text="{Binding Path=Galaxy.Author, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Row="1" Grid.Column="1" x:Name="Author" Margin="0,0,10,0" />
+                        <Label Content="Version" Grid.Row="1" Grid.Column="2" />
+                        <TextBox Text="{Binding Path=Galaxy.Version, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Row="1" Grid.Column="3" x:Name="Version" Margin="0,0,10,0" />
+
+                        <Label Content="Date" Grid.Row="2" Grid.Column="0" />
+                        <TextBox Text="{Binding Path=Galaxy.Date, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Row="2" Grid.Column="1" x:Name="Date" Margin="0,0,10,0" />
+                        <Label Content="Save" Grid.Row="2" Grid.Column="2" />
+                        <TextBox Text="{Binding Path=Galaxy.Save, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Row="2" Grid.Column="3" x:Name="Save" Margin="0,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Description" Grid.Column="0" />
+                        <TextBox Text="{Binding Path=Galaxy.Description, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                   Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" MinLines="5" AcceptsReturn="True" />
+                    </Grid>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox BorderThickness="1" BorderBrush="Gray" Padding="10"  Margin="0,5,0,5" Header="Galaxy Options">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="45"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Min Random Belts" Grid.Column="0" />
+                        <TextBox Text="{Binding Path=Galaxy.MinRandomBelts, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="1" x:Name="MinRandomBelts" Margin="0,0,10,0" />
+                        <Label Content="Max Random Belts" Grid.Column="2" />
+                        <TextBox Text="{Binding Path=Galaxy.MaxRandomBelts, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="3" x:Name="MaxRandomBelts" Margin="0,0,10,0" />
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Double Travel Speed Enabled" Grid.Column="0" />
+                        <CheckBox IsChecked="{Binding Path=Galaxy.GalaxyOptions.AddDoubleTravelSpeed, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="1" x:Name="AddDoubleTravelSpeed" Margin="0,0,10,0" />
+                        <Label Content="Default Economy" Grid.Column="2" />
+                        <CheckBox IsChecked="{Binding DefaultEconomy, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="3" x:Name="DefaultEconomy" Margin="0,0,10,0" />
+                        <Label Content="Default Jobs" Grid.Column="4" />
+                        <CheckBox IsChecked="{Binding DefaultJobs, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
+                                 Grid.Column="5" x:Name="DefaultJobs" Margin="0,0,10,0" />                        
+                    </Grid>                    
+                </Grid>
+            </GroupBox>
+            
+            <Button Name="btnSubmit" Content="Create New Galaxy" 
+                Command="{Binding SaveCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"  Margin="0,0,0,5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

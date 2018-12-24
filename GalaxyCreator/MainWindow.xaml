@@ -38,6 +38,10 @@
             <DataTemplate DataType="{x:Type viewmodels:EconomyEditorViewModel}">
                 <views:EconomyEditorView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:NewGalaxyViewModel}">
+                <views:NewGalaxyView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
