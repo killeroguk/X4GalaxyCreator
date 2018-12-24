@@ -45,7 +45,7 @@ namespace GalaxyCreator.ViewModel
         private Object _rightHandViewModel;
         private Object _mainContainer;
 
-        private Galaxy Galaxy;
+        public Galaxy Galaxy { get; set; }
 
         public Object MainContainer
         {
