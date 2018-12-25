@@ -69,6 +69,8 @@ namespace GalaxyCreator.ViewModel
                 MainViewModel vm = (App.Current.Resources["Locator"] as ViewModelLocator).Main;
                 vm.Galaxy = Galaxy;
                 vm.MainContainer = new MapEditorViewModel(Galaxy);
+                vm.ClearCurrentFilename();
+                vm.GalaxyExistPropertyChanged("GalaxyExist");
             }
         }
 

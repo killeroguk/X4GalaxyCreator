@@ -50,7 +50,11 @@
             <MenuItem Header="_File">
                 <MenuItem x:Name="NexGalaxy" Header="New" HorizontalAlignment="Left" Width="Auto" Command="{Binding NewGalaxyClickedCommand }" />
                 <MenuItem x:Name="LoadFile" Header="Load" HorizontalAlignment="Left" Width="Auto" Command="{Binding LoadFileClickedCommand }" />
-                <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="Auto" Command="{Binding SaveFileClickedCommand}" />
+                <Separator />
+                <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="Auto" Command="{Binding SaveFileClickedCommand}" IsEnabled="{Binding FileNameSet}"/>
+                <MenuItem x:Name="SaveAsFile" Header="Save As..." HorizontalAlignment="Left" Width="Auto" Command="{Binding SaveAsFileClickedCommand}" IsEnabled="{Binding GalaxyExist}" />
+                <Separator />
+                <MenuItem x:Name="Exit" Header="Exit" HorizontalAlignment="Left" Width="Auto" Command="{Binding ExitClickedCommand}" />
             </MenuItem>
             <MenuItem Header="_Editors">
                 <MenuItem x:Name="MapEditor" Header="Map Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding MapEditorClickedCommand}" />
