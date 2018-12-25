@@ -18,11 +18,7 @@ namespace GalaxyCreator
         {
             InitializeComponent();
             Closing += (s, e) => ViewModelLocator.Cleanup();
-        }
-
-       
-
-
+        }    
     }
 
 }

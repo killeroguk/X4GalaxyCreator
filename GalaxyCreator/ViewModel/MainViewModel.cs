@@ -31,16 +31,19 @@ namespace GalaxyCreator.ViewModel
         public const string WelcomeTitlePropertyName = "WelcomeTitle";
 
         private string _welcomeTitle = string.Empty;
+        private string _currentFileName = string.Empty;
 
         private int _rowCount;
         private int _columnCount;
 
         private RelayCommand _newGalaxyClickedCommand;
         private RelayCommand _loadFileClickedCommand;
+        private RelayCommand _saveAsFileClickedCommand;
         private RelayCommand _saveFileClickedCommand;
         private RelayCommand _mapEditorClickedCommand;
         private RelayCommand _jobEditorClickedCommand;
         private RelayCommand _economyEditorClickedCommand;
+        private RelayCommand _exitClickedCommand;
 
         private Object _rightHandViewModel;
         private Object _mainContainer;
@@ -67,6 +70,7 @@ namespace GalaxyCreator.ViewModel
 
         internal void ReadJson(string fileName)
         {
+            _currentFileName = fileName;
             Galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
             MainData.SetGalaxyMap(Galaxy);
 
@@ -108,18 +112,40 @@ namespace GalaxyCreator.ViewModel
             MainData.GenerateEmptySectors(Galaxy, 20, 20, 75);
         }
 
-        internal void SaveJson(string fileName)
+        private void SaveToFile()
         {
-            // serialize JSON directly to a file
-            using (StreamWriter file = File.CreateText(@fileName))
+            using (StreamWriter file = File.CreateText(@_currentFileName))
             {
                 LowercaseJsonSerializer.Serialize(file, Galaxy);
             }
         }
 
-        internal bool GalaxyExist()
+        internal void GalaxyExistPropertyChanged(string v)
         {
-            return Galaxy != null;
+            RaisePropertyChanged("GalaxyExist");
+        }
+
+        internal void SaveAsJson(string fileName)
+        {
+            // serialize JSON directly to a file
+            _currentFileName = fileName;
+            SaveToFile();
+        }
+
+        internal void SaveJson()
+        {
+            SaveToFile();
+        }
+
+        public bool GalaxyExist
+        {
+            get { return Galaxy != null; }
+        }
+
+        public void ClearCurrentFilename()
+        {
+            _currentFileName = string.Empty;
+            RaisePropertyChanged("FileNameSet");
         }
 
         /// <summary>
@@ -189,6 +215,19 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand SaveAsFileClickedCommand
+        {
+            get
+            {
+                if (_saveAsFileClickedCommand == null)
+                {
+                    _saveAsFileClickedCommand = new RelayCommand(() => SaveAsFileClicked());
+                }
+
+                return _saveAsFileClickedCommand;
+            }
+        }
+
         public RelayCommand SaveFileClickedCommand
         {
             get
@@ -241,7 +280,18 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand ExitClickedCommand
+        {
+            get
+            {
+                if (_exitClickedCommand == null)
+                {
+                    _exitClickedCommand = new RelayCommand(() => ExitClicked());
+                }
 
+                return _exitClickedCommand;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -263,6 +313,11 @@ namespace GalaxyCreator.ViewModel
                 });
         }
 
+        public bool FileNameSet
+        {
+            get { return _currentFileName != string.Empty; }
+        }
+
         private void NewGalaxyClicked()
         {
             //MainData.CreateMapGalaxy(20, 20, 75);
@@ -280,16 +335,18 @@ namespace GalaxyCreator.ViewModel
                 ReadJson(openFileDialog.FileName);
 
                 /* TODO: THIS JSON THEN NEEDS TO BE USED BY THE GALAXY EDTIOR SOME HOW */
-
+                RaisePropertyChanged("FileNameSet");
+                RaisePropertyChanged("GalaxyExist");
+                MainContainer = new MapEditorViewModel(Galaxy);
                 MessageBox.Show("Galaxy has been loaded", "Load Galaxy Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
-        private void SaveFileClicked()
+        private void SaveAsFileClicked()
         {
             // Only if a galaxy object actually exist
-            if (GalaxyExist())
+            if (GalaxyExist)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "JSON files (*.json)|*.json";
@@ -299,10 +356,27 @@ namespace GalaxyCreator.ViewModel
                 // If the file name is not an empty string open it for saving.  
                 if (saveFileDialog.FileName != "")
                 {
-                    SaveJson(saveFileDialog.FileName);
+                    SaveAsJson(saveFileDialog.FileName);
+                    RaisePropertyChanged("FileNameSet");
                     MessageBox.Show("Galaxy has been saved", "Save Galaxy Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+            }
+            else
+            {
+                MessageBox.Show("There is no galaxy loaded", "Save Galaxy Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void SaveFileClicked()
+        {
+            // Only if a galaxy object actually exist and the filename is set
+            if (GalaxyExist && _currentFileName != string.Empty)
+            {
+                    SaveJson();
+                    MessageBox.Show("Galaxy has been saved", "Save Galaxy Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
@@ -326,5 +400,9 @@ namespace GalaxyCreator.ViewModel
             MainContainer = new EconomyEditorViewModel(Galaxy);
         }
 
+        private void ExitClicked()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }
