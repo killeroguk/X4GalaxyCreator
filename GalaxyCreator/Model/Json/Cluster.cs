@@ -69,6 +69,8 @@ namespace GalaxyCreator.Model.Json
                 Security = "0.75";
                 Backdrop = "cluster_01";
 
+                Id = $"{Name}{x}{y}";
+
             }
             else
                 IsEnabled = true;

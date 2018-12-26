@@ -20,13 +20,20 @@ namespace GalaxyCreator.View
             /* TODO: NEED TO CREATE THIS WHEN DATA IS LOADED OR A NEW MAPO IS CREATED */
             MainData.SetCanvas(sectorCanvas);//, 20, 20, 75);
 
-
             this.Loaded += MapEditorView_Loaded;
+            this.Unloaded += MapEditorView_Unloaded;
            
+        }
+
+
+        private void MapEditorView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            //sectorCanvas.Children.Clear();
         }
 
         private void MapEditorView_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+
             ((MapEditorViewModel)DataContext).DrawGalaxyMap();
         }
 

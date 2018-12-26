@@ -74,6 +74,17 @@ namespace GalaxyCreator.ViewModel
 
         internal void ReadJson(string fileName)
         {
+            /* IF WE ALREADY HAVE A GALAXY LOADED WE NEED TO CLEAR IT */
+            Galaxy = null;
+            MainData.SetGalaxyMap(null);
+
+            MainContainer = null;
+
+            /* CLEAR ANY STUFF ON THE CANVAS IF THERE IS ANY */
+            if ( MainData.Canvas != null)
+                MainData.Canvas.Children.Clear();
+
+
             _currentFileName = fileName;
             Galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
             MainData.SetGalaxyMap(Galaxy);
@@ -332,7 +343,7 @@ namespace GalaxyCreator.ViewModel
                 /* TODO: THIS JSON THEN NEEDS TO BE USED BY THE GALAXY EDTIOR SOME HOW */
                 RaisePropertyChanged("FileNameSet");
                 RaisePropertyChanged("GalaxyExist");
-                MainContainer = new MapEditorViewModel(Galaxy);
+                //MainContainer = new MapEditorViewModel(Galaxy);
                 MessageBox.Show("Galaxy has been loaded", "Load Galaxy Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
             }

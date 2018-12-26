@@ -11,7 +11,7 @@ namespace GalaxyCreator.Model.Json
         TELADI,
         [Description("Paranid")]
         PARANID,
-        [Description("Xeon")]
+        [Description("Xenon")]
         XENON
     }
 }

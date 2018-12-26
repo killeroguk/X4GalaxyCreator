@@ -136,6 +136,12 @@ namespace GalaxyCreator.ViewportControl
 
             var zoom = Math.Min(zx, zy);
 
+            if (zoom < MinZoom)
+                zoom = MinZoom;
+
+            if (zoom > MaxZoom)
+                zoom = MaxZoom;
+
             if (render.Width > desired.Width &&
                 render.Height > desired.Height)
             {

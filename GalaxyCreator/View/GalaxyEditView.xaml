@@ -46,7 +46,7 @@
                     <Label Content="Max Random Belts"/>
                     <TextBox Width="100" Text="{Binding MaxRandomBelts, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
                 </StackPanel>
-                <Button Content="Add Connections" Margin="0 10 0 10" Width="300"/>
+             
             </StackPanel>
         </Border>
 
