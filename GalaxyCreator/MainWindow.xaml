@@ -53,6 +53,7 @@
                 <Separator />
                 <MenuItem x:Name="SaveFile" Header="Save" HorizontalAlignment="Left" Width="Auto" Command="{Binding SaveFileClickedCommand}" IsEnabled="{Binding FileNameSet}"/>
                 <MenuItem x:Name="SaveAsFile" Header="Save As..." HorizontalAlignment="Left" Width="Auto" Command="{Binding SaveAsFileClickedCommand}" IsEnabled="{Binding GalaxyExist}" />
+                <MenuItem x:Name="CreateMod" Header="Export To Mod" HorizontalAlignment="Left" Width="Auto" Command="{Binding CreateModClickedCommand}" IsEnabled="{Binding FileNameSet}" />
                 <Separator />
                 <MenuItem x:Name="Exit" Header="Exit" HorizontalAlignment="Left" Width="Auto" Command="{Binding ExitClickedCommand}" />
             </MenuItem>
