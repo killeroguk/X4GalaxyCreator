@@ -188,6 +188,7 @@
     <Compile Include="Model\Json\Tag.cs" />
     <Compile Include="Model\Json\Unit.cs" />
     <Compile Include="Util\CloneUtil.cs" />
+    <Compile Include="Util\ClusterHelperFunctions.cs" />
     <Compile Include="Util\EnumBindingSourceExtension.cs" />
     <Compile Include="Util\JavaExecutor.cs" />
     <Compile Include="Util\TriggerTracing.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="ViewModel\SectorEditViewModel.cs" />
     <Compile Include="ViewModel\Util\LowercaseJsonSerializer.cs" />
     <Compile Include="ViewModel\Validators\GalaxyValidator.cs" />
+    <Compile Include="ViewModel\Validators\NewGalaxyValidator.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewportControl\ViewportControl.cs" />
     <Compile Include="View\EconomyEditorView.xaml.cs">

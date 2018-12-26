@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Model;
 using GalaxyCreator.Model.Json;
+using GalaxyCreator.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,14 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand _addStationClickCommand;
 
         private RelayCommand _addBeltClickCommand;
+
+        private RelayCommand _addSpaceObjectClickCommand;
+
+        private RelayCommand<object> _deleteStationClickCommand;
+
+        private RelayCommand<object> _deleteBeltClickCommand;
+
+        private RelayCommand<object> _deleteSpaceObjectCommand;
 
         public Cluster SelectedMapCluster
         {
@@ -74,6 +83,58 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand AddSpaceObjectClickCommand
+        {
+            get
+            {
+                if (_addSpaceObjectClickCommand == null)
+                {
+                    _addSpaceObjectClickCommand = new RelayCommand(() => AddSpaceObjectClick());
+                }
+
+                return _addSpaceObjectClickCommand;
+            }
+        }
+
+        public RelayCommand<object> DeleteStationClickCommand
+        {
+            get
+            {
+                if (_deleteStationClickCommand == null)
+                {
+                    _deleteStationClickCommand = new RelayCommand<object>((parm) => DeleteStationClick(parm));
+                }
+
+                return _deleteStationClickCommand;
+            }
+        }
+
+        public RelayCommand<object> DeleteBeltClickCommand
+        {
+            get
+            {
+                if (_deleteBeltClickCommand == null)
+                {
+                    _deleteBeltClickCommand = new RelayCommand<object>((parm) => DeleteBeltClick(parm));
+                }
+
+                return _deleteBeltClickCommand;
+            }
+        }
+
+        public RelayCommand<object> DeleteSpaceObjectClickCommand
+        {
+            get
+            {
+                if (_deleteSpaceObjectCommand == null)
+                {
+                    _deleteSpaceObjectCommand = new RelayCommand<object>((parm) => DeleteSpaceObjectClick(parm));
+                }
+
+                return _deleteSpaceObjectCommand;
+            }
+        }
+
         public SectorEditViewModel(Cluster cluser)
         {
             SelectedMapCluster = cluser;
@@ -84,7 +145,7 @@ namespace GalaxyCreator.ViewModel
         {
             if(_selectedMapCluster.IsEnabled == true)
             {
-                _selectedMapCluster.Polygon.Fill = Brushes.Pink;
+                ClusterHelperFunctions.ChooseClusterFillColour(_selectedMapCluster);
             }
             else
             {
@@ -102,6 +163,26 @@ namespace GalaxyCreator.ViewModel
         public void AddBeltClick()
         {
             _selectedMapCluster.Belts.Add(new Belt());
+        }
+
+        public void AddSpaceObjectClick()
+        {
+            _selectedMapCluster.SpaceObjects.Add(new SpaceObject());
+        }
+
+        public void DeleteStationClick(object ob)
+        {
+            _selectedMapCluster.Stations.Remove((Station)ob);
+        }
+
+        public void DeleteBeltClick(object ob)
+        {
+            _selectedMapCluster.Belts.Remove((Belt)ob);
+        }
+
+        public void DeleteSpaceObjectClick(object ob)
+        {
+            _selectedMapCluster.SpaceObjects.Remove((SpaceObject)ob);
         }
     }
 }

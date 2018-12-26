@@ -8,5 +8,6 @@ namespace GalaxyCreator.Model.Json
         public Race Race { get; set; }
         public Faction Owner { get; set; }
         public Faction Faction { get; set; }
+
     }
 }

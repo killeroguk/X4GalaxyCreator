@@ -119,11 +119,18 @@ namespace GalaxyCreator.ViewModel
             }
             else
             {
-                RightHandViewModel = new GalaxyEditViewModel();
+                RightHandViewModel = new GalaxyEditViewModel(galaxy);
             }
 
 
 
+        }
+
+        public override void Cleanup()
+        {
+            /* CLEARS ALL THE CHILD ELEMENTS FROM THE CANVAS */
+            MainData.Canvas.Children.Clear();
+            base.Cleanup();
         }
     }
 }

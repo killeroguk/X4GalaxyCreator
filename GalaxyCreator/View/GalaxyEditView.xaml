@@ -12,19 +12,39 @@
                 <Label Content="Galaxy Options" FontSize="14" HorizontalContentAlignment="Center" Width="auto"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Name"/>
-                    <TextBox  Width="100"/>
+                    <TextBox  Width="100" Text="{Binding GalaxyName, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Prefix"/>
-                    <TextBox Width="100"/>
+                    <TextBox Width="100" Text="{Binding GalaxyPrefix, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Author"/>
-                    <TextBox Width="100"/>
+                    <TextBox Width="100" Text="{Binding Author, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Version"/>
-                    <TextBox Width="100"/>
+                    <TextBox Width="100" Text="{Binding Version, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Date"/>
+                    <TextBox Width="100" Text="{Binding Date, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Save"/>
+                    <TextBox Width="100" Text="{Binding Save, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Description"/>
+                    <TextBox Width="100" Text="{Binding Description, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Min Random Belts"/>
+                    <TextBox Width="100" Text="{Binding MinRandomBelts, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Max Random Belts"/>
+                    <TextBox Width="100" Text="{Binding MaxRandomBelts, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
                 </StackPanel>
                 <Button Content="Add Connections" Margin="0 10 0 10" Width="300"/>
             </StackPanel>

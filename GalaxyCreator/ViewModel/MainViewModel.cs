@@ -16,6 +16,7 @@ using System.Reflection;
 namespace GalaxyCreator.ViewModel
 {
 
+
     /// <summary>
     /// This class contains properties that the main View can data bind to.
     /// <para>
@@ -80,34 +81,12 @@ namespace GalaxyCreator.ViewModel
             /*Process the loaded sectors - need to see what race owns what sector */
             foreach (Cluster cluster in Galaxy.Clusters)
             {
-                var stationCount = cluster.Stations.GroupBy(s => s.Race).Select(s => new { Race = s.Key, Values = s.Distinct().Count() }); ;
+                ClusterHelperFunctions.ChooseClusterFillColour(cluster);
+            
 
-                var race = stationCount.Max();
-                if (race != null)
+                if (cluster.FactionStart.Faction != Faction.PLAYER)
                 {
-                    switch (race.Race)
-                    {
-                        case Race.ARGON:
-                            {
-                                cluster.Polygon.Fill = Brushes.Blue;
-                                break;
-                            }
-                        case Race.PARANID:
-                            {
-                                cluster.Polygon.Fill = Brushes.Yellow;
-                                break;
-                            }
-                        case Race.TELADI:
-                            {
-                                cluster.Polygon.Fill = Brushes.Green;
-                                break;
-                            }
-                        case Race.XENON:
-                            {
-                                cluster.Polygon.Fill = Brushes.Red;
-                                break;
-                            }
-                    }
+                    cluster.GameStart = true;
                 }
                
             }
@@ -419,21 +398,33 @@ namespace GalaxyCreator.ViewModel
 
         private void MapEditorClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             MainContainer = new MapEditorViewModel(Galaxy);
         }
 
         private void JobEditorClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             MainContainer = new JobEditorViewModel(Galaxy);
         }
 
         private void EconomyEditorClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             MainContainer = new EconomyEditorViewModel(Galaxy);
         }
 
         private void ExitClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             System.Windows.Application.Current.Shutdown();
         }
     }

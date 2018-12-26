@@ -21,7 +21,7 @@ namespace GalaxyCreator.Model.Json
         public int Y { get; set; }
         public String Backdrop { get; set; }
         public bool NoBelts { get; set; } = false;
-        public Faction FactionHq { get; set; }
+        public Faction? FactionHq { get; set; }
         public FactionStart FactionStart { get; set; }
         public ObservableCollection<Connection> Connections { get; set; }
         public ObservableCollection<Belt> Belts { get; set; }
@@ -36,10 +36,16 @@ namespace GalaxyCreator.Model.Json
         //public Hex Hex { get; set; }
         [JsonIgnore]
         public bool IsEnabled { get; set; }
-        public int Polygon_MouseLeftButtonDown { get; }
+
+        [JsonIgnore]
+        public bool GameStart { get; set; }
+
 
         public Cluster(int x, int y, double hexSize, bool newCluster)
         {
+            FactionStart = new FactionStart();
+            FactionStart.ClusterId = Id;
+
             UId = Guid.NewGuid();
             X = x;
             Y = y;
@@ -49,10 +55,21 @@ namespace GalaxyCreator.Model.Json
             Stations = new ObservableCollection<Station>();
             SpaceObjects = new ObservableCollection<SpaceObject>();
 
-            //Hex = new Hex(x, y, 75, UId);
-
             if (newCluster == true)
+            {
                 IsEnabled = false;
+
+                /* SET THE DEFAULTS FOR A NEW CLUSTER */
+
+                Name = "Sector";
+                Description = "";
+                Music = "music_cluster_02";
+                Sunlight = "1";
+                Economy = "0.75";
+                Security = "0.75";
+                Backdrop = "cluster_01";
+
+            }
             else
                 IsEnabled = true;
 

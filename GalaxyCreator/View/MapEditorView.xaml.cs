@@ -20,52 +20,6 @@ namespace GalaxyCreator.View
             /* TODO: NEED TO CREATE THIS WHEN DATA IS LOADED OR A NEW MAPO IS CREATED */
             MainData.SetCanvas(sectorCanvas);//, 20, 20, 75);
 
-            ScaleTransform st = new ScaleTransform();
-            st.ScaleY = -1;
-
-            sectorCanvas.RenderTransform = st;
-
-
-            sectorCanvas.MouseWheel += (sender, e) =>
-            {
-            //    zoom += zoomSpeed * e.Delta;
-
-            //    if ( zoom < zoomMin)
-            //    {
-            //        zoom = zoomMin;
-            //    }
-
-            //    if ( zoom > zoomMax)
-            //    {
-            //        zoom = zoomMax;
-            //    }
-
-            //    Point mousePos = e.GetPosition(sectorCanvas);
-
-            //    if (zoom > 1)
-            //    {
-            //        st = new ScaleTransform(zoom, zoom *-1, mousePos.X, mousePos.Y);
-            //    }
-            //    else
-            //    {
-            //        st = new ScaleTransform(zoom, zoom *-1);
-            //    }
-
-            //    sectorCanvas.RenderTransform = st;
-            //    st.ScaleY = -1;
-
-                if (e.Delta > 0)
-                {
-                    st.ScaleX *= 0.9;
-                    st.ScaleY *= 0.9;
-                }
-                else
-                {
-                    st.ScaleX /= 0.9;
-                    st.ScaleY /= 0.9;
-                }
-
-             };
 
             this.Loaded += MapEditorView_Loaded;
            

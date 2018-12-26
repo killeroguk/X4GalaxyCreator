@@ -3,13 +3,10 @@
 namespace GalaxyCreator.ViewModel.Validators
 {
     /** code example to be found on: https://gist.github.com/holymoo/11243164 */
-    public class GalaxyValidator : AbstractValidator<GalaxyEditViewModel>
+    public class NewGalaxyValidator : AbstractValidator<NewGalaxyViewModel>
     {
-        public GalaxyValidator()
+        public NewGalaxyValidator()
         {
-            RuleFor(galaxy => galaxy.Seed)
-                .GreaterThan(0)
-                .WithMessage("Please Specify a Seed.");
             RuleFor(galaxy => galaxy.GalaxyName)
                 .NotEmpty()
                 .WithMessage("Please Specify a Name.");
@@ -25,9 +22,6 @@ namespace GalaxyCreator.ViewModel.Validators
             RuleFor(galaxy => galaxy.Date)
                 .NotEmpty()
                 .WithMessage("Please Specify a Date.");
-            RuleFor(galaxy => galaxy.Save)
-                .NotEmpty()
-                .WithMessage("Please Specify a Save.");
             RuleFor(galaxy => galaxy.MinRandomBelts)
                 .NotEmpty()
                 .GreaterThan(0)
