@@ -10,6 +10,8 @@ using Microsoft.Win32;
 using GalaxyCreator.Model.Json;
 using System.Linq;
 using System.Windows.Media;
+using GalaxyCreator.Util;
+using System.Reflection;
 
 namespace GalaxyCreator.ViewModel
 {
@@ -44,6 +46,7 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand _jobEditorClickedCommand;
         private RelayCommand _economyEditorClickedCommand;
         private RelayCommand _exitClickedCommand;
+        private RelayCommand _createModClickedCommand;
 
         private Object _rightHandViewModel;
         private Object _mainContainer;
@@ -241,6 +244,19 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand CreateModClickedCommand
+        {
+            get
+            {
+                if (_createModClickedCommand == null)
+                {
+                    _createModClickedCommand = new RelayCommand(() => CreateModClicked());
+                }
+
+                return _createModClickedCommand;
+            }
+        }
+
         public RelayCommand MapEditorClickedCommand
         {
             get
@@ -382,6 +398,22 @@ namespace GalaxyCreator.ViewModel
             {
                 MessageBox.Show("There is no galaxy loaded", "Save Galaxy Error",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void CreateModClicked()
+        {
+            try
+            {
+                string jar = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Generator\universe-generator-1.2.1.jar");
+                JavaExecutor.execute(jar, _currentFileName);
+                MessageBox.Show("Mod has been created", "Mod Creation Success",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Mod Creation Failed",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
