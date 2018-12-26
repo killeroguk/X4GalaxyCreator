@@ -5,6 +5,7 @@ using GalaxyCreator.Model.Json;
 using GalaxyCreator.Util;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace GalaxyCreator.ViewModel
     {
         private Cluster _selectedMapCluster;
 
+        public ObservableCollection<string> _targetClusterIds = new ObservableCollection<string>();
+
         private RelayCommand _isEnabledClickedCommand;
 
         private RelayCommand _addStationClickCommand;
@@ -25,6 +28,8 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand _addBeltClickCommand;
 
         private RelayCommand _addSpaceObjectClickCommand;
+
+        private RelayCommand _addConnectionClickCommand;
 
         private RelayCommand<object> _deleteStationClickCommand;
 
@@ -96,6 +101,19 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand AddConnectionClickCommand
+        {
+            get
+            {
+                if (_addConnectionClickCommand == null)
+                {
+                    _addConnectionClickCommand = new RelayCommand(() => AddConnectionClick());
+                }
+
+                return _addConnectionClickCommand;
+            }
+        }
+
         public RelayCommand<object> DeleteStationClickCommand
         {
             get
@@ -135,11 +153,32 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+
+        public ObservableCollection<string> TargetClusterIds
+        {
+            get
+            {
+                return _targetClusterIds;
+            }
+            set
+            {
+                Set(ref _targetClusterIds, value);
+            }
+        }
+
         public SectorEditViewModel(Cluster cluser)
         {
             SelectedMapCluster = cluser;
-        }
 
+
+            var targetClusters = MainData.GetGalaxyMap().Clusters.Where(c => c != SelectedMapCluster && c.IsEnabled == true).Select(c => c.Id);
+
+            foreach (var cluster in targetClusters)
+            {
+                TargetClusterIds.Add(cluster);
+            }
+            
+        }
 
         public void IsEnabledClicked()
         {
@@ -170,6 +209,11 @@ namespace GalaxyCreator.ViewModel
             _selectedMapCluster.SpaceObjects.Add(new SpaceObject());
         }
 
+        public void AddConnectionClick()
+        {
+            _selectedMapCluster.Connections.Add(new Connection());
+        }
+
         public void DeleteStationClick(object ob)
         {
             _selectedMapCluster.Stations.Remove((Station)ob);
@@ -184,5 +228,6 @@ namespace GalaxyCreator.ViewModel
         {
             _selectedMapCluster.SpaceObjects.Remove((SpaceObject)ob);
         }
+
     }
 }

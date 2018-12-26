@@ -17,8 +17,6 @@ namespace GalaxyCreator.ViewModel
     {
         private CanvasElementType oldSelectedCanvasElementType;
         private Shape oldSelectedCanvasElement;
-        private int _rowCount;
-        private int _columnCount;
 
         private RelayCommand<MouseButtonEventArgs> _canvasClickedCommand;
 
@@ -30,6 +28,11 @@ namespace GalaxyCreator.ViewModel
         public MapEditorViewModel(Galaxy galaxy)
         {
             this.galaxy = galaxy;
+
+
+            //if ( MainData.Canvas != null)
+            //    DrawGalaxyMap();
+            
         }
 
 
@@ -132,5 +135,6 @@ namespace GalaxyCreator.ViewModel
             MainData.Canvas.Children.Clear();
             base.Cleanup();
         }
+
     }
 }

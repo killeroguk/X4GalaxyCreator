@@ -12,45 +12,46 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter  x:Key="b2v"/>
     </UserControl.Resources>
-    
+
+    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" Padding="5">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="590">
-            <Label Content="Sector Options" FontSize="14" HorizontalContentAlignment="Center" Width="auto"/>
-                <Label Content="{Binding Path=SelectedMapCluster.UId}"/>
-                <Label Content="{Binding Path=SelectedMapCluster.X}"/>
-                <Label Content="{Binding Path=SelectedMapCluster.Y}"/>
+                <Label Content="Sector Options" FontSize="14" HorizontalContentAlignment="Center" Width="auto"/>
+                    <Label Content="{Binding SelectedMapCluster.Id}" ContentStringFormat='ID: {0}'/>
+                        <Label Content="{Binding SelectedMapCluster.X}" ContentStringFormat='X Pos: {0}'/>
+                            <Label Content="{Binding SelectedMapCluster.Y}" ContentStringFormat='Y Pos: {0}'/>
                 <StackPanel Orientation="Horizontal">
-                <Label Content="Enable" Width="100"/>
+                    <Label Content="Enable" Width="100"/>
                     <CheckBox IsChecked="{Binding Path=SelectedMapCluster.IsEnabled}" Command="{Binding IsEnabledClickedCommand}"/>
-            </StackPanel>
+                </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Name" Width="100"/>
-                    <TextBox Text="{Binding Path=SelectedMapCluster.Name}" Width="100"/>
+                    <TextBox Text="{Binding Path=SelectedMapCluster.Name, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Description" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Description}" Width="100"/>
+                    <TextBox  Text="{Binding Path=SelectedMapCluster.Description, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Music" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Music}" Width="100"/>
+                    <TextBox  Text="{Binding Path=SelectedMapCluster.Music, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Sunlight" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Sunlight}" Width="100"/>
+                    <TextBox  Text="{Binding Path=SelectedMapCluster.Sunlight, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Economy" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Economy}" Width="100"/>
+                    <TextBox  Text="{Binding Path=SelectedMapCluster.Economy, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Security" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Security}" Width="100"/>
+                    <TextBox  Text="{Binding Path=SelectedMapCluster.Security, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="BAckdrop" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Backdrop}" Width="100"/>
+                <Label Content="Backdrop" Width="100"/>
+                    <TextBox  Text="{Binding Path=SelectedMapCluster.Backdrop, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Gamestart" Width="100"/>
@@ -58,20 +59,20 @@
             </StackPanel>
                 <StackPanel Visibility="{Binding Path=SelectedMapCluster.GameStart,Converter={StaticResource b2v}}" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Faction"/>
-                        <TextBox Width="100" Text="{Binding Path=SelectedMapCluster.FactionStart.Faction}"/>
+                            <Label Content="Faction"  Width="100"/>
+                        <TextBox Width="100" Text="{Binding Path=SelectedMapCluster.FactionStart.Faction, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Name"/>
-                        <TextBox Width="100" Text="{Binding Path=SelectedMapCluster.FactionStart.Name}"/>
+                            <Label Content="Name"  Width="100"/>
+                            <TextBox MinWidth="250" Text="{Binding Path=SelectedMapCluster.FactionStart.Name, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Player Name"/>
-                        <TextBox Width="100" Text="{Binding Path=SelectedMapCluster.FactionStart.PlayerName}"/>
+                            <Label Content="Player Name"  Width="100"/>
+                            <TextBox MinWidth="250" Text="{Binding Path=SelectedMapCluster.FactionStart.PlayerName, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Description"/>
-                        <TextBox Width="100" Text="{Binding Path=SelectedMapCluster.FactionStart.Description}"/>
+                            <Label Content="Description"  Width="100"/>
+                        <TextBox MinWidth="250" Text="{Binding Path=SelectedMapCluster.FactionStart.Description, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                 </StackPanel>
@@ -88,7 +89,7 @@
                                 <ComboBox Height="30" SelectedValue="{Binding Race}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type jsonModel:Race}}}" DisplayMemberPath="Description" SelectedValuePath="Value" Width="70">
                                 </ComboBox>
                                 <Label Content="Owner"/>
-                                <ComboBox Height="30" SelectedValue="{Binding Owner}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type jsonModel:Race}}}" DisplayMemberPath="Description" SelectedValuePath="Value" Width="70">
+                                <ComboBox Height="30" SelectedValue="{Binding Owner}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type jsonModel:Faction}}}" DisplayMemberPath="Description" SelectedValuePath="Value" Width="70">
                                 </ComboBox>
                                 <Label Content="Faction"/>
                                 <ComboBox Height="30" SelectedValue="{Binding Faction}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type jsonModel:Faction}}}" DisplayMemberPath="Description" SelectedValuePath="Value" Width="70">
@@ -123,35 +124,58 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Margin=" 5 0 0 0 ">
                                     <Label Content="Ship Macro"/>
-                                    <TextBox Text="{Binding ShipMacro}"></TextBox>
+                                    <TextBox Text="{Binding ShipMacro, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Margin=" 5 0 0 0 ">
                                     <Label Content="Pos X"/>
-                                    <TextBox Text="{Binding X}"></TextBox>
+                                    <TextBox Text="{Binding X, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Margin=" 5 0 0 0 ">
                                     <Label Content="Pos Y"/>
-                                    <TextBox Text="{Binding Y}"></TextBox>
+                                    <TextBox Text="{Binding Y, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Margin=" 5 0 0 0 ">
                                     <Label Content="Yaw"/>
-                                    <TextBox Text="{Binding Yaw}"></TextBox>
+                                    <TextBox Text="{Binding Yaw, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Margin=" 5 0 0 0 ">
                                     <Label Content="Pitch"/>
-                                    <TextBox Text="{Binding Pitch}"></TextBox>
+                                    <TextBox Text="{Binding Pitch, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Margin=" 5 0 0 0 ">
                                     <Label Content="Roll"/>
-                                    <TextBox Text="{Binding Roll}"></TextBox>
+                                    <TextBox Text="{Binding Roll, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <Button Margin=" 10 0 10 0 " Content="X" Command="{Binding RelativeSource= {RelativeSource FindAncestor,  AncestorType={x:Type ListView}}, Path=DataContext.DeleteSpaceObjectClickCommand}" CommandParameter="{Binding}"></Button>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button Content="Add Connections" Margin="0 10 0 10" Command="{Binding AddConnectionClickCommand}" Width="300"/>
+                <ListView ItemsSource="{Binding Path=SelectedMapCluster.Connections}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Target Cluster Id"/>
+                                    <ComboBox  SelectedValue="{Binding TargetClusterId}" ItemsSource="{Binding RelativeSource= {RelativeSource FindAncestor,  AncestorType={x:Type ListView}}, Path=DataContext.TargetClusterIds}"  Width="70">
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Connection Type"/>
+                                    <ComboBox  SelectedValue="{Binding ConnectionType}" ItemsSource="{Binding Source={model:EnumerationExtension {x:Type jsonModel:ConnectionType}}}" DisplayMemberPath="Description" SelectedValuePath="Value" Width="70">
+                                    </ComboBox>
+                                </StackPanel>
+                                <Button Margin=" 10 0 10 0 " Content="X" Command="{Binding RelativeSource= {RelativeSource FindAncestor,  AncestorType={x:Type ListView}}, Path=DataContext.DeleteConnectionClickCommand}" CommandParameter="{Binding}"></Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
             </StackPanel>
         </Border>
 
     </Grid>
+    </ScrollViewer>
+
 </UserControl>
