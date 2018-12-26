@@ -16,7 +16,7 @@ namespace GalaxyCreator.ViewModel
 {
     public class NewGalaxyViewModel : ViewModelBase, INotifyPropertyChanged, IDataErrorInfo
     {
-        private readonly GalaxyValidator _galaxyValidator;
+        private readonly NewGalaxyValidator _galaxyValidator;
         public Galaxy Galaxy { get; set; } = new Galaxy();
         public bool DefaultEconomy { get; set; } = false;
         public bool DefaultJobs { get; set; } = false;
@@ -44,7 +44,7 @@ namespace GalaxyCreator.ViewModel
 
         public NewGalaxyViewModel() {
             this._saveCommand = new RelayCommand(() => OnSaveClicked());
-            _galaxyValidator = new GalaxyValidator();
+            _galaxyValidator = new NewGalaxyValidator();
         }
 
         private void OnSaveClicked()

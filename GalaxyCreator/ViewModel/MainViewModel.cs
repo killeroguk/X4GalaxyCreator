@@ -10,9 +10,12 @@ using Microsoft.Win32;
 using GalaxyCreator.Model.Json;
 using System.Linq;
 using System.Windows.Media;
+using GalaxyCreator.Util;
+using System.Reflection;
 
 namespace GalaxyCreator.ViewModel
 {
+
 
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -44,6 +47,7 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand _jobEditorClickedCommand;
         private RelayCommand _economyEditorClickedCommand;
         private RelayCommand _exitClickedCommand;
+        private RelayCommand _createModClickedCommand;
 
         private Object _rightHandViewModel;
         private Object _mainContainer;
@@ -77,34 +81,12 @@ namespace GalaxyCreator.ViewModel
             /*Process the loaded sectors - need to see what race owns what sector */
             foreach (Cluster cluster in Galaxy.Clusters)
             {
-                var stationCount = cluster.Stations.GroupBy(s => s.Race).Select(s => new { Race = s.Key, Values = s.Distinct().Count() }); ;
+                ClusterHelperFunctions.ChooseClusterFillColour(cluster);
+            
 
-                var race = stationCount.Max();
-                if (race != null)
+                if (cluster.FactionStart.Faction != Faction.PLAYER)
                 {
-                    switch (race.Race)
-                    {
-                        case Race.ARGON:
-                            {
-                                cluster.Polygon.Fill = Brushes.Blue;
-                                break;
-                            }
-                        case Race.PARANID:
-                            {
-                                cluster.Polygon.Fill = Brushes.Yellow;
-                                break;
-                            }
-                        case Race.TELADI:
-                            {
-                                cluster.Polygon.Fill = Brushes.Green;
-                                break;
-                            }
-                        case Race.XENON:
-                            {
-                                cluster.Polygon.Fill = Brushes.Red;
-                                break;
-                            }
-                    }
+                    cluster.GameStart = true;
                 }
                
             }
@@ -238,6 +220,19 @@ namespace GalaxyCreator.ViewModel
                 }
 
                 return _saveFileClickedCommand;
+            }
+        }
+
+        public RelayCommand CreateModClickedCommand
+        {
+            get
+            {
+                if (_createModClickedCommand == null)
+                {
+                    _createModClickedCommand = new RelayCommand(() => CreateModClicked());
+                }
+
+                return _createModClickedCommand;
             }
         }
 
@@ -385,23 +380,51 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        private void CreateModClicked()
+        {
+            try
+            {
+                string jar = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Generator\universe-generator-1.2.1.jar");
+                JavaExecutor.execute(jar, _currentFileName);
+                MessageBox.Show("Mod has been created", "Mod Creation Success",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Mod Creation Failed",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void MapEditorClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             MainContainer = new MapEditorViewModel(Galaxy);
         }
 
         private void JobEditorClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             MainContainer = new JobEditorViewModel(Galaxy);
         }
 
         private void EconomyEditorClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             MainContainer = new EconomyEditorViewModel(Galaxy);
         }
 
         private void ExitClicked()
         {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
             System.Windows.Application.Current.Shutdown();
         }
     }

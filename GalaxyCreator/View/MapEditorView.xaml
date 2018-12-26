@@ -14,19 +14,22 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <controls:Viewport MinZoom="0.3" MaxZoom="1" ZoomSpeed="0.9" IsEnabled="True" >
             <Canvas  x:Name="sectorCanvas" Height="50000" Width="50000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black">
+               
             </Canvas>
         </controls:Viewport>
-        
+        <GridSplitter Height="100" Width="5" Grid.Column="1"/>
+
         <!--<ScrollViewer Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
             <Canvas  x:Name="sectorCanvas" Height="5000" Width="5000" MouseLeftButtonDown="sectorCanvas_MouseLeftButtonDown" Background="Black"  RenderTransformOrigin="0.5,0.5" >
             </Canvas>
         </ScrollViewer>-->
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding RightHandViewModel}"></ContentControl>
+        <ContentControl Grid.Row="0" Grid.Column="2" Content="{Binding RightHandViewModel}"></ContentControl>
     </Grid>
 </UserControl>

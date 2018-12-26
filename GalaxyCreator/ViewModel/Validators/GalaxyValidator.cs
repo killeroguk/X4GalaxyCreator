@@ -3,7 +3,7 @@
 namespace GalaxyCreator.ViewModel.Validators
 {
     /** code example to be found on: https://gist.github.com/holymoo/11243164 */
-    public class GalaxyValidator : AbstractValidator<NewGalaxyViewModel>
+    public class GalaxyValidator : AbstractValidator<GalaxyEditViewModel>
     {
         public GalaxyValidator()
         {
