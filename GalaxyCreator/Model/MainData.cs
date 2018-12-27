@@ -35,6 +35,9 @@ namespace GalaxyCreator.Model
 
         public static Canvas Canvas;
 
+        public static Cluster SelectedMapCluster;
+
+
         public static void CreateMapGalaxy(Galaxy galaxy, int rowCount, int columnCount, double hexSize)
         {
             MapGalaxy = galaxy;

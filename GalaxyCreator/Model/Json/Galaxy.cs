@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,5 +22,9 @@ namespace GalaxyCreator.Model.Json
         public IList<Cluster> Clusters { get; set; }= new List<Cluster>();
         public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
         public ObservableCollection<Job> Jobs { get; set; } = new ObservableCollection<Job>();
+
+        [JsonIgnore]
+        public ObservableCollection<CanvasConnection> CanvasConnections { get; set; }
+
     }
 }

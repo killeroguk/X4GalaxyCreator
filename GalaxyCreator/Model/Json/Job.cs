@@ -26,8 +26,8 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private Boolean _startActive;
-        public Boolean StartActive
+        private bool? _startActive = null;
+        public bool? StartActive
         {
             get { return _startActive; }
             set
@@ -36,8 +36,8 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private Boolean _disabled;
-        public Boolean Disabled
+        private bool? _disabled = null;
+        public bool? Disabled
         {
             get { return _disabled; }
             set
@@ -46,8 +46,8 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private Boolean _rebuild;
-        public Boolean Rebuild
+        private bool? _rebuild = null;
+        public bool? Rebuild
         {
             get { return _rebuild; }
             set
@@ -56,8 +56,8 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private Boolean _comandeerable;
-        public Boolean Commandeerable
+        private bool? _comandeerable = null;
+        public bool? Commandeerable
         {
             get { return _comandeerable; }
             set
@@ -66,8 +66,8 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private Boolean _subordinate;
-        public Boolean Subordinate
+        private bool? _subordinate = null;
+        public bool? Subordinate
         {
             get { return _subordinate; }
             set
@@ -76,8 +76,8 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        private bool _buildatshipyard = true;
-        public bool Buildatshipyard
+        private Boolean _buildatshipyard = true;
+        public Boolean Buildatshipyard
         {
             get { return _buildatshipyard; }
             set
@@ -155,6 +155,7 @@ namespace GalaxyCreator.Model.Json
                 Set(ref _time, value);
             }
         }
+
         private Ship _ship = new Ship();
         public Ship Ship
         {

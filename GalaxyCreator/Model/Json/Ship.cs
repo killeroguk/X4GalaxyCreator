@@ -7,7 +7,7 @@ namespace GalaxyCreator.Model.Json
     {
         public List<Tag> Tags { get; set; } = new List<Tag>();
         public List<Faction> Factions { get; set; } = new List<Faction>();
-        public ShipSize Size { get; set; }
+        public ShipSize? Size { get; set; }
         public String LevelMin { get; set; }
         public String LevelMax { get; set; }
         public bool Overridenpc { get; set; } = true;

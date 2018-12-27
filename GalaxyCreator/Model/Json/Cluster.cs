@@ -20,7 +20,7 @@ namespace GalaxyCreator.Model.Json
         public int X { get; set; }
         public int Y { get; set; }
         public String Backdrop { get; set; }
-        public bool NoBelts { get; set; } = false;
+        public bool? NoBelts { get; set; }
         public Faction? FactionHq { get; set; }
         public FactionStart FactionStart { get; set; }
         public ObservableCollection<Connection> Connections { get; set; }
@@ -39,6 +39,7 @@ namespace GalaxyCreator.Model.Json
 
         [JsonIgnore]
         public bool GameStart { get; set; }
+
 
 
         public Cluster(int x, int y, double hexSize, bool newCluster)
@@ -125,5 +126,22 @@ namespace GalaxyCreator.Model.Json
 
     }
 
+    public class CanvasConnection
+    {
+        public string ConnectionId1 { get; set; }
+        public ConnectionType Connection1Type { get; set; }
 
+        public string ConnectionId2 { get; set; }
+        public ConnectionType Connection2Type { get; set; }
+
+        public Line Line { get; set; }
+
+        public  CanvasConnection(string connectionId1, string connectionId2, ConnectionType connection1Type)
+        {
+            ConnectionId1 = connectionId1;
+            ConnectionId2 = connectionId2;
+            Connection1Type = connection1Type;
+        }
+    
+    }
 }
