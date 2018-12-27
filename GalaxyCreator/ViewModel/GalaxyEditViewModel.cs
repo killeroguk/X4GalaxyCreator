@@ -3,13 +3,14 @@ using GalaxyCreator.Model.Json;
 using GalaxyCreator.ViewModel.Validators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GalaxyCreator.ViewModel
 {
-    public class GalaxyEditViewModel: ViewModelBase
+    public class GalaxyEditViewModel: ViewModelBase, INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly GalaxyValidator _galaxyValidator;
         public Galaxy Galaxy { get; set; } 

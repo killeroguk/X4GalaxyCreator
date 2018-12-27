@@ -28,8 +28,7 @@ namespace GalaxyCreator.Model
 
     public static class MainData
     {
-        private static List<CanvasElement> canvasElements = new List<CanvasElement>();
-        private static List<CanvasDrawingElement> canvasDrawingElements = new List<CanvasDrawingElement>();
+        public  static List<CanvasElement> canvasElements = new List<CanvasElement>();
 
         private static Galaxy MapGalaxy;
 
@@ -89,8 +88,24 @@ namespace GalaxyCreator.Model
 
             child.Uid = UId;
             Canvas.Children.Add(child);
-            Canvas.SetZIndex(child, 0);
+
+            if (type == CanvasElementType.CONNECTION)
+            {
+                Canvas.SetZIndex(child, 10);
+            }
+            else
+            {
+                Canvas.SetZIndex(child, 0);
+            }
         }
+
+        public static void RemoveConnectionFromCanvas(CanvasConnection connection)
+        {
+            Canvas.Children.Remove(connection.Line);
+
+            MapGalaxy.CanvasConnections.Remove(connection);
+        }
+
 
         public static void SetCanvas(Canvas canvas)
         {

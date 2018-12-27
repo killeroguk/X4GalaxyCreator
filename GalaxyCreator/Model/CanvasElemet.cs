@@ -12,6 +12,7 @@ namespace GalaxyCreator.Model
     public enum CanvasElementType
     {
         CLUSTER,
+        CONNECTION,
         unknown
     }
 

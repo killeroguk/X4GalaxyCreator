@@ -40,9 +40,16 @@ namespace GalaxyCreator.ViewModel
         {
             foreach (Cluster mapCluster in MainData.GetGalaxyMap().Clusters)
             {
-
                 MainData.AddChildToCanvas(CanvasElementType.CLUSTER, mapCluster.Polygon, mapCluster.UId.ToString());
-              
+            }
+
+            MainData.Canvas.UpdateLayout();
+
+            foreach (CanvasConnection con in MainData.GetGalaxyMap().CanvasConnections)
+            {
+                con.GenerateLine();
+
+               
             }
         }
 

@@ -207,6 +207,7 @@
     <Compile Include="ViewModel\Util\LowercaseJsonSerializer.cs" />
     <Compile Include="ViewModel\Validators\GalaxyValidator.cs" />
     <Compile Include="ViewModel\Validators\NewGalaxyValidator.cs" />
+    <Compile Include="ViewModel\Validators\ClusterValidator.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewportControl\ViewportControl.cs" />
     <Compile Include="View\EconomyEditorView.xaml.cs">

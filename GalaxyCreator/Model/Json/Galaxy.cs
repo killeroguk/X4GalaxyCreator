@@ -26,5 +26,10 @@ namespace GalaxyCreator.Model.Json
         [JsonIgnore]
         public ObservableCollection<CanvasConnection> CanvasConnections { get; set; }
 
+        public Galaxy()
+        {
+            CanvasConnections = new ObservableCollection<CanvasConnection>();
+        }
+
     }
 }

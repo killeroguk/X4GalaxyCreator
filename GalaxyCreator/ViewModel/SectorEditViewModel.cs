@@ -3,9 +3,11 @@ using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Model;
 using GalaxyCreator.Model.Json;
 using GalaxyCreator.Util;
+using GalaxyCreator.ViewModel.Validators;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +17,24 @@ using System.Windows.Threading;
 
 namespace GalaxyCreator.ViewModel
 {
-    public class SectorEditViewModel: ViewModelBase
+
+    public class SectorEditViewModel: ViewModelBase, INotifyPropertyChanged, IDataErrorInfo
     {
-        private Cluster _selectedMapCluster;
+        private readonly ClusterValidator _clusterValidator;
+
+
+        public Cluster Cluster { get; set; }
+
+        public String Name { get { return Cluster.Name; } set { Cluster.Name = value; RaisePropertyChanged("Name"); } }
+        public String Description { get { return Cluster.Description; } set { Cluster.Description = value; RaisePropertyChanged("Description"); } }
+        public String Music { get { return Cluster.Music; } set { Cluster.Music = value; RaisePropertyChanged("Music"); } }
+        public String Sunlight { get { return Cluster.Sunlight; } set { Cluster.Sunlight = value; RaisePropertyChanged("Sunlight"); } }
+        public String Economy { get { return Cluster.Economy; } set { Cluster.Economy = value; RaisePropertyChanged("Economy"); } }
+        public String Security { get { return Cluster.Security; } set { Cluster.Security = value; RaisePropertyChanged("Security"); } }
+        public String Backdrop { get { return Cluster.Backdrop; } set { Cluster.Backdrop = value; RaisePropertyChanged("Backdrop"); } }
+
+
+
 
         public ObservableCollection<string> _targetClusterIds = new ObservableCollection<string>();
 
@@ -37,17 +54,17 @@ namespace GalaxyCreator.ViewModel
 
         private RelayCommand<object> _deleteSpaceObjectCommand;
 
-        public Cluster SelectedMapCluster
-        {
-            get
-            { 
-                return _selectedMapCluster;
-            }
-            set
-            {
-                Set(ref _selectedMapCluster, value);
-            }
-        }
+        //public Cluster Cluster
+        //{
+        //    get
+        //    { 
+        //        return _Cluster;
+        //    }
+        //    set
+        //    {
+        //        Set(ref _Cluster, value);
+        //    }
+        //}
 
         public RelayCommand IsEnabledClickedCommand
         {
@@ -168,12 +185,12 @@ namespace GalaxyCreator.ViewModel
 
         public SectorEditViewModel(Cluster cluster)
         {
-            SelectedMapCluster = cluster;
+            Cluster = cluster;
+            _clusterValidator = new ClusterValidator();
 
             MainData.SelectedMapCluster = cluster;
 
-
-            var targetClusters = MainData.GetGalaxyMap().Clusters.Where(c => c != SelectedMapCluster && c.IsEnabled == true).Select(c => c.Id);
+            var targetClusters = MainData.GetGalaxyMap().Clusters.Where(c => c != Cluster && c.IsEnabled == true).Select(c => c.Id);
 
             foreach (var c in targetClusters)
             {
@@ -184,13 +201,13 @@ namespace GalaxyCreator.ViewModel
 
         public void IsEnabledClicked()
         {
-            if(_selectedMapCluster.IsEnabled == true)
+            if(Cluster.IsEnabled == true)
             {
-                ClusterHelperFunctions.ChooseClusterFillColour(_selectedMapCluster);
+                ClusterHelperFunctions.ChooseClusterFillColour(Cluster);
             }
             else
             {
-                _selectedMapCluster.Polygon.Fill = Brushes.LightGray;
+                Cluster.Polygon.Fill = Brushes.LightGray;
                
             }
 
@@ -198,37 +215,73 @@ namespace GalaxyCreator.ViewModel
 
         public void AddStationClick()
         {
-            _selectedMapCluster.Stations.Add(new Station());
+            Cluster.Stations.Add(new Station());
         }
 
         public void AddBeltClick()
         {
-            _selectedMapCluster.Belts.Add(new Belt());
+            Cluster.Belts.Add(new Belt());
         }
 
         public void AddSpaceObjectClick()
         {
-            _selectedMapCluster.SpaceObjects.Add(new SpaceObject());
+            Cluster.SpaceObjects.Add(new SpaceObject());
         }
 
         public void AddConnectionClick()
         {
-            _selectedMapCluster.Connections.Add(new Connection());
+            Cluster.Connections.Add(new Connection());
         }
 
         public void DeleteStationClick(object ob)
         {
-            _selectedMapCluster.Stations.Remove((Station)ob);
+            Cluster.Stations.Remove((Station)ob);
         }
 
         public void DeleteBeltClick(object ob)
         {
-            _selectedMapCluster.Belts.Remove((Belt)ob);
+            Cluster.Belts.Remove((Belt)ob);
         }
 
         public void DeleteSpaceObjectClick(object ob)
         {
-            _selectedMapCluster.SpaceObjects.Remove((SpaceObject)ob);
+            Cluster.SpaceObjects.Remove((SpaceObject)ob);
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if (Cluster != null)
+                {
+                    var firstOrDefault = _clusterValidator.Validate(this).Errors.FirstOrDefault(lol => lol.PropertyName == columnName);
+                    if (firstOrDefault != null)
+                        return _clusterValidator != null ? firstOrDefault.ErrorMessage : "";
+                }
+                return "";
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                if (_clusterValidator != null)
+                {
+                    var results = _clusterValidator.Validate(this);
+                    if (results != null && results.Errors.Any())
+                    {
+                        var errors = string.Join(Environment.NewLine, results.Errors.Select(x => x.ErrorMessage).ToArray());
+                        return errors;
+                    }
+                }
+                return string.Empty;
+            }
+        }
+
+        private bool HasErrors()
+        {
+            return Error != string.Empty;
         }
 
     }

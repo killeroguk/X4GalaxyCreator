@@ -84,6 +84,9 @@ namespace GalaxyCreator.ViewModel
             if ( MainData.Canvas != null)
                 MainData.Canvas.Children.Clear();
 
+            /* CLEAR THE CANVAS ELEMENT LIST */
+            MainData.canvasElements.Clear();
+
 
             _currentFileName = fileName;
             Galaxy = JsonConvert.DeserializeObject<Model.Json.Galaxy>(File.ReadAllText(fileName));
@@ -93,11 +96,15 @@ namespace GalaxyCreator.ViewModel
             foreach (Cluster cluster in Galaxy.Clusters)
             {
                 ClusterHelperFunctions.ChooseClusterFillColour(cluster);
-            
-
                 if (cluster.FactionStart.Faction != Faction.PLAYER)
                 {
                     cluster.GameStart = true;
+                }
+
+                foreach (Connection con in cluster.Connections)
+                {
+
+                    MainData.GetGalaxyMap().CanvasConnections.Add(new CanvasConnection(con.TargetClusterId, cluster.Id,con.ConnectionType));
                 }
                
             }
