@@ -32,7 +32,7 @@ namespace GalaxyCreator.ViewModel
         public String Economy { get { return Cluster.Economy; } set { Cluster.Economy = value; RaisePropertyChanged("Economy"); } }
         public String Security { get { return Cluster.Security; } set { Cluster.Security = value; RaisePropertyChanged("Security"); } }
         public String Backdrop { get { return Cluster.Backdrop; } set { Cluster.Backdrop = value; RaisePropertyChanged("Backdrop"); } }
-
+        public Faction? FactionHq { get { return Cluster.FactionHq; } set { Cluster.FactionHq = value; RaisePropertyChanged("FactionHq"); } }
 
 
 

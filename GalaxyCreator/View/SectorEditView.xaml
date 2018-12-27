@@ -53,7 +53,11 @@
                 <Label Content="Backdrop" Width="100"/>
                         <TextBox  Text="{Binding Backdrop, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
                     </StackPanel>
-            <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Faction HQ" Width="100"/>
+                        <TextBox  Text="{Binding FactionHq, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
                 <Label Content="Gamestart" Width="100"/>
                         <CheckBox IsChecked="{Binding Path=Cluster.GameStart}"/>
             </StackPanel>

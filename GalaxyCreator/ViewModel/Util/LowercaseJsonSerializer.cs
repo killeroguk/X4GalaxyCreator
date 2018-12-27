@@ -29,7 +29,6 @@ namespace GalaxyCreator.ViewModel.Util
             {
                 if ( c.GameStart == false)
                 {
-                    c.FactionHq = null;
                     c.FactionStart = null;
                 }
             }
