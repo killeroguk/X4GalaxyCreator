@@ -12,6 +12,52 @@ namespace GalaxyCreator.Dialogs.JobEditor
     {
         public Job Job { get; set; }
 
+        public ShipSize? JobCategoryShipSize
+        {
+            get
+            {
+                if(Job.JobCategory.ShipSize == null)
+                {
+                    return ShipSize.NONE;
+                }
+                return Job.JobCategory.ShipSize;
+            }
+            set
+            {
+                if(value == ShipSize.NONE)
+                {
+                    Job.JobCategory.ShipSize = null;
+                }
+                else
+                {
+                    Job.JobCategory.ShipSize = value;
+                }                
+            }
+        }
+
+        public ShipSize? ShipShipSize
+        {
+            get
+            {
+                if (Job.Ship.Size == null)
+                {
+                    return ShipSize.NONE;
+                }
+                return Job.Ship.Size;
+            }
+            set
+            {
+                if (value == ShipSize.NONE)
+                {
+                    Job.Ship.Size = null;
+                }
+                else
+                {
+                    Job.Ship.Size = value;
+                }
+            }
+        }
+
         private RelayCommand<object> _saveCommand = null;
         public RelayCommand<object> SaveCommand
         {
