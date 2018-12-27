@@ -20,7 +20,7 @@ namespace GalaxyCreator.Model.Json
         public int X { get; set; }
         public int Y { get; set; }
         public String Backdrop { get; set; }
-        public bool NoBelts { get; set; } = false;
+        public bool? NoBelts { get; set; }
         public Faction? FactionHq { get; set; }
         public FactionStart FactionStart { get; set; }
         public ObservableCollection<Connection> Connections { get; set; }
