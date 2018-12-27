@@ -18,67 +18,67 @@
         <Border BorderBrush="Black" BorderThickness="1" Padding="5">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="590">
                 <Label Content="Sector Options" FontSize="14" HorizontalContentAlignment="Center" Width="auto"/>
-                    <Label Content="{Binding SelectedMapCluster.Id}" ContentStringFormat='ID: {0}'/>
-                        <Label Content="{Binding SelectedMapCluster.X}" ContentStringFormat='X Pos: {0}'/>
-                            <Label Content="{Binding SelectedMapCluster.Y}" ContentStringFormat='Y Pos: {0}'/>
+                    <Label Content="{Binding Cluster.Id}" ContentStringFormat='ID: {0}'/>
+                        <Label Content="{Binding Cluster.X}" ContentStringFormat='X Pos: {0}'/>
+                            <Label Content="{Binding Cluster.Y}" ContentStringFormat='Y Pos: {0}'/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Enable" Width="100"/>
-                    <CheckBox IsChecked="{Binding Path=SelectedMapCluster.IsEnabled}" Command="{Binding IsEnabledClickedCommand}"/>
+                    <CheckBox IsChecked="{Binding Path=Cluster.IsEnabled}" Command="{Binding IsEnabledClickedCommand}"/>
                 </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Name" Width="100"/>
-                    <TextBox Text="{Binding Path=SelectedMapCluster.Name, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    <TextBox Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Description" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Description, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
-            </StackPanel>
+                        <TextBox  Text="{Binding Description, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Music" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Music, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
-            </StackPanel>
+                        <TextBox  Text="{Binding Music, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Sunlight" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Sunlight, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
-            </StackPanel>
+                        <TextBox  Text="{Binding Sunlight, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Economy" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Economy, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-            </StackPanel>
+                        <TextBox  Text="{Binding Economy, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Security" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Security, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-            </StackPanel>
+                        <TextBox  Text="{Binding Security, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Backdrop" Width="100"/>
-                    <TextBox  Text="{Binding Path=SelectedMapCluster.Backdrop, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-            </StackPanel>
+                        <TextBox  Text="{Binding Backdrop, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Width="100"  />
+                    </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Gamestart" Width="100"/>
-                    <CheckBox IsChecked="{Binding Path=SelectedMapCluster.GameStart}"/>
+                        <CheckBox IsChecked="{Binding Path=Cluster.GameStart}"/>
             </StackPanel>
-                <StackPanel Visibility="{Binding Path=SelectedMapCluster.GameStart,Converter={StaticResource b2v}}" Orientation="Vertical">
+                    <StackPanel Visibility="{Binding Path=Cluster.GameStart,Converter={StaticResource b2v}}" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                             <Label Content="Faction"  Width="100"/>
-                        <TextBox Width="100" Text="{Binding Path=SelectedMapCluster.FactionStart.Faction, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Width="100" Text="{Binding Path=Cluster.FactionStart.Faction, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                             <Label Content="Name"  Width="100"/>
-                            <TextBox MinWidth="250" Text="{Binding Path=SelectedMapCluster.FactionStart.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox MinWidth="250" Text="{Binding Path=Cluster.FactionStart.Name, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                             <Label Content="Player Name"  Width="100"/>
-                            <TextBox MinWidth="250" Text="{Binding Path=SelectedMapCluster.FactionStart.PlayerName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox MinWidth="250" Text="{Binding Path=Cluster.FactionStart.PlayerName, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                             <Label Content="Description"  Width="100"/>
-                        <TextBox MinWidth="250" Text="{Binding Path=SelectedMapCluster.FactionStart.Description, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox MinWidth="250" Text="{Binding Path=Cluster.FactionStart.Description, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                 </StackPanel>
 
                 <Button Content="Add Station" Command="{Binding AddStationClickCommand}"  Margin=" 0 10 0 10" Width="300"/>
-                <ListView ItemsSource="{Binding Path=SelectedMapCluster.Stations}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListView ItemsSource="{Binding Path=Cluster.Stations}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -100,7 +100,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Content="Add Belt" Command="{Binding AddBeltClickCommand}" Margin="0 10 0 10" Width="300"/>
-                <ListView ItemsSource="{Binding Path=SelectedMapCluster.Belts}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListView ItemsSource="{Binding Path=Cluster.Belts}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -113,7 +113,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Content="Add Space Object" Command="{Binding AddSpaceObjectClickCommand}" Margin="0 10 0 10" Width="300"/>
-                <ListView ItemsSource="{Binding Path=SelectedMapCluster.SpaceObjects}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListView ItemsSource="{Binding Path=Cluster.SpaceObjects}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -152,7 +152,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Content="Add Connections" Margin="0 10 0 10" Command="{Binding AddConnectionClickCommand}" Width="300"/>
-                <ListView ItemsSource="{Binding Path=SelectedMapCluster.Connections}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListView ItemsSource="{Binding Path=Cluster.Connections}" Height="auto" MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
