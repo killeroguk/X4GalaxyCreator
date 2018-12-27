@@ -145,7 +145,7 @@
                             <ComboBox SelectedItem="{Binding Job.JobCategory.Faction, Mode=TwoWay}" Grid.Column="1" x:Name="faction" 
                                       ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:Faction}}}" Margin="0,0,10,0" />
                             <Label Content="Ship Size" Grid.Column="2" />
-                            <ComboBox SelectedItem="{Binding Job.JobCategory.ShipSize, Mode=TwoWay}" Grid.Column="3" x:Name="shipSize" 
+                            <ComboBox SelectedItem="{Binding JobCategoryShipSize, Mode=TwoWay}" Grid.Column="3" x:Name="shipSize" 
                                       ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:ShipSize}}}" />
                         </Grid>
                         <Grid Grid.Row="1">
@@ -353,7 +353,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Size" Grid.Column="0" />
-                            <ComboBox SelectedItem="{Binding Path=Job.Ship.Size, Mode=TwoWay}" Grid.Column="1" x:Name="size" Margin="0,0,10,0" />
+                            <ComboBox SelectedItem="{Binding ShipShipSize, Mode=TwoWay}" Grid.Column="1" x:Name="size" Margin="0,0,10,0" 
+                                      ItemsSource="{Binding Source={util:EnumBindingSource {x:Type model:ShipSize}}}" />
                             <Label Content="Level Min" Grid.Column="2" />
                             <TextBox Text="{Binding Path=Job.Ship.LevelMin, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" 
                                      Grid.Column="3" x:Name="levelMin" Margin="0,0,10,0"/>
