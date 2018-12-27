@@ -166,16 +166,18 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
-        public SectorEditViewModel(Cluster cluser)
+        public SectorEditViewModel(Cluster cluster)
         {
-            SelectedMapCluster = cluser;
+            SelectedMapCluster = cluster;
+
+            MainData.SelectedMapCluster = cluster;
 
 
             var targetClusters = MainData.GetGalaxyMap().Clusters.Where(c => c != SelectedMapCluster && c.IsEnabled == true).Select(c => c.Id);
 
-            foreach (var cluster in targetClusters)
+            foreach (var c in targetClusters)
             {
-                TargetClusterIds.Add(cluster);
+                TargetClusterIds.Add(c);
             }
             
         }

@@ -41,6 +41,7 @@ namespace GalaxyCreator.Model.Json
         public bool GameStart { get; set; }
 
 
+
         public Cluster(int x, int y, double hexSize, bool newCluster)
         {
             FactionStart = new FactionStart();
@@ -125,5 +126,22 @@ namespace GalaxyCreator.Model.Json
 
     }
 
+    public class CanvasConnection
+    {
+        public string ConnectionId1 { get; set; }
+        public ConnectionType Connection1Type { get; set; }
 
+        public string ConnectionId2 { get; set; }
+        public ConnectionType Connection2Type { get; set; }
+
+        public Line Line { get; set; }
+
+        public  CanvasConnection(string connectionId1, string connectionId2, ConnectionType connection1Type)
+        {
+            ConnectionId1 = connectionId1;
+            ConnectionId2 = connectionId2;
+            Connection1Type = connection1Type;
+        }
+    
+    }
 }
