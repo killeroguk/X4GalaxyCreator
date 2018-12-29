@@ -31,6 +31,11 @@ namespace GalaxyCreator.ViewModel.Util
                 {
                     c.FactionStart = null;
                 }
+
+                if (c.FactionHq == Faction.NONE)
+                {
+                    c.FactionHq = null;
+                }
             }
 
             serializer.Serialize(writer, Clusters.Where(c => c.IsEnabled == true));

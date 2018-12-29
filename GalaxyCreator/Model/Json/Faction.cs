@@ -30,6 +30,8 @@ namespace GalaxyCreator.Model.Json
         [Description("Player Owner")]
         PLAYEROWNER,
         [Description("Ownerless")]
-        OWNERLESS
+        OWNERLESS,
+        [Description("None")]
+        NONE
     }
 }
