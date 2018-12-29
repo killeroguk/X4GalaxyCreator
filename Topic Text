@@ -11,7 +11,15 @@ The tool has 3 different editors.
 
 IMAGES 
 
-STUFF ABOUT THE JAVA 
+Installation Requirements
+- .Net Framework 4.6.1
+- Java 1.8 JDK
+ 
+.NET:
+ 
+Java:
+- Install the latest java 1.8 JDK (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- Make sure java is working by opening command line and typing java --version
 
 Download 
 
@@ -21,3 +29,13 @@ Thanks to Celludriel for tha massive amount of help provided for doing this tool
 Known Bugs:
 
 The map editor does some stranges things when you change its size. 
+
+Limitations:
+ 
+- Highways are not possible
+- Currently all gates are accelleration gates
+- The current vanilla FactionLogic will not work with a custom galaxy a custom FactionLogic is being developed but not ready
+
+
+If you have problems not being able to install using the click once installer check out the following url: 
+https://docs.microsoft.com/en-gb/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior?view=vs-2015
