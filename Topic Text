@@ -1,0 +1,23 @@
+This tool is used to create the JSON used by the X4 Universe Generation Tool create by Celludriel (https://forum.egosoft.com/viewtopic.php?f=181&t=408787).
+
+WARNING - This is a beta release and it is a work in progress.
+
+The tool has 3 different editors. 
+
+1. Map editor - this allows the creating of galaxy. The placement of clusters, their settings and how they are connected.
+2. Job editor - allows the creation of jobs.
+3. Economy editor - allows the SOMETHING of the economy. 
+
+
+IMAGES 
+
+STUFF ABOUT THE JAVA 
+
+Download 
+
+
+Thanks to Celludriel for tha massive amount of help provided for doing this tool and the generation tool that does all the hard work. 
+
+Known Bugs:
+
+The map editor does some stranges things when you change its size. 
