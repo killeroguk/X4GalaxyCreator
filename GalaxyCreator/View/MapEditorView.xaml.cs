@@ -44,5 +44,7 @@ namespace GalaxyCreator.View
         {
             ((MapEditorViewModel)DataContext).CanvasClicked(e);
         }
+
+    
     }
 }

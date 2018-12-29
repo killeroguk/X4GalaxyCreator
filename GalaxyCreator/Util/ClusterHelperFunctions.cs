@@ -66,6 +66,22 @@ namespace GalaxyCreator.Util
                             cluster.Polygon.Fill = Brushes.LightBlue;
                             break;
                         }
+                    case Faction.ALLIANCE:
+                        {
+                            cluster.Polygon.Fill = Brushes.DarkCyan;
+                            break;
+                        }
+                    case Faction.HATIKVAH:
+                        {
+                            cluster.Polygon.Fill = Brushes.IndianRed;
+                            break;
+                        }
+                    case Faction.SCALEPLATE:
+                        {
+                            cluster.Polygon.Fill = Brushes.Peru;
+                            break;
+                        }
+                      
                 }
             }
         }
