@@ -43,6 +43,9 @@ namespace GalaxyCreator.Model.Json
         public bool GameStart { get; set; }
 
 
+        [JsonIgnore]
+        public CanvasBaseObject CanvasObject { get; set; }
+
 
         public Cluster(int x, int y, double hexSize, bool newCluster)
         {
@@ -122,10 +125,60 @@ namespace GalaxyCreator.Model.Json
 
             Console.WriteLine($"a: {a}, b: {b}, yPos: {yPos} - aa: {aa}, aaa: {aaa}");
 
-            Polygon.RenderTransform = new TranslateTransform((shiftedX * (OuterRadius * 1.5f) + OuterRadius), yPos);// ((shiftedY + shiftedX * 0.5f - shiftedX / 2) * (InnerRadius * 2f)) + OuterRadius);
+            Polygon.RenderTransform = new TranslateTransform((shiftedX * (OuterRadius * 1.5f) + OuterRadius), yPos);
+
+            Polygon.MouseEnter += Polygon_MouseEnter;
+            Polygon.MouseLeave += Polygon_MouseLeave;
+
         }
 
+        private void Polygon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            /* THIS DRAWS A TOOL TIP */
+            Point pos = Polygon.TransformToAncestor(MainData.Canvas).Transform(new Point(0, 0));
 
+            Rectangle rectangle = new Rectangle();
+            Canvas.SetLeft(rectangle, pos.X);
+            Canvas.SetTop(rectangle, pos.Y);
+
+            rectangle.Width = 400;
+            rectangle.Height = 200;
+            rectangle.Stroke = Brushes.Blue;
+            rectangle.Fill = Brushes.Black;
+            rectangle.IsHitTestVisible = false;
+            rectangle.RadiusX = 10;
+            rectangle.RadiusY = 10;
+
+            CanvasObject = new CanvasBaseObject(rectangle, 20);
+
+
+            TextBox label = new TextBox();
+            label.Height = 70;
+            label.Width = 390;
+            label.Text = "Name: " + Name;
+            label.Foreground = Brushes.White;
+            label.IsHitTestVisible = false;
+            label.FontSize = 35;
+            CanvasObject.AddChild(label, 21, pos.X + 15, pos.Y + 5);
+
+            label = new TextBox();
+            label.Height = 70;
+            label.Width = 390;
+            label.Text = "ID: " + Id;
+            label.Foreground = Brushes.White;
+            label.IsHitTestVisible = false;
+            label.FontSize = 35;
+            CanvasObject.AddChild(label, 21, pos.X + 15, pos.Y + 80);
+
+
+            CanvasObject.DrawObject(MainData.Canvas);
+        }
+
+        private void Polygon_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            /* THIS CLEARS A TOOL TIP */
+            CanvasObject.ClearObject(MainData.Canvas);
+        }
     }
 
     public class CanvasConnection
@@ -139,7 +192,7 @@ namespace GalaxyCreator.Model.Json
 
         public Line Line { get; set; }
 
-        public  CanvasConnection(string connectionId1, string connectionId2, ConnectionType connection1Type)
+        public CanvasConnection(string connectionId1, string connectionId2, ConnectionType connection1Type)
         {
             ConnectionId1 = connectionId1;
             ConnectionId2 = connectionId2;
