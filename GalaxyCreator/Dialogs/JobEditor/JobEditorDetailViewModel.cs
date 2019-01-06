@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Dialogs.DialogService;
-using GalaxyCreator.Model.JobEditor;
+using GalaxyCreator.Model;
 using GalaxyCreator.Model.Json;
 using System;
 using System.Collections.Generic;
@@ -72,20 +72,6 @@ namespace GalaxyCreator.Dialogs.JobEditor
             set { _cancelCommand = value; }
         }
 
-        private RelayCommand<object> _jobCategoryTagUpdateCommand = null;
-        public RelayCommand<object> JobCategoryTagUpdateCommand
-        {
-            get
-            {
-                if (_jobCategoryTagUpdateCommand == null)
-                {
-                    _jobCategoryTagUpdateCommand = new RelayCommand<object>((param) => UpdateTagOnJobCategory(param));
-                }
-
-                return _jobCategoryTagUpdateCommand;
-            }
-        }
-
         private RelayCommand<object> _jobLocationsFactionUpdateCommand = null;
         public RelayCommand<object> JobLocationFactionsUpdateCommand
         {
@@ -100,34 +86,6 @@ namespace GalaxyCreator.Dialogs.JobEditor
             }
         }
 
-        private RelayCommand<object> _shipFactionsTagUpdateCommand = null;
-        public RelayCommand<object> ShipFactionsUpdateCommand
-        {
-            get
-            {
-                if (_shipFactionsTagUpdateCommand == null)
-                {
-                    _shipFactionsTagUpdateCommand = new RelayCommand<object>((param) => UpdateFactionsOnShip(param));
-                }
-
-                return _shipFactionsTagUpdateCommand;
-            }
-        }
-
-        private RelayCommand<object> _shipTagsUpdateCommand = null;
-        public RelayCommand<object> ShipTagsUpdateCommand
-        {
-            get
-            {
-                if (_shipTagsUpdateCommand == null)
-                {
-                    _shipTagsUpdateCommand = new RelayCommand<object>((param) => UpdateTagsOnShip(param));
-                }
-
-                return _shipTagsUpdateCommand;
-            }
-        }
-
         private JobOrder _selectedOrder;
         public JobOrder SelectedOrder
         {
@@ -135,42 +93,6 @@ namespace GalaxyCreator.Dialogs.JobEditor
             set
             {
                 Set(ref _selectedOrder, value);
-            }
-        }
-
-        public String JobCategoryTags
-        {
-            get
-            {
-                if(this.Job.JobCategory.Tags != null)
-                {
-                    string Result = "{";
-                    foreach (Tag Tag in this.Job.JobCategory.Tags)
-                    {
-                        Result = Result + " " + Tag.ToString() + " ";
-                    }
-                    Result = Result + "}";
-                    return Result;
-                }
-                return "";
-            }
-        }
-
-        public String ShipTags
-        {
-            get
-            {
-                if(this.Job.Ship.Tags != null)
-                {
-                    string Result = "{";
-                    foreach (Tag Tag in this.Job.Ship.Tags)
-                    {
-                        Result = Result + " " + Tag.ToString() + " ";
-                    }
-                    Result = Result + "}";
-                    return Result;
-                }
-                return "";
             }
         }
 
@@ -210,13 +132,33 @@ namespace GalaxyCreator.Dialogs.JobEditor
             }
         }
 
-        private IList<SubordinateItem> _subordinateItems = new List<SubordinateItem>();
-        public IList<SubordinateItem> SubordinateItems
+        private IList<StringItem> _subordinateItems = new List<StringItem>();
+        public IList<StringItem> SubordinateItems
         {
             get { return _subordinateItems; }
             set
             {
                 Set(ref _subordinateItems, value);
+            }
+        }
+
+        private IList<StringItem> _jobCategoryTags = new List<StringItem>();
+        public IList<StringItem> JobCategoryTags
+        {
+            get { return _jobCategoryTags; }
+            set
+            {
+                Set(ref _jobCategoryTags, value);
+            }
+        }
+
+        private IList<StringItem> _shipTags = new List<StringItem>();
+        public IList<StringItem> ShipTags
+        {
+            get { return _shipTags; }
+            set
+            {
+                Set(ref _shipTags, value);
             }
         }
 
@@ -227,40 +169,47 @@ namespace GalaxyCreator.Dialogs.JobEditor
             this._cancelCommand = new RelayCommand<object>((parent) => OnCancelClicked(parent));
             foreach (String subordinate in Job.Subordinates)
             {
-                _subordinateItems.Add(new SubordinateItem(subordinate));
+                _subordinateItems.Add(new StringItem(subordinate));
             }
+
+            foreach (String JobCategoryTag in Job.JobCategory.Tags)
+            {
+                _jobCategoryTags.Add(new StringItem(JobCategoryTag));
+            }
+
+            foreach (String ShipTag in Job.Ship.Tags)
+            {
+                _shipTags.Add(new StringItem(ShipTag));
+            }
+
         }
 
         private void OnSaveClicked(object parameter)
         {
             this.Job.Subordinates.Clear();
-            foreach (SubordinateItem item in _subordinateItems)
+            foreach (StringItem item in _subordinateItems)
             {
                 this.Job.Subordinates.Add(item.Value);
             }
+
+            this.Job.JobCategory.Tags.Clear();
+            foreach (StringItem item in _jobCategoryTags)
+            {
+                this.Job.JobCategory.Tags.Add(item.Value);
+            }
+
+            this.Job.Ship.Tags.Clear();
+            foreach (StringItem item in _shipTags)
+            {
+                this.Job.Ship.Tags.Add(item.Value);
+            }
+
             this.CloseDialogWithResult(parameter as Window, DialogResult.Yes);
         }
 
         private void OnCancelClicked(object parameter)
         {
             this.CloseDialogWithResult(parameter as Window, DialogResult.No);
-        }
-
-        private void UpdateTagOnJobCategory(object param)
-        {
-            if(param != null)
-            {
-                Tag tagParam = (Tag)param;
-                if (Job.JobCategory.Tags.Contains(tagParam))
-                {
-                    Job.JobCategory.Tags.Remove(tagParam);
-                }
-                else
-                {
-                    Job.JobCategory.Tags.Add(tagParam);
-                }
-                RaisePropertyChanged("JobCategoryTags");
-            }
         }
 
         private void UpdateLocationsOnJobLocation(object param)
@@ -296,23 +245,5 @@ namespace GalaxyCreator.Dialogs.JobEditor
                 RaisePropertyChanged("ShipFactions");
             }
         }
-
-        private void UpdateTagsOnShip(object param)
-        {
-            if (param != null)
-            {
-                Tag tagParam = (Tag)param;
-                if (Job.Ship.Tags.Contains(tagParam))
-                {
-                    Job.Ship.Tags.Remove(tagParam);
-                }
-                else
-                {
-                    Job.Ship.Tags.Add(tagParam);
-                }
-                RaisePropertyChanged("ShipTags");
-            }
-        }
-
     }
 }

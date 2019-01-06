@@ -1,17 +1,17 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 
-namespace GalaxyCreator.Model.JobEditor
+namespace GalaxyCreator.Model
 {
-    public class SubordinateItem : ObservableObject
+    public class StringItem : ObservableObject
     {
         private String _value = default(String);
 
-        public SubordinateItem() { }
+        public StringItem() { }
 
-        public SubordinateItem(string subordinate)
+        public StringItem(string stringItem)
         {
-            this._value = subordinate;
+            this._value = stringItem;
         }
 
         public String Value
