@@ -8,7 +8,7 @@ namespace GalaxyCreator.Model.Json
     public class JobCategory : ObservableObject
     {
         public Faction Faction { get; set; }
-        public IList<Tag> Tags { get; set; } = new List<Tag>();
+        public IList<String> Tags { get; set; } = new List<String>();
         public ShipSize? ShipSize { get; set; }
     }
 }
