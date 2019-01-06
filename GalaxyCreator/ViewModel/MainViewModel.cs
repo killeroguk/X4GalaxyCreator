@@ -402,7 +402,7 @@ namespace GalaxyCreator.ViewModel
         {
             try
             {
-                string jar = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Generator\universe-generator-1.2.1.jar");
+                string jar = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Generator\universe-generator-1.3.jar");
                 JavaExecutor.execute(jar, _currentFileName);
                 MessageBox.Show("Mod has been created", "Mod Creation Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
