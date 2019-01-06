@@ -27,6 +27,10 @@ namespace GalaxyCreator.ViewModel.Validators
             RuleFor(cluster => cluster.Backdrop)
                .NotEmpty()
                .WithMessage("Please specify a Backdrop.");
+            RuleFor(cluster => cluster.Credits)
+                .GreaterThan(0)
+                .WithMessage("Please enter a value > 0")
+                .When(cluster => cluster.GameStart);
         }
     }
 }
