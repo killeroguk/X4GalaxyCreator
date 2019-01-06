@@ -306,15 +306,28 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <DataGrid ItemsSource="{Binding Path=Job.Orders}" SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        <Label Content="Order information" Grid.Column="0" />
+                        <Label Content="Parameters" Grid.Column="1" />
+                        <DataGrid Name="OrderGrid" ItemsSource="{Binding Path=Job.Orders}" SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                   ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" 
-                                  HorizontalAlignment="Left" SelectionMode="Single" />
+                                  HorizontalAlignment="Left" SelectionMode="Single" AutoGenerateColumns="False" 
+                                  Grid.Row="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Order}" ClipboardContentBinding="{x:Null}" Header="Order"/>
+                                <DataGridCheckBoxColumn Binding="{Binding Path=DefaultOrder}" ClipboardContentBinding="{x:Null}" Header="Default"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <DataGrid ItemsSource="{Binding Path=SelectedOrder.Parameters, Mode=TwoWay}" 
-                                  AutoGenerateColumns="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Column="1" HorizontalAlignment="Right" />
+                                  AutoGenerateColumns="True" MinColumnWidth="250" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="Auto" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,500,0"
+                                  Visibility="{Binding 
+                                      RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, 
+                                      Path=OrderGrid, 
+                                      Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     </Grid>
                 </Grid>
             </GroupBox>
