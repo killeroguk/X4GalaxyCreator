@@ -79,8 +79,12 @@
                             <Label Content="Description"  Width="100"/>
                             <TextBox MinWidth="250" Text="{Binding Path=Cluster.FactionStart.Description, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Money"  Width="100"/>
+                            <TextBox MinWidth="100" Text="{Binding Credits, Mode=TwoWay, ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
 
-                </StackPanel>
+                    </StackPanel>
 
                 <Button Content="Add Station" Command="{Binding AddStationClickCommand}"  Margin=" 0 10 0 10" Width="300"/>
                 <ListView ItemsSource="{Binding Path=Cluster.Stations}" Height="auto"  ScrollViewer.HorizontalScrollBarVisibility="Hidden">
