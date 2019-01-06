@@ -42,6 +42,10 @@
             <DataTemplate DataType="{x:Type viewmodels:NewGalaxyViewModel}">
                 <views:NewGalaxyView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:HelpViewModel}">
+                <views:HelpView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -61,7 +65,10 @@
                 <MenuItem x:Name="MapEditor" Header="Map Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding MapEditorClickedCommand}" />
                 <MenuItem x:Name="JobEditor" Header="Job Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding JobEditorClickedCommand}" />
                 <MenuItem x:Name="EconomyEditor" Header="Economy Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding EconomyEditorClickedCommand}" />
-            </MenuItem>            
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem x:Name="Help" Header="Help" HorizontalAlignment="Left" Width="Auto" Command="{Binding HelpClickedCommand}" />
+            </MenuItem>
         </Menu>
         <ContentControl Content="{Binding MainContainer}" />
     </DockPanel>
