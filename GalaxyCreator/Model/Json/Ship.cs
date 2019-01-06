@@ -5,7 +5,7 @@ namespace GalaxyCreator.Model.Json
 {
     public class Ship
     {
-        public List<Tag> Tags { get; set; } = new List<Tag>();
+        public List<String> Tags { get; set; } = new List<String>();
         public List<Faction> Factions { get; set; } = new List<Faction>();
         public ShipSize? Size { get; set; }
         public String LevelMin { get; set; }

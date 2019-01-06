@@ -148,7 +148,7 @@
     <Compile Include="Model\EconomyEditor\ProductMemento.cs" />
     <Compile Include="Model\EconomyEditor\WareItem.cs" />
     <Compile Include="Model\JobEditor\JobMemento.cs" />
-    <Compile Include="Model\JobEditor\SubordinateItem.cs" />
+    <Compile Include="Model\StringItem.cs" />
     <Compile Include="Model\Json\ComparisonType.cs" />
     <Compile Include="Model\JobEditor\JobEditorDetailParameter.cs" />
     <Compile Include="Dialogs\JobEditor\JobEditorDetailView.xaml.cs">
@@ -186,7 +186,6 @@
     <Compile Include="Model\Json\SpaceObjectType.cs" />
     <Compile Include="Model\Json\Station.cs" />
     <Compile Include="Model\Json\StationType.cs" />
-    <Compile Include="Model\Json\Tag.cs" />
     <Compile Include="Model\Json\Unit.cs" />
     <Compile Include="Util\CloneUtil.cs" />
     <Compile Include="Util\ClusterHelperFunctions.cs" />
