@@ -38,18 +38,19 @@ namespace GalaxyCreator.ViewModel
 
         public void DrawGalaxyMap()
         {
-            foreach (Cluster mapCluster in MainData.GetGalaxyMap().Clusters)
+            if(MainData.GetGalaxyMap() != null)
             {
-                MainData.AddChildToCanvas(CanvasElementType.CLUSTER, mapCluster.Polygon, mapCluster.UId.ToString());
-            }
+                foreach (Cluster mapCluster in MainData.GetGalaxyMap().Clusters)
+                {
+                    MainData.AddChildToCanvas(CanvasElementType.CLUSTER, mapCluster.Polygon, mapCluster.UId.ToString());
+                }
 
-            MainData.Canvas.UpdateLayout();
+                MainData.Canvas.UpdateLayout();
 
-            foreach (CanvasConnection con in MainData.GetGalaxyMap().CanvasConnections)
-            {
-                con.GenerateLine();
-
-               
+                foreach (CanvasConnection con in MainData.GetGalaxyMap().CanvasConnections)
+                {
+                    con.GenerateLine();
+                }
             }
         }
 
