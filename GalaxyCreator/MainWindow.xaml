@@ -57,7 +57,7 @@
                 <Separator />
                 <MenuItem x:Name="Exit" Header="Exit" HorizontalAlignment="Left" Width="Auto" Command="{Binding ExitClickedCommand}" />
             </MenuItem>
-            <MenuItem Header="_Editors">
+            <MenuItem Header="_Editors" IsEnabled="{Binding GalaxyExist}" >
                 <MenuItem x:Name="MapEditor" Header="Map Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding MapEditorClickedCommand}" />
                 <MenuItem x:Name="JobEditor" Header="Job Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding JobEditorClickedCommand}" />
                 <MenuItem x:Name="EconomyEditor" Header="Economy Editor" HorizontalAlignment="Left" Width="Auto" Command="{Binding EconomyEditorClickedCommand}" />
