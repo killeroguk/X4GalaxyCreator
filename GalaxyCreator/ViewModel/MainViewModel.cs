@@ -48,6 +48,7 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand _economyEditorClickedCommand;
         private RelayCommand _exitClickedCommand;
         private RelayCommand _createModClickedCommand;
+        private RelayCommand _helpClickedCommand;
 
         private Object _rightHandViewModel;
         private Object _mainContainer;
@@ -306,6 +307,19 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand HelpClickedCommand
+        {
+            get
+            {
+                if (_helpClickedCommand == null)
+                {
+                    _helpClickedCommand = new RelayCommand(() => HelpClicked());
+                }
+
+                return _helpClickedCommand;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -402,7 +416,7 @@ namespace GalaxyCreator.ViewModel
         {
             try
             {
-                string jar = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Generator\universe-generator-1.2.1.jar");
+                string jar = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Generator\universe-generator-1.3.jar");
                 JavaExecutor.execute(jar, _currentFileName);
                 MessageBox.Show("Mod has been created", "Mod Creation Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
@@ -444,6 +458,14 @@ namespace GalaxyCreator.ViewModel
                 ((ViewModelBase)MainContainer).Cleanup();
 
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void HelpClicked()
+        {
+            if (MainContainer != null)
+                ((ViewModelBase)MainContainer).Cleanup();
+
+            MainContainer = new HelpViewModel();
         }
     }
 }
