@@ -47,7 +47,7 @@ namespace GalaxyCreator.Model.Json
         public CanvasBaseObject CanvasObject { get; set; }
 
 
-        public Cluster(int x, int y, double hexSize, bool newCluster)
+        public Cluster(int x, int y, double hexSize, bool newCluster, int clusterIdCounter)
         {
             FactionStart = new FactionStart();
             FactionStart.ClusterId = Id;
@@ -75,7 +75,7 @@ namespace GalaxyCreator.Model.Json
                 Security = "0.75";
                 Backdrop = "cluster_01";
 
-                Id = $"{Name}{x}{y}";
+                Id = clusterIdCounter.ToString().PadLeft(3, '0');
 
             }
             else
@@ -142,7 +142,7 @@ namespace GalaxyCreator.Model.Json
             Canvas.SetTop(rectangle, pos.Y);
 
             rectangle.Width = 400;
-            rectangle.Height = 200;
+            rectangle.Height = 300;
             rectangle.Stroke = Brushes.Blue;
             rectangle.Fill = Brushes.Black;
             rectangle.IsHitTestVisible = false;
@@ -169,6 +169,15 @@ namespace GalaxyCreator.Model.Json
             label.IsHitTestVisible = false;
             label.FontSize = 35;
             CanvasObject.AddChild(label, 21, pos.X + 15, pos.Y + 80);
+
+            label = new TextBox();
+            label.Height = 70;
+            label.Width = 390;
+            label.Text = "Location: " + X + "," + Y;
+            label.Foreground = Brushes.White;
+            label.IsHitTestVisible = false;
+            label.FontSize = 35;
+            CanvasObject.AddChild(label, 21, pos.X + 15, pos.Y + 155);
 
 
             CanvasObject.DrawObject(MainData.Canvas);

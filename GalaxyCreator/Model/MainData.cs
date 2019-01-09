@@ -47,6 +47,7 @@ namespace GalaxyCreator.Model
         {
             int x = -(rowCount / 2);
             int y = -(colCount / 2);
+            int clusteridCounter = 1;
 
             for (int row = 0; row < rowCount; row++)
             {
@@ -55,8 +56,9 @@ namespace GalaxyCreator.Model
                     if (((List<Cluster>)galaxy.Clusters).FirstOrDefault(c => c.X == x && c.Y == y) == null)
                     {
                         Console.WriteLine("Creating hex at pos X: " + x + ", Y: " + y);
-                        Cluster cluster = new Cluster(x, y, hexSize, true);
+                        Cluster cluster = new Cluster(x, y, hexSize, true, clusteridCounter);
                         galaxy.Clusters.Add(cluster);
+                        clusteridCounter++;
                     }
                     else
                     {
