@@ -217,6 +217,7 @@ namespace GalaxyCreator.ViewModel
         public void AddStationClick()
         {
             Cluster.Stations.Add(new Station());
+            ClusterHelperFunctions.ChooseClusterFillColour(Cluster);
         }
 
         public void AddBeltClick()
@@ -237,6 +238,8 @@ namespace GalaxyCreator.ViewModel
         public void DeleteStationClick(object ob)
         {
             Cluster.Stations.Remove((Station)ob);
+
+            ClusterHelperFunctions.ChooseClusterFillColour(Cluster);
         }
 
         public void DeleteBeltClick(object ob)
