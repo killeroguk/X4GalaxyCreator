@@ -34,7 +34,7 @@ namespace GalaxyCreator.ViewModel
         public String Backdrop { get { return Cluster.Backdrop; } set { Cluster.Backdrop = value; RaisePropertyChanged("Backdrop"); } }
         public Faction? FactionHq { get { return Cluster.FactionHq; } set { Cluster.FactionHq = value; RaisePropertyChanged("FactionHq"); } }
         public bool GameStart { get { return Cluster.GameStart; } set { Cluster.GameStart = value; RaisePropertyChanged("GameStart"); } }
-        public Int32? Credits { get { return Cluster.FactionStart.Credits; } set { Cluster.FactionStart.Credits = value; RaisePropertyChanged("Credits"); } }
+        public Int32? Credits { get { return Cluster.FactionStart?.Credits; } set { Cluster.FactionStart.Credits = value; RaisePropertyChanged("Credits"); } }
 
 
         public ObservableCollection<string> _targetClusterIds = new ObservableCollection<string>();
