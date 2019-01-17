@@ -18,7 +18,7 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        public Race _race;
+        private Race _race;
         public Race Race {
             get { return _race; }
             set {
@@ -29,7 +29,7 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        public Faction _owner;
+        private Faction _owner;
         public Faction Owner {
             get { return _owner; }
             set {
@@ -40,7 +40,7 @@ namespace GalaxyCreator.Model.Json
             }
         }
 
-        public Faction _faction;
+        private Faction _faction;
         public Faction Faction {
             get { return _faction; }
             set {
