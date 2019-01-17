@@ -15,10 +15,18 @@ namespace GalaxyCreator.Util
             };
             Process proc;
 
-            if ((proc = Process.Start(processInfo)) == null)
+            var result = proc = Process.Start(processInfo);
+
+            if (result == null)
             {
                 throw new InvalidOperationException("??");
             }
+
+            if (result.ExitCode != 0)
+            {
+                throw new InvalidOperationException("Java Execution Failed");
+            }
+
 
             proc.WaitForExit();
             int exitCode = proc.ExitCode;
