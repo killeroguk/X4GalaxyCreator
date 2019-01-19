@@ -36,6 +36,9 @@ namespace GalaxyCreator.ViewModel.Validators
                 .NotEmpty()
                 .GreaterThan(galaxy => galaxy.MinRandomBelts)
                 .WithMessage("Please Specify a Maximum of random belts.");
+            RuleFor(galaxy => galaxy.Description)
+                .NotEmpty().
+                WithMessage("Please add a description");
         }
     }
 }

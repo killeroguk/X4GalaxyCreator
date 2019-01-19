@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaxyCreator.Model.CanvasModel;
 using System;
 using System.Linq;
 
@@ -27,8 +28,6 @@ namespace GalaxyCreator.Model.Json
 
                 if (MainData.GetGalaxyMap() != null)
                 {
-
-
                     MainData.GetGalaxyMap().CanvasConnections.Add(new CanvasConnection(_targetClusterId, MainData.SelectedMapCluster.Id, ConnectionType));
                     MainData.GetGalaxyMap().CanvasConnections.Last().GenerateLine();
                 }
@@ -54,8 +53,6 @@ namespace GalaxyCreator.Model.Json
 
                 if (MainData.GetGalaxyMap() != null)
                 {
-
-
                     MainData.GetGalaxyMap().CanvasConnections.Add(new CanvasConnection(_targetClusterId, MainData.SelectedMapCluster.Id, ConnectionType));
                     MainData.GetGalaxyMap().CanvasConnections.Last().GenerateLine();
                 }
