@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Model;
+using GalaxyCreator.Model.CanvasModel;
 using GalaxyCreator.Model.Json;
 using System;
 using System.Collections.Generic;

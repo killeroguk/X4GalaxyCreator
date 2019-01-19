@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaxyCreator.Model;
+using GalaxyCreator.Model.CanvasModel;
 using GalaxyCreator.Model.Json;
 using GalaxyCreator.Util;
 using GalaxyCreator.ViewModel.Validators;
@@ -54,6 +55,7 @@ namespace GalaxyCreator.ViewModel
         private RelayCommand<object> _deleteBeltClickCommand;
 
         private RelayCommand<object> _deleteSpaceObjectCommand;
+        private RelayCommand<object> _deleteConnectionClickCommand;
 
         //public Cluster Cluster
         //{
@@ -171,6 +173,19 @@ namespace GalaxyCreator.ViewModel
             }
         }
 
+        public RelayCommand<object> DeleteConnectionClickCommand
+        {
+            get
+            {
+                if (_deleteConnectionClickCommand == null)
+                {
+                    _deleteConnectionClickCommand = new RelayCommand<object>((parm) => DeleteConnectionClick(parm));
+                }
+
+                return _deleteConnectionClickCommand;
+            }
+        }
+
 
         public ObservableCollection<string> TargetClusterIds
         {
@@ -250,6 +265,21 @@ namespace GalaxyCreator.ViewModel
         public void DeleteSpaceObjectClick(object ob)
         {
             Cluster.SpaceObjects.Remove((SpaceObject)ob);
+        }
+
+        public void DeleteConnectionClick(object ob)
+        {
+           Connection connection = (Connection)ob; 
+
+
+           Cluster.Connections.Remove((Connection)ob);
+
+           CanvasConnection canvasConnection =  MainData.GetGalaxyMap().CanvasConnections.FirstOrDefault(c => c.ConnectionId1 == connection.TargetClusterId && c.ConnectionId2 == MainData.SelectedMapCluster.Id);
+
+            if ( canvasConnection != null)
+            {
+                MainData.RemoveConnectionFromCanvas(canvasConnection);
+            }
         }
 
         public string this[string columnName]

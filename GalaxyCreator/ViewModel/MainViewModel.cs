@@ -12,6 +12,7 @@ using System.Linq;
 using System.Windows.Media;
 using GalaxyCreator.Util;
 using System.Reflection;
+using GalaxyCreator.Model.CanvasModel;
 
 namespace GalaxyCreator.ViewModel
 {
@@ -104,7 +105,6 @@ namespace GalaxyCreator.ViewModel
 
                 foreach (Connection con in cluster.Connections)
                 {
-
                     MainData.GetGalaxyMap().CanvasConnections.Add(new CanvasConnection(con.TargetClusterId, cluster.Id,con.ConnectionType));
                 }
                

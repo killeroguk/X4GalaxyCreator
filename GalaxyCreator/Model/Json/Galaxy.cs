@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GalaxyCreator.Model.CanvasModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

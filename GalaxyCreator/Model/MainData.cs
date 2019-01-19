@@ -1,4 +1,5 @@
-﻿using GalaxyCreator.Model.Json;
+﻿using GalaxyCreator.Model.CanvasModel;
+using GalaxyCreator.Model.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;

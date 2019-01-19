@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="Dialogs\EconomyEditor\EconomyEditorDetailViewModel.cs" />
     <Compile Include="Model\CanvasBaseObject.cs" />
+    <Compile Include="Model\CanvasModels\CanvasConnection.cs" />
     <Compile Include="Model\EconomyEditor\ProductMemento.cs" />
     <Compile Include="Model\EconomyEditor\WareItem.cs" />
     <Compile Include="Model\JobEditor\JobMemento.cs" />
