@@ -162,6 +162,20 @@ namespace GalaxyCreator.Dialogs.JobEditor
             }
         }
 
+        private RelayCommand<object> _shipFactionsTagUpdateCommand = null;
+        public RelayCommand<object> ShipFactionsUpdateCommand
+        {
+            get
+            {
+                if (_shipFactionsTagUpdateCommand == null)
+                {
+                    _shipFactionsTagUpdateCommand = new RelayCommand<object>((param) => UpdateFactionsOnShip(param));
+                }
+ 
+                return _shipFactionsTagUpdateCommand;
+            }
+        }
+
         public JobEditorDetailViewModel(string message, Job job) : base(message)
         {
             this.Job = job;
